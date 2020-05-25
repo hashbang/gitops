@@ -1,0 +1,12 @@
+creation_rules:
+  - encrypted_regex: '^(data|stringData)$'
+    ## PGP Key order:
+    # ArgoCD key
+    # Daurnimator
+    # Ryan
+    # lrvick
+    pgp: >-
+      1FD6667A0808D4D48BDB8757A61B48D8288FCF8A,
+      954A3772D62EF90E4B31FBC6C91A9911192C187A,
+      8333F292B1BBD334A61E6F566785F7AF28DE7081,
+      6B61ECD76088748C70590D55E90A401336C8AAA9
