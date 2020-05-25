@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  namespace: ircd
+  name: irc.hashbang.sh
+spec:
+  secretName: irc-certs
+  dnsNames:
+  - irc.hashbang.sh
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

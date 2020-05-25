@@ -3,9 +3,8 @@ kind: Kustomization
 namespace: ircd
 resources:
   - namespace.yaml
+  - certificate.yaml
   - resources.yaml
-generators:
-  - secret-generator.yaml
 configMapGenerator:
 - name: irc-config
   files:
