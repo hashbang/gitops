@@ -12,3 +12,13 @@ spec:
     - http01:
         ingress:
           class: nginx
+    - selector:
+        dnsZones:
+          - "irc.hashbang.sh"
+      dns01:
+        route53:
+          region: us-west-2
+          accessKeyID: AIDAR7CEWFK3TPVRATH4J
+          secretAccessKeySecretRef:
+            name: dns-iam-key
+            key: iam-key
