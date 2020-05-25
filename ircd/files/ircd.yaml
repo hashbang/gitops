@@ -1,0 +1,724 @@
+# oragono IRCd config
+
+# network configuration
+network:
+    # name of the network
+    name: hashbang.sh
+
+# server configuration
+server:
+    # server name
+    name: irc.hashbang.sh
+
+    # addresses to listen on
+    listeners:
+        # The standard plaintext port for IRC is 6667. This will listen on all interfaces:
+        # ":6667":
+
+        # Allowing plaintext over the public Internet poses security and privacy issues,
+        # so if possible, we recommend that you comment out the above line and replace
+        # it with these two, which listen only on local interfaces:
+        #"127.0.0.1:6667": # (loopback ipv4, localhost-only)
+        #"[::1]:6667":     # (loopback ipv6, localhost-only)
+        # Alternately, if you have a TLS certificate issued by a recognized CA,
+        # you can configure port 6667 as an STS-only listener that only serves
+        # "redirects" to the TLS port, but doesn't allow chat. See the manual
+        # for details.
+
+        # The standard SSL/TLS port for IRC is 6697. This will listen on all interfaces:
+        ":6697":
+            tls:
+                key: /ircd/tls/tls.key
+                cert: /ircd/tls/tls.crt
+                # 'proxy' should typically be false. It's only for Kubernetes-style load
+                # balancing that does not terminate TLS, but sends an initial PROXY line
+                # in plaintext.
+                proxy: true
+
+        # Example of a Unix domain socket for proxying:
+        # "/tmp/oragono_sock":
+
+        # Example of a Tor listener: any connection that comes in on this listener will
+        # be considered a Tor connection. It is strongly recommended that this listener
+        # *not* be on a public interface --- it should be on 127.0.0.0/8 or unix domain:
+        # "/hidden_service_sockets/oragono_tor_sock":
+        #     tor: true
+
+    # sets the permissions for Unix listen sockets. on a typical Linux system,
+    # the default is 0775 or 0755, which prevents other users/groups from connecting
+    # to the socket. With 0777, it behaves like a normal TCP socket
+    # where anyone can connect.
+    unix-bind-mode: 0777
+
+    # configure the behavior of Tor listeners (ignored if you didn't enable any):
+    tor-listeners:
+        # if this is true, connections from Tor must authenticate with SASL
+        require-sasl: false
+
+        # what hostname should be displayed for Tor connections?
+        vhost: "tor-network.onion"
+
+        # allow at most this many connections at once (0 for no limit):
+        max-connections: 64
+
+        # connection throttling (limit how many connection attempts are allowed at once):
+        throttle-duration: 10m
+        # set to 0 to disable throttling:
+        max-connections-per-duration: 64
+
+    # strict transport security, to get clients to automagically use TLS
+    sts:
+        # whether to advertise STS
+        #
+        # to stop advertising STS, leave this enabled and set 'duration' below to "0". this will
+        # advertise to connecting users that the STS policy they have saved is no longer valid
+        enabled: true
+
+        # how long clients should be forced to use TLS for.
+        # setting this to a too-long time will mean bad things if you later remove your TLS.
+        # the default duration below is 1 month, 2 days and 5 minutes.
+        duration: 1mo2d5m
+
+        # tls port - you should be listening on this port above
+        port: 6697
+
+        # should clients include this STS policy when they ship their inbuilt preload lists?
+        preload: true
+
+    # casemapping controls what kinds of strings are permitted as identifiers (nicknames,
+    # channel names, account names, etc.), and how they are normalized for case.
+    # with the recommended default of 'precis', utf-8 identifiers that are "sane"
+    # (according to RFC 8265) are allowed, and the server additionally tries to protect
+    # against confusable characters ("homoglyph attacks").
+    # the other options are 'ascii' (traditional ASCII-only identifiers), and 'permissive',
+    # which allows identifiers to contain unusual characters like emoji, but makes users
+    # vulnerable to homoglyph attacks. unless you're really confident in your decision,
+    # we recommend leaving this value at its default (changing it once the network is
+    # already up and running is problematic).
+    casemapping: "precis"
+
+    # whether to look up user hostnames with reverse DNS
+    # (to suppress this for privacy purposes, use the ip-cloaking options below)
+    lookup-hostnames: true
+    # whether to confirm hostname lookups using "forward-confirmed reverse DNS", i.e., for
+    # any hostname returned from reverse DNS, resolve it back to an IP address and reject it
+    # unless it matches the connecting IP
+    forward-confirm-hostnames: true
+
+    # use ident protocol to get usernames
+    check-ident: false
+
+    # password to login to the server
+    # generated using  "oragono genpasswd"
+    #password: ""
+
+    # motd filename
+    # if you change the motd, you should move it to ircd.motd
+    motd: ircd.motd
+
+    # motd formatting codes
+    # if this is true, the motd is escaped using formatting codes like $c, $b, and $i
+    motd-formatting: true
+
+    # addresses/CIDRs the PROXY command can be used from
+    # this should be restricted to 127.0.0.1/8 and ::1/128 (unless you have a good reason)
+    # you should also add these addresses to the connection limits and throttling exemption lists
+    proxy-allowed-from:
+        - 0.0.0.0/0
+
+    # controls the use of the WEBIRC command (by IRC<->web interfaces, bouncers and similar)
+    # webirc:
+    #     # one webirc block -- should correspond to one set of gateways
+    #     -
+    #         # SHA-256 fingerprint of the TLS certificate the gateway must use to connect
+    #         # (comment this out to use passwords only)
+    #         fingerprint: "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"
+
+    #         # password the gateway uses to connect, made with oragono genpasswd
+    #         password: "$2a$04$sLEFDpIOyUp55e6gTMKbOeroT6tMXTjPFvA0eGvwvImVR9pkwv7ee"
+
+    #         # addresses/CIDRs that can use this webirc command
+    #         # you should also add these addresses to the connection limits and throttling exemption lists
+    #         hosts:
+    #             # - localhost
+    #             # - "192.168.1.1"
+    #             # - "192.168.10.1/24"
+
+    # allow use of the RESUME extension over plaintext connections:
+    # do not enable this unless the ircd is only accessible over internal networks
+    allow-plaintext-resume: false
+
+    # maximum length of clients' sendQ in bytes
+    # this should be big enough to hold bursts of channel/direct messages
+    max-sendq: 16k
+
+    # compatibility with legacy clients
+    compatibility:
+        # many clients require that the final parameter of certain messages be an
+        # RFC1459 trailing parameter, i.e., prefixed with :, whether or not this is
+        # actually required. this forces Oragono to send those parameters
+        # as trailings. this is recommended unless you're testing clients for conformance;
+        # defaults to true when unset for that reason.
+        force-trailing: true
+
+        # some clients (ZNC 1.6.x and lower, Pidgin 2.12 and lower) do not
+        # respond correctly to SASL messages with the server name as a prefix:
+        # https://github.com/znc/znc/issues/1212
+        # this works around that bug, allowing them to use SASL.
+        send-unprefixed-sasl: true
+
+    # IP-based DoS protection
+    ip-limits:
+        # whether to limit the total number of concurrent connections per IP/CIDR
+        count: true
+        # maximum concurrent connections per IP/CIDR
+        max-concurrent-connections: 64
+
+        # whether to restrict the rate of new connections per IP/CIDR
+        throttle: true
+        # how long to keep track of connections for
+        window: 10m
+        # maximum number of new connections per IP/CIDR within the given duration
+        max-connections-per-window: 64
+        # how long to ban offenders for. after banning them, the number of connections is
+        # reset, which lets you use /UNDLINE to unban people
+        throttle-ban-duration: 10m
+
+        # how wide the CIDR should be for IPv4 (a /32 is a fully specified IPv4 address)
+        cidr-len-ipv4: 32
+        # how wide the CIDR should be for IPv6 (a /64 is the typical prefix assigned
+        # by an ISP to an individual customer for their LAN)
+        cidr-len-ipv6: 64
+
+        # IPs/networks which are exempted from connection limits
+        exempted:
+            - "localhost"
+            - "10.0.0.0/8"
+            # de1.hashbang.sh:
+            - "46.4.114.111"
+            - "2a01:4f8:141:1272::2/64"
+            # - "192.168.1.1"
+            # - "2001:0db8::/32"
+
+        # custom connection limits for certain IPs/networks. note that CIDR
+        # widths defined here override the default CIDR width --- the limit
+        # will apply to the entire CIDR no matter how large or small it is
+        custom-limits:
+            # "8.8.0.0/16":
+            #     max-concurrent-connections: 128
+            #     max-connections-per-window: 1024
+
+    # IP cloaking hides users' IP addresses from other users and from channel admins
+    # (but not from server admins), while still allowing channel admins to ban
+    # offending IP addresses or networks. In place of hostnames derived from reverse
+    # DNS, users see fake domain names like pwbs2ui4377257x8.oragono. These names are
+    # generated deterministically from the underlying IP address, but if the underlying
+    # IP is not already known, it is infeasible to recover it from the cloaked name.
+    ip-cloaking:
+        # whether to enable IP cloaking
+        enabled: true
+
+        # fake TLD at the end of the hostname, e.g., pwbs2ui4377257x8.oragono
+        netname: "hashbang.sh"
+
+        # the cloaked hostname is derived only from the CIDR (most significant bits
+        # of the IP address), up to a configurable number of bits. this is the
+        # granularity at which bans will take effect for IPv4. Note that changing
+        # this value will invalidate any stored bans.
+        cidr-len-ipv4: 32
+
+        # analogous granularity for IPv6
+        cidr-len-ipv6: 64
+
+        # number of bits of hash output to include in the cloaked hostname.
+        # more bits means less likelihood of distinct IPs colliding,
+        # at the cost of a longer cloaked hostname. if this value is set to 0,
+        # all users will receive simply `netname` as their cloaked hostname.
+        num-bits: 64
+
+
+# account options
+accounts:
+    # is account authentication enabled, i.e., can users log into existing accounts?
+    authentication-enabled: true
+
+    # account registration
+    registration:
+        # can users register new accounts for themselves? if this is false, operators with
+        # the `accreg` capability can still create accounts with `/NICKSERV SAREGISTER`
+        enabled: true
+
+        # this is the bcrypt cost we'll use for account passwords
+        bcrypt-cost: 9
+
+        # length of time a user has to verify their account before it can be re-registered
+        verify-timeout: "32h"
+
+        # callbacks to allow
+        enabled-callbacks:
+            - none # no verification needed, will instantly register successfully
+
+        # example configuration for sending verification emails via a local mail relay
+        # callbacks:
+        #     mailto:
+        #         server: localhost
+        #         port: 25
+        #         tls:
+        #             enabled: false
+        #         username: ""
+        #         password: ""
+        #         sender: "admin@my.network"
+
+    # throttle account login attempts (to prevent either password guessing, or DoS
+    # attacks on the server aimed at forcing repeated expensive bcrypt computations)
+    login-throttling:
+        enabled: true
+
+        # window
+        duration:  1m
+
+        # number of attempts allowed within the window
+        max-attempts: 3
+
+    # some clients (notably Pidgin and Hexchat) offer only a single password field,
+    # which makes it impossible to specify a separate server password (for the PASS
+    # command) and SASL password. if this option is set to true, a client that
+    # successfully authenticates with SASL will not be required to send
+    # PASS as well, so it can be configured to authenticate with SASL only.
+    skip-server-password: false
+
+    # enable login to accounts via the PASS command, e.g., PASS account:password
+    # this is sometimes useful for compatibility with old clients that don't support SASL
+    login-via-pass-command: true
+
+    # require-sasl controls whether clients are required to have accounts
+    # (and sign into them using SASL) to connect to the server
+    require-sasl:
+        # if this is enabled, all clients must authenticate with SASL while connecting
+        enabled: false
+
+        # IPs/CIDRs which are exempted from the account requirement
+        exempted:
+            - "localhost"
+            # - '10.10.0.0/16'
+
+    # nick-reservation controls how, and whether, nicknames are linked to accounts
+    nick-reservation:
+        # is there any enforcement of reserved nicknames?
+        enabled: true
+
+        # how many nicknames, in addition to the account name, can be reserved?
+        additional-nick-limit: 2
+
+        # method describes how nickname reservation is handled
+        #   timeout:  let the user change to the registered nickname, give them X seconds
+        #             to login and then rename them if they haven't done so
+        #   strict:   don't let the user change to the registered nickname unless they're
+        #             already logged-in using SASL or NickServ
+        #   optional: no enforcement by default, but allow users to opt in to
+        #             the enforcement level of their choice
+        #
+        # 'optional' matches the behavior of other NickServs, but 'strict' is
+        # preferable if all your users can enable SASL.
+        method: strict
+
+        # allow users to set their own nickname enforcement status, e.g.,
+        # to opt in to strict enforcement
+        allow-custom-enforcement: false
+
+        # rename-timeout - this is how long users have 'til they're renamed
+        rename-timeout: 30s
+
+        # rename-prefix - this is the prefix to use when renaming clients (e.g. Guest-AB54U31)
+        rename-prefix: Guest-
+
+        # when enabled, forces users logged into an account to use the
+        # account name as their nickname. when combined with strict nickname
+        # enforcement, this lets users treat nicknames and account names
+        # as equivalent for the purpose of ban/invite/exception lists.
+        force-nick-equals-account: true
+
+    # bouncer controls whether oragono can act as a bouncer, i.e., allowing
+    # multiple connections to attach to the same client/nickname identity
+    multiclient:
+        # when disabled, each connection must use a separate nickname (as is the
+        # typical behavior of IRC servers). when enabled, a new connection that
+        # has authenticated with SASL can associate itself with an existing
+        # client
+        enabled: true
+
+        # clients can opt in to bouncer functionality using the cap system, or
+        # via nickserv. if this is enabled, then they have to opt out instead
+        allowed-by-default: true
+
+        # whether to allow clients that remain on the server even
+        # when they have no active connections. The possible values are:
+        # "disabled", "opt-in", "opt-out", or "mandatory".
+        always-on: "opt-in"
+
+        # whether to mark always-on clients away when they have no active connections:
+        auto-away: "opt-in"
+
+    # vhosts controls the assignment of vhosts (strings displayed in place of the user's
+    # hostname/IP) by the HostServ service
+    vhosts:
+        # are vhosts enabled at all?
+        enabled: true
+
+        # maximum length of a vhost
+        max-length: 64
+
+        # regexp for testing the validity of a vhost
+        # (make sure any changes you make here are RFC-compliant)
+        valid-regexp: '^[0-9A-Za-z.\-_/]+$'
+
+        # options controlling users requesting vhosts:
+        user-requests:
+            # can users request vhosts at all? if this is false, operators with the
+            # 'vhosts' capability can still assign vhosts manually
+            enabled: false
+
+            # if uncommented, all new vhost requests will be dumped into the given
+            # channel, so opers can review them as they are sent in. ensure that you
+            # have registered and restricted the channel appropriately before you
+            # uncomment this.
+            #channel: "#vhosts"
+
+            # after a user's vhost has been approved or rejected, they need to wait
+            # this long (starting from the time of their original request)
+            # before they can request a new one.
+            cooldown: 168h
+
+# channel options
+channels:
+    # modes that are set when new channels are created
+    # +n is no-external-messages and +t is op-only-topic
+    # see  /QUOTE HELP cmodes  for more channel modes
+    default-modes: +nt
+
+    # how many channels can a client be in at once?
+    max-channels-per-client: 100
+
+    # if this is true, new channels can only be created by operators with the
+    # `chanreg` operator capability
+    operator-only-creation: false
+
+    # channel registration - requires an account
+    registration:
+        # can users register new channels?
+        enabled: true
+
+        # how many channels can each account register?
+        max-channels-per-account: 15
+
+# operator classes
+oper-classes:
+    # local operator
+    "local-oper":
+        # title shown in WHOIS
+        title: Local Operator
+
+        # capability names
+        capabilities:
+            - "oper:local_kill"
+            - "oper:local_ban"
+            - "oper:local_unban"
+            - "nofakelag"
+
+    # network operator
+    "network-oper":
+        # title shown in WHOIS
+        title: Network Operator
+
+        # oper class this extends from
+        extends: "local-oper"
+
+        # capability names
+        capabilities:
+            - "oper:remote_kill"
+            - "oper:remote_ban"
+            - "oper:remote_unban"
+
+    # server admin
+    "server-admin":
+        # title shown in WHOIS
+        title: Server Admin
+
+        # oper class this extends from
+        extends: "local-oper"
+
+        # capability names
+        capabilities:
+            - "oper:rehash"
+            - "oper:die"
+            - "accreg"
+            - "sajoin"
+            - "samode"
+            - "vhosts"
+            - "chanreg"
+
+# ircd operators
+opers:
+    # operator named 'lrvick'
+
+    slingamn:
+        # which capabilities this oper has access to
+        class: "server-admin"
+        whois-line: is an IRC operator
+        vhost: "staff.hashbang.sh"
+        #modes: +i
+        password: "$2a$04$Ghggxzjaee6/t6JhYTUoN.Xbizw1g/3IZiqjjT0P6/vcgliysy.VG"
+
+    ryan:
+        class: "server-admin"
+        whois-line: "is the best #! admin"
+        vhost: "staff.hashbang.sh"
+        certfp: "B3:7A:7F:B5:F5:D1:5D:B9:DF:42:62:0B:77:21:A1:56:F0:BA:FD:2B:8D:71:BC:3D:08:9B:60:BC:CE:24:25:62"
+        auto: true
+
+    daurnimator:
+        class: "server-admin"
+        whois-line: finally got a working certfp
+        certfp: "4F:AE:78:65:6C:02:AC:B2:D2:F0:B3:0A:AD:87:BF:91:06:38:FA:A2:50:B2:B3:48:49:4F:12:D1:F8:E7:65:46"
+        auto: true
+
+    benharri:
+        class: server-admin
+        whois-line: yes
+        certfp: "90:7F:08:66:21:06:18:A8:29:6A:44:15:F9:FA:AB:D6:DF:A5:06:6A:05:69:4D:DA:C2:78:F7:20:E6:5E:88:92"
+        auto: true
+
+    deviavir:
+        class: server-admin
+        whois-line: probably
+        certfp: "BE:D2:60:10:04:57:93:A3:EF:AC:0B:DB:B7:C5:5C:F6:0F:21:CD:CC:6E:DB:B5:BD:D1:94:21:ED:0E:76:B1:4B"
+
+    dgrove:
+        class: server-admin
+        whois-line: canadian soon(tm)
+        certfp: "19:68:84:1D:AE:CE:2E:3A:65:56:71:F4:D6:9C:F1:92:99:12:EC:7C:99:78:95:B1:9C:7B:E3:AC:2E:9C:8A:F2"
+        auto: true
+
+    viaken:
+        class: server-admin
+        whois-line: -
+        certfp: "C0:B5:27:AD:10:E2:5F:60:39:0A:27:4D:5A:B9:30:51:17:54:87:99:EF:8A:C2:80:A0:31:4D:CA:A1:FE:78:9B"
+        auto: true
+
+    singlerider:
+        class: server-admin
+        whois-line: boaty boy
+        certfp: "41:AE:61:33:58:25:B2:BB:30:D1:07:1A:2C:F6:A7:CB:59:A6:E6:81:16:CA:86:82:09:2F:F3:F3:3F:0D:0E:88"
+        auto: true
+
+
+# logging, takes inspiration from Insp
+logging:
+    -
+        # how to log these messages
+        #
+        #   file    log to given target filename
+        #   stdout  log to stdout
+        #   stderr  log to stderr
+        #   (you can specify multiple methods, e.g., to log to both stderr and a file)
+        method: stderr
+
+        # filename to log to, if file method is selected
+        # filename: ircd.log
+
+        # type(s) of logs to keep here. you can use - to exclude those types
+        #
+        # exclusions take precedent over inclusions, so if you exclude a type it will NEVER
+        # be logged, even if you explicitly include it
+        #
+        # useful types include:
+        #   *               everything (usually used with exclusing some types below)
+        #   server          server startup, rehash, and shutdown events
+        #   accounts        account registration and authentication
+        #   channels        channel creation and operations
+        #   commands        command calling and operations
+        #   opers           oper actions, authentication, etc
+        #   services        actions related to NickServ, ChanServ, etc.
+        #   internal        unexpected runtime behavior, including potential bugs
+        #   userinput       raw lines sent by users
+        #   useroutput      raw lines sent to users
+        type: "server listeners connect connect-ip quit internal"
+
+        # one of: debug info warn error
+        level: debug
+    #-
+    #   # example of a file log that avoids logging IP addresses
+    #   method: file
+    #   filename: ircd.log
+    #   type: "* -userinput -useroutput -localconnect -localconnect-ip"
+    #   level: debug
+
+# debug options
+debug:
+    # when enabled, oragono will attempt to recover from certain kinds of
+    # client-triggered runtime errors that would normally crash the server.
+    # this makes the server more resilient to DoS, but could result in incorrect
+    # behavior. deployments that would prefer to "start from scratch", e.g., by
+    # letting the process crash and auto-restarting it with systemd, can set
+    # this to false.
+    recover-from-errors: true
+
+    # optionally expose a pprof http endpoint: https://golang.org/pkg/net/http/pprof/
+    # it is strongly recommended that you don't expose this on a public interface;
+    # if you need to access it remotely, you can use an SSH tunnel.
+    # set to `null`, "", leave blank, or omit to disable
+    # pprof-listener: "localhost:6060"
+
+# datastore configuration
+datastore:
+    # path to the datastore
+    path: /ircd/db/ircd.db
+
+    # if the database schema requires an upgrade, `autoupgrade` will attempt to
+    # perform it automatically on startup. the database will be backed
+    # up, and if the upgrade fails, the original database will be restored.
+    autoupgrade: true
+
+# languages config
+languages:
+    # whether to load languages
+    enabled: false
+
+    # default language to use for new clients
+    # 'en' is the default English language in the code
+    default: en
+
+    # which directory contains our language files
+    path: languages
+
+# limits - these need to be the same across the network
+limits:
+    # nicklen is the max nick length allowed
+    nicklen: 32
+
+    # identlen is the max ident length allowed
+    identlen: 20
+
+    # channellen is the max channel length allowed
+    channellen: 64
+
+    # awaylen is the maximum length of an away message
+    awaylen: 500
+
+    # kicklen is the maximum length of a kick message
+    kicklen: 1000
+
+    # topiclen is the maximum length of a channel topic
+    topiclen: 1000
+
+    # maximum number of monitor entries a client can have
+    monitor-entries: 100
+
+    # whowas entries to store
+    whowas-entries: 100
+
+    # maximum length of channel lists (beI modes)
+    chan-list-modes: 60
+
+    # maximum length of IRC lines
+    # this should generally be 1024-2048, and will only apply when negotiated by clients
+    linelen:
+        # ratified version of the message-tags cap fixes the max tag length at 8191 bytes
+        # configurable length for the rest of the message:
+        rest: 2048
+
+    # maximum number of messages to accept during registration (prevents
+    # DoS / resource exhaustion attacks):
+    registration-messages: 1024
+
+    # message length limits for the new multiline cap
+    multiline:
+        max-bytes: 4096 # 0 means disabled
+        max-lines: 24   # 0 means no limit
+
+# fakelag: prevents clients from spamming commands too rapidly
+fakelag:
+    # whether to enforce fakelag
+    enabled: true
+
+    # time unit for counting command rates
+    window: 1s
+
+    # clients can send this many commands without fakelag being imposed
+    burst-limit: 5
+
+    # once clients have exceeded their burst allowance, they can send only
+    # this many commands per `window`:
+    messages-per-window: 2
+
+    # client status resets to the default state if they go this long without
+    # sending any commands:
+    cooldown: 2s
+
+# message history tracking, for the RESUME extension and possibly other uses in future
+history:
+    # should we store messages for later playback?
+    # the current implementation stores messages in RAM only; they do not persist
+    # across server restarts. however, you should not enable this unless you understand
+    # how it interacts with the GDPR and/or any data privacy laws that apply
+    # in your country and the countries of your users.
+    enabled: true
+
+    # how many channel-specific events (messages, joins, parts) should be tracked per channel?
+    channel-length: 4096
+
+    # how many direct messages and notices should be tracked per user?
+    client-length: 512
+
+    # how long should we try to preserve messages?
+    # if `autoresize-window` is 0, the in-memory message buffers are preallocated to
+    # their maximum length. if it is nonzero, the buffers are initially small and
+    # are dynamically expanded up to the maximum length. if the buffer is full
+    # and the oldest message is older than `autoresize-window`, then it will overwrite
+    # the oldest message rather than resize; otherwise, it will expand if possible.
+    autoresize-window: 2w
+
+    # number of messages to automatically play back on channel join (0 to disable):
+    autoreplay-on-join: 0
+
+    # maximum number of CHATHISTORY messages that can be
+    # requested at once (0 disables support for CHATHISTORY)
+    chathistory-maxmessages: 100
+
+    # maximum number of messages that can be replayed at once during znc emulation
+    # (znc.in/playback, or automatic replay on initial reattach to a persistent client):
+    znc-maxmessages: 2048
+
+    # options to delete old messages, or prevent them from being retrieved
+    restrictions:
+        # if this is set, messages older than this cannot be retrieved by anyone
+        # (and will eventually be deleted from persistent storage, if that's enabled)
+        expire-time: 2w
+
+        # if this is set, logged-in users cannot retrieve messages older than their
+        # account registration date, and logged-out users cannot retrieve messages
+        # older than their sign-on time (modulo grace-period, see below):
+        enforce-registration-date: true
+
+        # but if this is set, you can retrieve messages that are up to `grace-period`
+        # older than the above cutoff time. this is recommended to allow logged-out
+        # users to do session resumption / query history after disconnections.
+        grace-period: 1h
+
+    # options to store history messages in a persistent database (currently only MySQL):
+    persistent:
+        enabled: false
+
+        # store unregistered channel messages in the persistent database?
+        unregistered-channels: false
+
+        # for a registered channel, the channel owner can potentially customize
+        # the history storage setting. as the server operator, your options are
+        # 'disabled' (no persistent storage, regardless of per-channel setting),
+        # 'opt-in', 'opt-out', and 'mandatory' (force persistent storage, ignoring
+        # per-channel setting):
+        registered-channels: "opt-out"
+
+        # direct messages are only stored in the database for persistent clients;
+        # you can control how they are stored here (same options as above)
+        direct-messages: "opt-out"

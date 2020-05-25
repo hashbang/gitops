@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: irc-deployment
+  labels:
+    app: irc
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: irc
+  template:
+    metadata:
+      labels:
+        app: irc
+    spec:
+      containers:
+      - name: irc
+        image: oragono/oragono:dev
+        ports:
+        - containerPort: 6697
+        readinessProbe:
+          tcpSocket:
+            port: 6697
+        livenessProbe:
+          tcpSocket:
+            port: 6697
+        volumeMounts:
+        - mountPath: /ircd/
+          name: irc-config
+          readOnly: true
+        - mountPath: /ircd/tls
+          name: irc-certs
+          readOnly: true
+        - mountPath: /ircd/db
+          name: irc-db
+      volumes:
+      - name: irc-config
+        configMap:
+          name: irc-config
+      - name: irc-certs
+        secret:
+          secretName: irc-certs
+      - name: irc-db
+        persistentVolumeClaim:
+          claimName: irc-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: irc
+  labels:
+    app: irc
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 6697
+    targetPort: 6697
+  selector:
+    app: irc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: irc-db
+  labels:
+    app: irc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

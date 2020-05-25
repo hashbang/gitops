@@ -3,9 +3,14 @@ kind: Kustomization
 namespace: ircd
 resources:
   - namespace.yaml
-  - github.com/hashbang/k8s-irc/base?ref=2571531ff658ca453c3251c95538019ba11b08fd
+  - resources.yaml
 generators:
   - secret-generator.yaml
+configMapGenerator:
+- name: irc-config
+  files:
+  - files/ircd.motd
+  - files/ircd.yaml
 images:
   - name: oragono/oragono:dev
     digest: sha256:dd62a8ea7776c6951673cbe0318125651e8395232f1b8b709228ed6197f528ff
