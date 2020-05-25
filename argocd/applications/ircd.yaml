@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ircd
+spec:
+  destination:
+    namespace: ircd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ircd
+    repoURL: git@github.com:hashbang/gitops
+    targetRevision: HEAD
