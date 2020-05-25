@@ -4,3 +4,5 @@ namespace: ircd
 resources:
   - namespace.yaml
   - github.com/hashbang/k8s-irc/base?ref=2571531ff658ca453c3251c95538019ba11b08fd
+generators:
+  - secret-generator.yaml
