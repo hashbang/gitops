@@ -8,6 +8,7 @@ resources:
   # Applications to deploy
   - applications/argocd.yaml
   - applications/cert-manager.yaml
+  - applications/cert-manager-issuers.yaml
   - applications/ircd.yaml
 patches:
   - argo-cd-repo-server-ksops-patch.yaml

@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-issuers
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: cert-manager
+  project: default
+  source:
+    path: cert-manager-issuers
+    repoURL: git@github.com:hashbang/gitops
+    targetRevision: HEAD
