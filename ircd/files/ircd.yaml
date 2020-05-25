@@ -473,42 +473,43 @@ opers:
         class: "server-admin"
         whois-line: "is the best #! admin"
         vhost: "staff.hashbang.sh"
-        certfp: "B3:7A:7F:B5:F5:D1:5D:B9:DF:42:62:0B:77:21:A1:56:F0:BA:FD:2B:8D:71:BC:3D:08:9B:60:BC:CE:24:25:62"
+        fingerprint: "B3:7A:7F:B5:F5:D1:5D:B9:DF:42:62:0B:77:21:A1:56:F0:BA:FD:2B:8D:71:BC:3D:08:9B:60:BC:CE:24:25:62"
         auto: true
 
     daurnimator:
         class: "server-admin"
-        whois-line: finally got a working certfp
-        certfp: "4F:AE:78:65:6C:02:AC:B2:D2:F0:B3:0A:AD:87:BF:91:06:38:FA:A2:50:B2:B3:48:49:4F:12:D1:F8:E7:65:46"
+        whois-line: finally got a working fingerprint
+        fingerprint: "4F:AE:78:65:6C:02:AC:B2:D2:F0:B3:0A:AD:87:BF:91:06:38:FA:A2:50:B2:B3:48:49:4F:12:D1:F8:E7:65:46"
         auto: true
 
     benharri:
         class: server-admin
         whois-line: yes
-        certfp: "90:7F:08:66:21:06:18:A8:29:6A:44:15:F9:FA:AB:D6:DF:A5:06:6A:05:69:4D:DA:C2:78:F7:20:E6:5E:88:92"
+        fingerprint: "90:7F:08:66:21:06:18:A8:29:6A:44:15:F9:FA:AB:D6:DF:A5:06:6A:05:69:4D:DA:C2:78:F7:20:E6:5E:88:92"
         auto: true
 
     deviavir:
         class: server-admin
         whois-line: probably
-        certfp: "BE:D2:60:10:04:57:93:A3:EF:AC:0B:DB:B7:C5:5C:F6:0F:21:CD:CC:6E:DB:B5:BD:D1:94:21:ED:0E:76:B1:4B"
+        fingerprint: "BE:D2:60:10:04:57:93:A3:EF:AC:0B:DB:B7:C5:5C:F6:0F:21:CD:CC:6E:DB:B5:BD:D1:94:21:ED:0E:76:B1:4B"
+        auto: true
 
     dgrove:
         class: server-admin
         whois-line: canadian soon(tm)
-        certfp: "19:68:84:1D:AE:CE:2E:3A:65:56:71:F4:D6:9C:F1:92:99:12:EC:7C:99:78:95:B1:9C:7B:E3:AC:2E:9C:8A:F2"
+        fingerprint: "19:68:84:1D:AE:CE:2E:3A:65:56:71:F4:D6:9C:F1:92:99:12:EC:7C:99:78:95:B1:9C:7B:E3:AC:2E:9C:8A:F2"
         auto: true
 
     viaken:
         class: server-admin
-        whois-line: -
-        certfp: "C0:B5:27:AD:10:E2:5F:60:39:0A:27:4D:5A:B9:30:51:17:54:87:99:EF:8A:C2:80:A0:31:4D:CA:A1:FE:78:9B"
+        whois-line: "-"
+        fingerprint: "C0:B5:27:AD:10:E2:5F:60:39:0A:27:4D:5A:B9:30:51:17:54:87:99:EF:8A:C2:80:A0:31:4D:CA:A1:FE:78:9B"
         auto: true
 
     singlerider:
         class: server-admin
         whois-line: boaty boy
-        certfp: "41:AE:61:33:58:25:B2:BB:30:D1:07:1A:2C:F6:A7:CB:59:A6:E6:81:16:CA:86:82:09:2F:F3:F3:3F:0D:0E:88"
+        fingerprint: "41:AE:61:33:58:25:B2:BB:30:D1:07:1A:2C:F6:A7:CB:59:A6:E6:81:16:CA:86:82:09:2F:F3:F3:3F:0D:0E:88"
         auto: true
 
 
