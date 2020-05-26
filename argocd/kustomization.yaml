@@ -18,6 +18,7 @@ patches:
   - argo-cd-allow-alpha-plugins-patch.yaml
   - argo-cd-import-pgp-key.yaml
   - argo-cd-repository-credentials-patch.yaml
+  - users.yaml
 images:
   - name: argoproj/argocd:v1.5.5
     digest: sha256:b83f7dafd3d7c21bbaea15d5ce13e699433d7736f5d441e752033663d4fa6e6c

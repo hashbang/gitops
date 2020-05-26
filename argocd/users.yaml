@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  accounts.ryan: apiKey,login
+  accounts.daurnimator: apiKey,login
+  accounts.lrvick: apiKey,login
+  accounts.lrvick.enabled: "false"
+  accounts.drgrove: apiKey,login
+  accounts.benharri: apiKey,login
