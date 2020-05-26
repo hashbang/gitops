@@ -55,6 +55,7 @@ metadata:
     app: irc
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+    external-dns.alpha.kubernetes.io/hostname: "irc.hashbang.sh"
 spec:
   type: LoadBalancer
   ports:
