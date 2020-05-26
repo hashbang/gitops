@@ -42,6 +42,7 @@ server:
             tls:
                 key: /ircd/tls/tls.key
                 cert: /ircd/tls/tls.crt
+                proxy: true
 
         # Example of a Unix domain socket for proxying:
         # "/tmp/oragono_sock":
