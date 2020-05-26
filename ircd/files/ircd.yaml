@@ -35,6 +35,14 @@ server:
                 # in plaintext.
                 proxy: true
 
+        # Native websockets over TLS on a nonstandard (non-443) port. This is typically not
+        # used directly, since application firewalls may block it:
+        ":443":
+            websocket: true
+            tls:
+                key: /ircd/tls/tls.key
+                cert: /ircd/tls/tls.crt
+
         # Example of a Unix domain socket for proxying:
         # "/tmp/oragono_sock":
 

@@ -21,6 +21,9 @@ spec:
         image: oragono/oragono:dev
         ports:
         - containerPort: 6697
+          name: ircs
+        - containerPort: 443
+          name: websocket
         readinessProbe:
           tcpSocket:
             port: 6697
@@ -61,6 +64,19 @@ spec:
   ports:
   - port: 6697
     targetPort: 6697
+  selector:
+    app: irc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: irc-websocket
+  labels:
+    app: irc
+spec:
+  ports:
+  - port: 443
+    targetPort: 443
   selector:
     app: irc
 ---
