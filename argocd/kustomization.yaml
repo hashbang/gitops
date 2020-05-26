@@ -9,6 +9,7 @@ resources:
   - applications/argocd.yaml
   - applications/cert-manager.yaml
   - applications/cert-manager-issuers.yaml
+  - applications/external-dns.yaml
   - applications/ircd.yaml
   - applications/userdb-api.yaml
 patches:
