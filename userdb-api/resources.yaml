@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userdb-api-deployment
+  labels:
+    app: userdb-api
+spec:
+  selector:
+    matchLabels:
+      app: userdb-api
+  template:
+    metadata:
+      labels:
+        app: userdb-api
+    spec:
+      containers:
+      - name: postgrest
+        image: postgrest/postgrest:v6.0.2
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PGRST_DB_ANON_ROLE
+          value: anon
+        - name: PGRST_DB_SCHEMA
+          value: v1
+        - name: PGRST_DB_URI
+          valueFrom:
+            secretKeyRef:
+              name: postgrest-secrets
+              key: db-uri
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userdb-api
+  labels:
+    app: userdb-api
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: userdb-api
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: userdb-api-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - userdb.hashbang.sh
+    secretName: userdb-tls
+  rules:
+  - host: userdb.hashbang.sh
+    http:
+      paths:
+      - backend:
+          serviceName: userdb-api
+          servicePort: 80

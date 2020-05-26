@@ -10,6 +10,7 @@ resources:
   - applications/cert-manager.yaml
   - applications/cert-manager-issuers.yaml
   - applications/ircd.yaml
+  - applications/userdb-api.yaml
 patches:
   - argo-cd-repo-server-ksops-patch.yaml
   - argo-cd-allow-alpha-plugins-patch.yaml
