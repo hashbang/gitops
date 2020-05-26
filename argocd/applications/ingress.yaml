@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress
+spec:
+  project: default
+  source:
+    repoURL: 'http://kubernetes.github.io/ingress-nginx'
+    targetRevision: 2.3.0
+    chart: ingress-nginx
+  destination:
+    namespace: ingress
+    server: 'https://kubernetes.default.svc'
