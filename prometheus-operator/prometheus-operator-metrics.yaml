@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-operator-metrics
+  labels:
+    prometheusInstance: default
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-operator
+  endpoints:
+  - port: http

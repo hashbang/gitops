@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator
+spec:
+  project: default
+  source:
+    path: prometheus-operator/
+    repoURL: git@github.com:hashbang/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: prometheus-operator
+    server: https://kubernetes.default.svc

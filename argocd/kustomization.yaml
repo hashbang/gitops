@@ -12,12 +12,14 @@ resources:
   - applications/cert-manager-issuers.yaml
   - applications/external-dns.yaml
   - applications/ircd.yaml
+  - applications/prometheus-operator.yaml
   - applications/userdb-api.yaml
 patches:
   - argo-cd-repo-server-ksops-patch.yaml
   - argo-cd-allow-alpha-plugins-patch.yaml
   - argo-cd-import-pgp-key.yaml
   - argo-cd-repository-credentials-patch.yaml
+  - argo-cd-service-monitor.yaml
   - users.yaml
 images:
   - name: argoproj/argocd:v1.5.5
