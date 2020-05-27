@@ -13,7 +13,9 @@ If you'd like to change anything about hashbang's infrastructure, please send a 
 
 ## Common Tasks
 
-### Adding new admins:
+### Adding New Admin(s)
+
+Add the new admin's PGP key to `.sops.yaml`, then run:
 
 ```sh
 for file in */*.enc.yaml ; do 
