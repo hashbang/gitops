@@ -10,6 +10,9 @@ configMapGenerator:
   files:
   - files/ircd.motd
   - files/ircd.yaml
+# TODO: move inside of `configMapGenerator` once kustomize 3.5.5 is available
+generatorOptions:
+  disableNameSuffixHash: true
 images:
   - name: oragono/oragono:dev
     digest: sha256:dd62a8ea7776c6951673cbe0318125651e8395232f1b8b709228ed6197f528ff
