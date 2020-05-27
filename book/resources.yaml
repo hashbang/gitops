@@ -59,6 +59,7 @@ spec:
   - host: book.hashbang.sh
     http:
       paths:
-      - backend:
+      - path: /
+        backend:
           serviceName: book
           servicePort: 80

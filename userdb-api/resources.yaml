@@ -59,6 +59,7 @@ spec:
   - host: userdb.hashbang.sh
     http:
       paths:
-      - backend:
+      - path: /
+        backend:
           serviceName: userdb-api
           servicePort: 80
