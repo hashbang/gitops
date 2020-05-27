@@ -4,6 +4,7 @@ namespace: book
 resources:
 - namespace.yaml
 - resources.yaml
+- networkpolicy.yaml
 replicas:
 - name: book
   count: 3
