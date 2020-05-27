@@ -33,3 +33,6 @@ images:
     digest: sha256:2f21264a483056102523be37431ba7971d991f2aa872c725f22fa074005b1d26
 generators:
   - secret-generator.yaml
+replicas:
+- name: argocd-server
+  count: 3

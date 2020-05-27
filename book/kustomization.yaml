@@ -4,3 +4,6 @@ namespace: book
 resources:
 - namespace.yaml
 - resources.yaml
+replicas:
+- name: book
+  count: 3
