@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
+  accounts.admin.enabled: "false"
   accounts.ryan: apiKey,login
   accounts.daurnimator: apiKey,login
   accounts.lrvick: apiKey,login
