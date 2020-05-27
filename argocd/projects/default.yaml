@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+spec:
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  orphanedResources:
+    warn: false
+  roles:
+  - groups:
+    - benharri
+    - daurnimator
+    - drgrove
+    - lrvick
+    - ryan
+    name: Admins
+    policies:
+    - p, proj:default:Admins, applications, *, default/*, allow

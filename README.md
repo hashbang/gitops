@@ -22,3 +22,8 @@ for file in */*.enc.yaml ; do
 	sops updatekeys -y $file
 done
 ```
+
+Create a new argocd local user for the admin (`argocd/users.yaml`).
+An existing admin will need to generate a password for the new admin.
+
+Add the new user to the default argo project (`argocd/projects/default.yaml`).
