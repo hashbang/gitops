@@ -17,7 +17,17 @@ spec:
       - name: book
         image: hashbang/book
         ports:
-        - containerPort: 8080
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
 ---
 apiVersion: v1
 kind: Service
@@ -39,6 +49,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    external-dns.alpha.kubernetes.io/hostname: book.hashbang.sh
 spec:
   tls:
   - hosts:

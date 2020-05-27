@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: cert-manager
+    namespace: book
   project: default
   source:
     path: book
