@@ -6,6 +6,7 @@ resources:
   # v1.5.5
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=0fdef4861e12026e133224f7c9413072340e2983
   - ingress.yaml
+  - argo-cd-service-monitor.yaml
   # Applications to deploy
   - applications/argocd.yaml
   - applications/book.yaml
@@ -20,7 +21,6 @@ patches:
   - argo-cd-allow-alpha-plugins-patch.yaml
   - argo-cd-import-pgp-key.yaml
   - argo-cd-repository-credentials-patch.yaml
-  - argo-cd-service-monitor.yaml
   - users.yaml
 images:
   - name: argoproj/argocd:v1.5.5
