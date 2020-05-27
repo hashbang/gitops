@@ -16,6 +16,7 @@ spec:
       labels:
         app: irc
     spec:
+      shareProcessNamespace: true
       containers:
       - name: irc
         image: oragono/oragono:dev
@@ -39,6 +40,27 @@ spec:
           readOnly: true
         - mountPath: /ircd/db
           name: irc-db
+      - name: config-reloader
+        # image is based on busybox which includes inotifyd + pkill
+        image: oragono/oragono:dev
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "Watching /ircd/";
+            inotifyd - /ircd/:wMymndox | while read -r notifies ; do
+              echo "$notifies";
+              echo "notify received, sending SIGHUP";
+              pkill -HUP oragono;
+            done
+            echo "Exiting.";
+        volumeMounts:
+        - mountPath: /ircd/
+          name: irc-config
+          readOnly: true
+        - mountPath: /ircd/tls
+          name: irc-certs
+          readOnly: true
       volumes:
       - name: irc-config
         configMap:
