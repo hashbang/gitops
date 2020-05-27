@@ -3,11 +3,11 @@ kind: Application
 metadata:
   name: ircd
 spec:
-  destination:
-    namespace: ircd
-    server: https://kubernetes.default.svc
   project: default
   source:
-    path: ircd
     repoURL: git@github.com:hashbang/gitops
+    path: ircd/
     targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ircd

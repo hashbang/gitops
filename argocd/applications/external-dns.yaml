@@ -5,9 +5,9 @@ metadata:
 spec:
   project: default
   source:
-    path: external-dns/
     repoURL: git@github.com:hashbang/gitops.git
+    path: external-dns/
     targetRevision: HEAD
   destination:
-    namespace: external-dns
     server: https://kubernetes.default.svc
+    namespace: external-dns

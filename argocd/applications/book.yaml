@@ -3,11 +3,11 @@ kind: Application
 metadata:
   name: book
 spec:
+  project: default
+  source:
+    repoURL: git@github.com:hashbang/gitops
+    path: book/
+    targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: book
-  project: default
-  source:
-    path: book
-    repoURL: git@github.com:hashbang/gitops
-    targetRevision: HEAD

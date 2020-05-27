@@ -5,9 +5,9 @@ metadata:
 spec:
   project: default
   source:
-    path: prometheus-operator/
     repoURL: git@github.com:hashbang/gitops.git
+    path: prometheus-operator/
     targetRevision: HEAD
   destination:
-    namespace: prometheus-operator
     server: https://kubernetes.default.svc
+    namespace: prometheus-operator

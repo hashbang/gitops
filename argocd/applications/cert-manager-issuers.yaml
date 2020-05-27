@@ -3,11 +3,11 @@ kind: Application
 metadata:
   name: cert-manager-issuers
 spec:
+  project: default
+  source:
+    repoURL: git@github.com:hashbang/gitops
+    path: cert-manager-issuers/
+    targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cert-manager
-  project: default
-  source:
-    path: cert-manager-issuers
-    repoURL: git@github.com:hashbang/gitops
-    targetRevision: HEAD
