@@ -7,6 +7,8 @@ resources:
   - resources.yaml
 configMapGenerator:
 - name: irc-config
+  generatorOptions:
+    disableNameSuffixHash: true
   files:
   - files/ircd.motd
   - files/ircd.yaml
