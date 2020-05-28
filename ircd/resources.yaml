@@ -48,7 +48,7 @@ spec:
           - "-c"
           - |
             echo "Watching /ircd/";
-            inotifyd - /ircd/:wMymndox | while read -r notifies ; do
+            inotifyd - /ircd/:wMymndox /ircd/tls/:wMymndox | while read -r notifies ; do
               echo "$notifies";
               echo "notify received, sending SIGHUP";
               pkill -HUP oragono;
