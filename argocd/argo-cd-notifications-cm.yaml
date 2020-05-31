@@ -1,0 +1,29 @@
+# https://argoproj-labs.github.io/argocd-notifications/services/webhook/#set-github-commit-status
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+data:
+  config.yaml: |
+    triggers:
+      - name: sync-operation-failed
+        condition: app.status.operationState.phase in ['Error', 'Failed']
+        template: sync-operation-status-change
+      - name: sync-operation-succeeded
+        condition: app.status.operationState.phase in ['Succeeded']
+        template: sync-operation-status-change
+      - name: sync-operation-running
+        condition: app.status.operationState.phase in ['Running']
+        template: sync-operation-status-change
+
+    templates:
+      - name: sync-operation-status-change
+        webhook:
+          bitbot:
+            method: POST
+            body: "Sync for application \x0315{{.app.metadata.name}}\x03 (\x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03) {{
+              if eq .app.status.operationState.phase \"Running\"  }}is \x0307running\x03{{end}}{{
+              if eq .app.status.operationState.phase \"Succeeded\"}}has \x0303succeeded: {{.app.status.operationState.message}}\x03{{end}}{{
+              if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored: {{.app.status.operationState.message}}\x03{{end}}{{
+              if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed: {{.app.status.operationState.message}}\x03{{end
+            }}"
