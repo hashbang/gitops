@@ -14,5 +14,5 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 images:
-  - name: oragono/oragono:dev
-    digest: sha256:dd62a8ea7776c6951673cbe0318125651e8395232f1b8b709228ed6197f528ff
+  - name: oragono/oragono:latest
+    digest: sha256:ccfec0df4e20ba7c94b5b520431573f77f7281e983208f9415a8baa4657233c1
