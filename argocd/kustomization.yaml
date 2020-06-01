@@ -7,9 +7,7 @@ resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=0fdef4861e12026e133224f7c9413072340e2983
   - ingress.yaml
   - argo-cd-service-monitor.yaml
-  # ArgoCD Notifications v0.7.0
-  - github.com/argoproj-labs/argocd-notifications/manifests/controller?ref=adebb564b4cd70b3f5a1ea183204672ed2e5f1f4
-  - argocd-notifications/service-monitor.yaml
+  - argocd-notifications/
   # Projects
   - projects/default.yaml
   # Applications to deploy
@@ -28,7 +26,6 @@ patches:
   - argo-cd-import-pgp-key.yaml
   - argo-cd-repository-credentials-patch.yaml
   - users.yaml
-  - argocd-notifications/cm-patch.yaml
 images:
   - name: argoproj/argocd:v1.5.5
     digest: sha256:b83f7dafd3d7c21bbaea15d5ce13e699433d7736f5d441e752033663d4fa6e6c
@@ -38,8 +35,6 @@ images:
 #     digest: sha256:0f88f9be58390a5d67c1a7dbcd08691e059fea2dba7cef42dfc41fab513f43bb
   - name: viaductoss/ksops:v2.1.0
     digest: sha256:2f21264a483056102523be37431ba7971d991f2aa872c725f22fa074005b1d26
-  - name: argoprojlabs/argocd-notifications:v0.7.0
-    digest: sha256:53f7e184fea1c3fd33ae4bd57eb6bb9b58b4d366a5dc8b3c7905c183ca010f4d
 generators:
   - secret-generator.yaml
 replicas:
