@@ -18,6 +18,7 @@ resources:
   - applications/cert-manager.yaml
   - applications/cert-manager-issuers.yaml
   - applications/external-dns.yaml
+  - applications/ingress-nginx.yaml
   - applications/ircd.yaml
   - applications/prometheus-operator.yaml
   - applications/userdb-api.yaml

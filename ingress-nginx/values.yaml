@@ -1,0 +1,8 @@
+ingress-nginx:
+  controller:
+    admissionWebhooks:
+      patch:
+        enabled: false
+    metrics:
+      serviceMonitor:
+        enabled: true
