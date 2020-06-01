@@ -9,7 +9,7 @@ resources:
   - argo-cd-service-monitor.yaml
   # ArgoCD Notifications v0.7.0
   - github.com/argoproj-labs/argocd-notifications/manifests/controller?ref=adebb564b4cd70b3f5a1ea183204672ed2e5f1f4
-  - argo-cd-notifications-service-monitor.yaml
+  - argocd-notifications/service-monitor.yaml
   # Projects
   - projects/default.yaml
   # Applications to deploy
@@ -28,7 +28,7 @@ patches:
   - argo-cd-import-pgp-key.yaml
   - argo-cd-repository-credentials-patch.yaml
   - users.yaml
-  - argo-cd-notifications-cm.yaml
+  - argocd-notifications/cm-patch.yaml
 images:
   - name: argoproj/argocd:v1.5.5
     digest: sha256:b83f7dafd3d7c21bbaea15d5ce13e699433d7736f5d441e752033663d4fa6e6c
