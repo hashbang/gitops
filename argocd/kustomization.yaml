@@ -20,6 +20,7 @@ resources:
   - applications/ircd.yaml
   - applications/prometheus-operator.yaml
   - applications/userdb-api.yaml
+  - applications/webirc.yaml
 patches:
   - argo-cd-repo-server-ksops-patch.yaml
   - argo-cd-allow-alpha-plugins-patch.yaml
