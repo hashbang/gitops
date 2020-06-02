@@ -26,4 +26,4 @@ data:
               if eq .app.status.operationState.phase \"Succeeded\"}}has \x0303succeeded: {{.app.status.operationState.message}}\x03{{end}}{{
               if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored: {{.app.status.operationState.message}}\x03{{end}}{{
               if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed: {{.app.status.operationState.message}}\x03{{end
-            }}"
+            }} (blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03)"
