@@ -1,12 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: prometheus-operator
 resources:
-  - namespace.yaml
-  # v0.38.1
-  - github.com/coreos/prometheus-operator?ref=00cbd4911f931380cf9e19d771d7ebae1ec0a807
-  - prometheus-operator-metrics.yaml
-  - prometheus-instance.yaml
+  # release-0.4; held back due to 0.5 not supporting Kubernetes 1.18
+  - github.com/coreos/kube-prometheus?ref=ee8077db04965d6b4d9e6a328d5283dd6ba71d33
 images:
   - name: quay.io/coreos/prometheus-operator:v0.38.1
     digest: sha256:62b8cf466e9b238a9fcf0bcba74562c8833e7451042321e323a46de3f1dbe1bc

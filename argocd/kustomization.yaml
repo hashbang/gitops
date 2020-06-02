@@ -18,7 +18,7 @@ resources:
   - applications/external-dns.yaml
   - applications/ingress-nginx.yaml
   - applications/ircd.yaml
-  - applications/prometheus-operator.yaml
+  - applications/monitoring.yaml
   - applications/userdb-api.yaml
   - applications/webirc.yaml
 patches:
