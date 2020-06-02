@@ -94,6 +94,16 @@ server:
         # should clients include this STS policy when they ship their inbuilt preload lists?
         preload: true
 
+    websockets:
+        # Restrict the origin of WebSocket connections by matching the "Origin" HTTP
+        # header. This settings makes oragono reject every WebSocket connection,
+        # except when it originates from one of the hosts in this list. Use this to
+        # prevent malicious websites from making their visitors connect to oragono
+        # without their knowledge. An empty list means that there are no restrictions.
+        allowed-origins:
+            - "https://hashbang.sh"
+            - "https://*.hashbang.sh"
+
     # casemapping controls what kinds of strings are permitted as identifiers (nicknames,
     # channel names, account names, etc.), and how they are normalized for case.
     # with the recommended default of 'precis', utf-8 identifiers that are "sane"
