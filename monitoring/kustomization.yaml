@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   # release-0.4; held back due to 0.5 not supporting Kubernetes 1.18
   - github.com/coreos/kube-prometheus?ref=ee8077db04965d6b4d9e6a328d5283dd6ba71d33
+  - ingress.yaml
   - cilium-service-monitor.yaml
 patches:
   - cluster-wide.patch.yaml
@@ -20,6 +21,8 @@ configMapGenerator:
 # TODO: move inside of `configMapGenerator` once kustomize 3.5.5 is available
 generatorOptions:
   disableNameSuffixHash: true
+generators:
+  - secret-generator.yaml
 images:
   - name: grafana/grafana:6.4.3
     digest: sha256:bd55ea2bad17f5016431734b42fdfc202ebdc7d08b6c4ad35ebb03d06efdff69

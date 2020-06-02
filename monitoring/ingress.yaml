@@ -1,0 +1,74 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: user-auth
+    nginx.ingress.kubernetes.io/auth-secret-type: auth-map
+spec:
+  rules:
+  - host: grafana.hashbang.sh
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+        path: /
+  tls:
+  - hosts:
+    - grafana.hashbang.sh
+    secretName: grafana-tls
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: alertmanager
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: user-auth
+    nginx.ingress.kubernetes.io/auth-secret-type: auth-map
+spec:
+  rules:
+  - host: alertmanager.hashbang.sh
+    http:
+      paths:
+      - backend:
+          serviceName: alertmanager-main
+          servicePort: 9093
+        path: /
+  tls:
+  - hosts:
+    - alertmanager.hashbang.sh
+    secretName: alertmanager-tls
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: user-auth
+    nginx.ingress.kubernetes.io/auth-secret-type: auth-map
+spec:
+  rules:
+  - host: prometheus.hashbang.sh
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-k8s
+          servicePort: 9090
+        path: /
+  tls:
+  - hosts:
+    - prometheus.hashbang.sh
+    secretName: prometheus-tls
