@@ -7,9 +7,39 @@ spec:
     matchLabels:
       k8s:app: external-dns
   ingress:
-  - fromEndpoints:
+  - fromEntities:
+    - cluster
+    # TODO: I can't get fromEndpoints to work
+    toPorts:
+    - ports:
+      - port: "7979"
+        protocol: TCP
+      rules:
+        http:
+        - method: "GET"
+          path: "/metrics"
+
+  egress:
+  # Need to be able to talk to api server
+  - toEndpoints:
     - matchLabels:
-      # TODO: I don't know why `k8s:io.cilium.k8s.policy.serviceaccount=prometheus-k8s` or `k8s:app: prometheus` don't work here
-      k8s:io.kubernetes.pod.namespace: monitoring
-      k8s:prometheus: k8s
-  # TODO: egress to current cluster + Route53
+       "k8s:io.kubernetes.pod.namespace": kube-system
+  # Allow (limited) DNS queries
+  - toEndpoints:
+    - matchLabels:
+       "k8s:io.kubernetes.pod.namespace": kube-system
+       "k8s:k8s-app": kube-dns
+    toPorts:
+      - ports:
+         - port: "53"
+           protocol: ANY
+        rules:
+          dns:
+            - matchPattern: "*.amazonaws.com"
+  # Allow HTTP connections to AWS services
+  - toFQDNs:
+    - matchPattern: "*.amazonaws.com"
+    toPorts:
+    - ports:
+      - port: "443"
+        protocol: TCP
