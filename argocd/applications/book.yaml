@@ -5,9 +5,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:hashbang/gitops
+    repoURL: git@github.com:hashbang/gitops.git
     path: book/
     targetRevision: HEAD
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: book
