@@ -7,5 +7,9 @@ spec:
     matchLabels:
       k8s:app: external-dns
   ingress:
-  - {}
+  - fromEndpoints:
+    - matchLabels:
+      # TODO: I don't know why `k8s:io.cilium.k8s.policy.serviceaccount=prometheus-k8s` or `k8s:app: prometheus` don't work here
+      k8s:io.kubernetes.pod.namespace: monitoring
+      k8s:prometheus: k8s
   # TODO: egress to current cluster + Route53

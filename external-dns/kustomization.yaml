@@ -5,6 +5,7 @@ resources:
 - namespace.yaml
 - resources.yaml
 - networkpolicy.yaml
+- service-monitor.yaml
 patches:
 - aws_credentials.yaml
 generators:
