@@ -1,10 +1,15 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
-  name: deny-egress
+  name: book-deny-all-but-incoming-http
 spec:
   endpointSelector:
     matchLabels:
       k8s:app: book
+  ingress:
+  - toPorts:
+    - ports:
+      - port: "8080"
+        protocol: TCP
   egress:
   - {}
