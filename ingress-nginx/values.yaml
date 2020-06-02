@@ -12,6 +12,7 @@ ingress-nginx:
         memory: 256Mi
     autoscaling:
       enabled: true
+      minReplicas: 2
     metrics:
       serviceMonitor:
         enabled: true
