@@ -4,6 +4,7 @@ namespace: external-dns
 resources:
 - namespace.yaml
 - resources.yaml
+- networkpolicy.yaml
 patches:
 - aws_credentials.yaml
 generators:

@@ -1,0 +1,11 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: external-dns
+spec:
+  endpointSelector:
+    matchLabels:
+      k8s:app: external-dns
+  ingress:
+  - {}
+  # TODO: egress to current cluster + Route53
