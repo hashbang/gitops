@@ -1,0 +1,23 @@
+# The kube-prometheus project defines per-namespace role bindings
+# We want our prometheus to be able to monitor *all* namespaces.
+# This patch adds the extra permissions needed.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-k8s
+rules:
+- apiGroups:
+  - ""
+  resources:
+    - nodes/metrics # existing field
+    - services
+    - endpoints
+    - pods
+  verbs:
+    - get
+    - list
+    - watch
+- nonResourceURLs: # existing field
+    - /metrics
+  verbs:
+    - get
