@@ -3,6 +3,8 @@ ingress-nginx:
     admissionWebhooks:
       patch:
         enabled: false
+    autoscaling:
+      enabled: true
     metrics:
       serviceMonitor:
         enabled: true
