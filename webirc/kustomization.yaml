@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: webirc
+resources:
+- namespace.yaml
+- resources.yaml
+- networkpolicy.yaml
+replicas:
+- name: webirc
+  count: 3
+images:
+  - name: hashbang/webirc
+    digest: sha256:d78464eac3d69c15c018a387b4b97a628db982ef7c3eaf40ac05610333e50d35
