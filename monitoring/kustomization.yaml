@@ -3,14 +3,20 @@ kind: Kustomization
 resources:
   # release-0.4; held back due to 0.5 not supporting Kubernetes 1.18
   - github.com/coreos/kube-prometheus?ref=ee8077db04965d6b4d9e6a328d5283dd6ba71d33
+  - cilium-service-monitor.yaml
 patches:
   - cluster-wide.patch.yaml
-  - grafana-dashboard-argocd.patch.yaml
+  - grafana-dashboards.patch.yaml
 configMapGenerator:
   - name: grafana-dashboard-argocd
     files:
       # From https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json
       - files/grafana-dashboard-argocd.json
+  - name: grafana-dashboard-cilium
+    files:
+      # https://github.com/cilium/cilium/tree/6fe8d092a6796d36230a0e3480cd2a8472e1a6f0/examples/kubernetes/addons/prometheus/files/grafana-config
+      - files/grafana-dashboard-cilium.json
+      - files/grafana-dashboard-cilium-operator.json
 # TODO: move inside of `configMapGenerator` once kustomize 3.5.5 is available
 generatorOptions:
   disableNameSuffixHash: true

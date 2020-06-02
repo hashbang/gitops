@@ -12,7 +12,13 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/argocd
           name: grafana-dashboard-argocd
           readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/cilium
+          name: grafana-dashboard-cilium
+          readOnly: false
       volumes:
-      - configMap:
+      - name: grafana-dashboard-argocd
+        configMap:
           name: grafana-dashboard-argocd
-        name: grafana-dashboard-argocd
+      - name: grafana-dashboard-cilium
+        configMap:
+          name: grafana-dashboard-cilium
