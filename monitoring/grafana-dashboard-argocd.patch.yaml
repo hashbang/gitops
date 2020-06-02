@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+      - name: grafana
+        volumeMounts:
+        - mountPath: /grafana-dashboard-definitions/0/argocd
+          name: grafana-dashboard-argocd
+          readOnly: false
+      volumes:
+      - configMap:
+          name: grafana-dashboard-argocd
+        name: grafana-dashboard-argocd
