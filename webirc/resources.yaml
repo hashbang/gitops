@@ -18,7 +18,7 @@ spec:
         image: hashbang/webirc
         ports:
         - name: http
-          containerPort: 8080
+          containerPort: 80
           protocol: TCP
         livenessProbe:
           httpGet:
@@ -38,7 +38,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
   selector:
     app: webirc
 ---
