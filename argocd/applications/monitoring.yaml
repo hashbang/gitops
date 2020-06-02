@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-operator
+  name: monitoring
 spec:
   project: default
   source:
     repoURL: git@github.com:hashbang/gitops.git
-    path: prometheus-operator/
+    path: monitoring/
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: prometheus-operator
+    namespace: monitoring
