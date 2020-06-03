@@ -6,6 +6,7 @@ resources:
   - ingress.yaml
   - cilium-service-monitor.yaml
 patches:
+  - prometheus-container-images.patch.yaml
   - cluster-wide.patch.yaml
   - grafana-dashboards.patch.yaml
 configMapGenerator:
@@ -33,21 +34,15 @@ generators:
 images:
   - name: grafana/grafana:6.4.3
     digest: sha256:bd55ea2bad17f5016431734b42fdfc202ebdc7d08b6c4ad35ebb03d06efdff69
-  - name: quay.io/coreos/configmap-reload:v0.0.1
-    digest: sha256:e2fd60ff0ae4500a75b80ebaa30e0e7deba9ad107833e8ca53f0047c42c5a057
   - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.5.0
     digest: sha256:5882cda1ee0a8e65e7df4af93a7a1cf36ade9108ee35ef155d7009dc6eaad8a0
   - name: quay.io/coreos/kube-rbac-proxy:v0.4.1
     digest: sha256:9d07c391aeb1a9d02eb4343c113ed01825227c70c32b3cae861711f90191b0fd
   - name: quay.io/coreos/kube-state-metrics:v1.9.2
     digest: sha256:99e18bb3ca7344cb8ece2b5ced2599d561d2de2306531366e8198364d17b0f22
-  - name: quay.io/coreos/prometheus-config-reloader:v0.34.0
-    digest: sha256:459bc1b1fc51420cd244b082fe14444f6d8596997c2e40f52c08d1f5a09ab860
   - name: quay.io/coreos/prometheus-operator:v0.34.0
     digest: sha256:c0bcb231fe67cd11fd26f7adf5ac1080dfac189ac94705538bd4ab7dd99a98a9
   - name: quay.io/prometheus/alertmanager:v0.18.0
     digest: sha256:3d52ab7ef3a2e23e26a73cfd0ce13189e3796fb276b9af3e79664e4f743d8a1d
   - name: quay.io/prometheus/node-exporter:v0.18.1
     digest: sha256:a2f29256e53cc3e0b64d7a472512600b2e9410347d53cdc85b49f659c17e02ee
-  - name: quay.io/prometheus/prometheus:v2.11.0
-    digest: sha256:b6275644820cf7a256cd9502eafb35a0b1862b59a3c49afb8267f75ffe79efcc
