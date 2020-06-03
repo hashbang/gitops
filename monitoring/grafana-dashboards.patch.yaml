@@ -11,13 +11,13 @@ spec:
         volumeMounts:
         - mountPath: /grafana-dashboard-definitions/0/argocd
           name: grafana-dashboard-argocd
-          readOnly: false
+          readOnly: true
         - mountPath: /grafana-dashboard-definitions/0/cilium
           name: grafana-dashboard-cilium
-          readOnly: false
+          readOnly: true
         - mountPath: /grafana-dashboard-definitions/0/ingress-nginx
           name: grafana-dashboard-ingress-nginx
-          readOnly: false
+          readOnly: true
       volumes:
       - name: grafana-dashboard-argocd
         configMap:
