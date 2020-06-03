@@ -33,7 +33,7 @@ images:
   - name: quay.io/dexidp/dex:v2.22.0
     digest: sha256:01e996b4b60edcc5cc042227c6965dd63ba68764c25d86b481b0d65f6e4da308
   - name: redis:5.0.3
-#     digest: sha256:0f88f9be58390a5d67c1a7dbcd08691e059fea2dba7cef42dfc41fab513f43bb
+    digest: sha256:4be7fdb131e76a6c6231e820c60b8b12938cf1ff3d437da4871b9b2440f4e385
   - name: viaductoss/ksops:v2.1.1-go-1.14
     digest: sha256:47203d9b5538f11f16073ee0f3fd4ab99a2254188cfc043895ff65a663b06095
 generators:
