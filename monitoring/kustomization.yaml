@@ -10,21 +10,24 @@ patches:
   - grafana-dashboards.patch.yaml
 configMapGenerator:
   - name: grafana-dashboard-argocd
+    options:
+      disableNameSuffixHash: true
     files:
       # From https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json
       - files/grafana-dashboard-argocd.json
   - name: grafana-dashboard-cilium
+    options:
+      disableNameSuffixHash: true
     files:
       # https://github.com/cilium/cilium/tree/6fe8d092a6796d36230a0e3480cd2a8472e1a6f0/examples/kubernetes/addons/prometheus/files/grafana-config
       - files/grafana-dashboard-cilium.json
       - files/grafana-dashboard-cilium-operator.json
   - name: grafana-dashboard-ingress-nginx
+    options:
+      disableNameSuffixHash: true
     files:
       # https://github.com/kubernetes/ingress-nginx/blob/810acfafbef86d9dc05e0ece68c97d0c93344632/deploy/grafana/dashboards/nginx.json
       - files/grafana-dashboard-ingress-nginx.json
-# TODO: move inside of `configMapGenerator` once kustomize 3.5.5 is available
-generatorOptions:
-  disableNameSuffixHash: true
 generators:
   - secret-generator.yaml
 images:
