@@ -7,12 +7,11 @@ resources:
   - resources.yaml
 configMapGenerator:
 - name: irc-config
+  options:
+    disableNameSuffixHash: true
   files:
   - files/ircd.motd
   - files/ircd.yaml
-# TODO: move inside of `configMapGenerator` once kustomize 3.5.5 is available
-generatorOptions:
-  disableNameSuffixHash: true
 images:
   - name: oragono/oragono:latest
     digest: sha256:ccfec0df4e20ba7c94b5b520431573f77f7281e983208f9415a8baa4657233c1
