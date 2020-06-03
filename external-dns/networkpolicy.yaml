@@ -21,14 +21,13 @@ spec:
 
   egress:
   # Need to be able to talk to api server
-  - toEndpoints:
-    - matchLabels:
-       "k8s:io.kubernetes.pod.namespace": kube-system
-  # Allow (limited) DNS queries
-  - toEndpoints:
-    - matchLabels:
-       "k8s:io.kubernetes.pod.namespace": kube-system
-       "k8s:k8s-app": kube-dns
+  # TODO: toEndpoints doesn't seem to work for me here?
+  - toEntities:
+    - cluster
+  # Allow (limited) DNS queries to kube-dns
+  - toEntities:
+    # TODO: only allow talking to kube-dns
+    - cluster
     toPorts:
       - ports:
          - port: "53"
@@ -37,9 +36,10 @@ spec:
           dns:
             - matchPattern: "*.amazonaws.com"
   # Allow HTTP connections to AWS services
-  - toFQDNs:
-    - matchPattern: "*.amazonaws.com"
+  - toEntities:
+    - world
     toPorts:
     - ports:
       - port: "443"
         protocol: TCP
+    # TODO: only allow talking to route 53
