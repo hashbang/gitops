@@ -3,8 +3,8 @@ kind: Kustomization
 namespace: argocd
 resources:
   - namespace.yaml
-  # v1.5.5
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=0fdef4861e12026e133224f7c9413072340e2983
+  # v1.5.6
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=f46333ea82ad2157baffc5a8cf02a86720d4bad4
   - ingress.yaml
   - argo-cd-service-monitor.yaml
   - argocd-notifications/
@@ -28,8 +28,8 @@ patches:
   - argo-cd-repository-credentials-patch.yaml
   - users.yaml
 images:
-  - name: argoproj/argocd:v1.5.5
-    digest: sha256:b83f7dafd3d7c21bbaea15d5ce13e699433d7736f5d441e752033663d4fa6e6c
+  - name: argoproj/argocd:v1.5.6
+    digest: sha256:a805c3c90936d8d43298b3c73c7ef99dced6d22f8f7f6285b648233c3b9be5bf
   - name: quay.io/dexidp/dex:v2.22.0
     digest: sha256:01e996b4b60edcc5cc042227c6965dd63ba68764c25d86b481b0d65f6e4da308
   - name: redis:5.0.3
