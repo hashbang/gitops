@@ -14,3 +14,16 @@ spec:
       image: quay.io/coreos/configmap-reload@sha256:e2fd60ff0ae4500a75b80ebaa30e0e7deba9ad107833e8ca53f0047c42c5a057
     # - name: thanos-sidecar
     #   image:
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Alertmanager
+metadata:
+  namespace: monitoring
+  name: main
+spec:
+  sha: 3d52ab7ef3a2e23e26a73cfd0ce13189e3796fb276b9af3e79664e4f743d8a1d
+  # Hashlocking unsupported for config-reloader
+  # https://github.com/coreos/prometheus-operator/issues/3262
+  # containers:
+  #   - name: config-reloader
+  #     image: quay.io/coreos/configmap-reload@sha256:e2fd60ff0ae4500a75b80ebaa30e0e7deba9ad107833e8ca53f0047c42c5a057

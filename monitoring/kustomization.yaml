@@ -6,7 +6,7 @@ resources:
   - ingress.yaml
   - cilium-service-monitor.yaml
 patches:
-  - prometheus-container-images.patch.yaml
+  - container-images.patch.yaml
   - cluster-wide.patch.yaml
   - grafana-dashboards.patch.yaml
 configMapGenerator:
@@ -42,7 +42,5 @@ images:
     digest: sha256:99e18bb3ca7344cb8ece2b5ced2599d561d2de2306531366e8198364d17b0f22
   - name: quay.io/coreos/prometheus-operator:v0.34.0
     digest: sha256:c0bcb231fe67cd11fd26f7adf5ac1080dfac189ac94705538bd4ab7dd99a98a9
-  - name: quay.io/prometheus/alertmanager:v0.18.0
-    digest: sha256:3d52ab7ef3a2e23e26a73cfd0ce13189e3796fb276b9af3e79664e4f743d8a1d
   - name: quay.io/prometheus/node-exporter:v0.18.1
     digest: sha256:a2f29256e53cc3e0b64d7a472512600b2e9410347d53cdc85b49f659c17e02ee
