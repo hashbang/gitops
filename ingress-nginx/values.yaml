@@ -3,6 +3,13 @@ ingress-nginx:
     admissionWebhooks:
       patch:
         enabled: false
+    service:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+    config:
+      use-proxy-protocol: "true"
     resources:
       limits:
         cpu: 500m
