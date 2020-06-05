@@ -1,8 +1,16 @@
 ingress-nginx:
   controller:
+    kind: "DaemonSet"
     admissionWebhooks:
       patch:
         enabled: false
+    config:
+      use-forward-headers: "true"
+      use-proxy-protocol: "true"
+      compute-full-forward-for: "true"
+    service:
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     resources:
       limits:
         cpu: 500m
