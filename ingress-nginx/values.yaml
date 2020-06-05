@@ -1,8 +1,10 @@
-ingress-nginx:
+nginx-ingress:
   controller:
     admissionWebhooks:
       patch:
         enabled: false
+    publishService:
+      enabled: true
     resources:
       limits:
         cpu: 500m
