@@ -3,6 +3,8 @@ nginx-ingress:
     admissionWebhooks:
       patch:
         enabled: false
+    image:
+      digest: sha256:bc95fdbd64452185e73599dc4d69e5346b307c8fdd0851149a62886930f5a4d2
     publishService:
       enabled: true
     resources:
@@ -19,3 +21,6 @@ nginx-ingress:
       enabled: true
       serviceMonitor:
         enabled: true
+  defaultBackend:
+    image:
+      digest: sha256:4dc5e07c8ca4e23bddb3153737d7b8c556e5fb2f29c4558b7cd6e6df99c512c7
