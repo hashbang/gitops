@@ -9,6 +9,7 @@ patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
   - grafana-dashboards.patch.yaml
+  - grafana-datasources.patch.yaml
 configMapGenerator:
   - name: grafana-dashboard-argocd
     options:
@@ -29,6 +30,12 @@ configMapGenerator:
     files:
       # https://github.com/kubernetes/ingress-nginx/blob/810acfafbef86d9dc05e0ece68c97d0c93344632/deploy/grafana/dashboards/nginx.json
       - files/grafana-dashboard-ingress-nginx.json
+  - name: grafana-datasources
+    options:
+      disableNameSuffixHash: true
+    files:
+      - files/grafana-datasource-prometheus.yaml
+      - files/grafana-datasource-loki.yaml
 generators:
   - secret-generator.yaml
 images:

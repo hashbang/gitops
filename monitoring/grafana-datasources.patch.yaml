@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      volumes:
+      - name: grafana-datasources
+        configMap:
+          name: grafana-datasources
