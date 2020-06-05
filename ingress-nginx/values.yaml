@@ -3,6 +3,8 @@ nginx-ingress:
     admissionWebhooks:
       patch:
         enabled: false
+    config:
+      use-proxy-protocol: "true"
     image:
       digest: sha256:bc95fdbd64452185e73599dc4d69e5346b307c8fdd0851149a62886930f5a4d2
     publishService:
@@ -14,6 +16,9 @@ nginx-ingress:
       requests:
         cpu: 100m
         memory: 256Mi
+    service:
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     autoscaling:
       enabled: true
       minReplicas: 2
