@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mail
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:hashbang/gitops.git
+    path: mail/
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mail
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

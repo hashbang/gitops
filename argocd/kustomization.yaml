@@ -17,6 +17,7 @@ resources:
   - applications/external-dns.yaml
   - applications/ingress-nginx.yaml
   - applications/ircd.yaml
+  - applications/mail.yaml
   - applications/monitoring.yaml
   - applications/mtls.yaml
   - applications/site.yaml
