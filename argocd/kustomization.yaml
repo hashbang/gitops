@@ -19,6 +19,7 @@ resources:
   - applications/ingress-nginx.yaml
   - applications/ircd.yaml
   - applications/monitoring.yaml
+  - applications/mtls.yaml
   - applications/userdb-api.yaml
   - applications/webirc.yaml
 patches:
