@@ -9,11 +9,11 @@
 # service type  private unpriv  chroot  wakeup  maxproc command + args
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
-smtp      inet  n       -       y       -       1       postscreen
-smtpd     pass  -       -       y       -       -       smtpd
-#dnsblog   unix  -       -       y       -       0       dnsblog
-#tlsproxy  unix  -       -       y       -       0       tlsproxy
-#submission inet n       -       y       -       -       smtpd
+smtp      inet  n       -       n       -       1       postscreen
+smtpd     pass  -       -       n       -       -       smtpd
+#dnsblog   unix  -       -       n       -       0       dnsblog
+#tlsproxy  unix  -       -       n       -       0       tlsproxy
+#submission inet n       -       n       -       -       smtpd
 #  -o syslog_name=postfix/submission
 #  -o smtpd_tls_security_level=encrypt
 #  -o smtpd_sasl_auth_enable=yes
@@ -25,7 +25,7 @@ smtpd     pass  -       -       y       -       -       smtpd
 #  -o smtpd_recipient_restrictions=
 #  -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
 #  -o milter_macro_daemon_name=ORIGINATING
-#smtps     inet  n       -       y       -       -       smtpd
+#smtps     inet  n       -       n       -       -       smtpd
 #  -o syslog_name=postfix/smtps
 #  -o smtpd_tls_wrappermode=yes
 #  -o smtpd_sasl_auth_enable=yes
@@ -36,33 +36,33 @@ smtpd     pass  -       -       y       -       -       smtpd
 #  -o smtpd_recipient_restrictions=
 #  -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
 #  -o milter_macro_daemon_name=ORIGINATING
-#628       inet  n       -       y       -       -       qmqpd
-pickup    unix  n       -       y       60      1       pickup
-cleanup   unix  n       -       y       -       0       cleanup
+#628       inet  n       -       n       -       -       qmqpd
+pickup    unix  n       -       n       60      1       pickup
+cleanup   unix  n       -       n       -       0       cleanup
 qmgr      unix  n       -       n       300     1       qmgr
 #qmgr     unix  n       -       n       300     1       oqmgr
-tlsmgr    unix  -       -       y       1000?   1       tlsmgr
-rewrite   unix  -       -       y       -       -       trivial-rewrite
-bounce    unix  -       -       y       -       0       bounce
-defer     unix  -       -       y       -       0       bounce
-trace     unix  -       -       y       -       0       bounce
-verify    unix  -       -       y       -       1       verify
-flush     unix  n       -       y       1000?   0       flush
+tlsmgr    unix  -       -       n       1000?   1       tlsmgr
+rewrite   unix  -       -       n       -       -       trivial-rewrite
+bounce    unix  -       -       n       -       0       bounce
+defer     unix  -       -       n       -       0       bounce
+trace     unix  -       -       n       -       0       bounce
+verify    unix  -       -       n       -       1       verify
+flush     unix  n       -       n       1000?   0       flush
 proxymap  unix  -       -       n       -       -       proxymap
 proxywrite unix -       -       n       -       1       proxymap
-smtp      unix  -       -       y       -       -       smtp
-relay     unix  -       -       y       -       -       smtp -o syslog_name=postfix/$service_name
+smtp      unix  -       -       n       -       -       smtp
+relay     unix  -       -       n       -       -       smtp -o syslog_name=postfix/$service_name
 #  -o smtp_helo_timeout=5
 #  -o smtp_connect_timeout=5
-showq     unix  n       -       y       -       -       showq
-error     unix  -       -       y       -       -       error
-retry     unix  -       -       y       -       -       error
-discard   unix  -       -       y       -       -       discard
+showq     unix  n       -       n       -       -       showq
+error     unix  -       -       n       -       -       error
+retry     unix  -       -       n       -       -       error
+discard   unix  -       -       n       -       -       discard
 local     unix  -       n       n       -       -       local
 virtual   unix  -       n       n       -       -       virtual
-lmtp      unix  -       -       y       -       -       lmtp
-anvil     unix  -       -       y       -       1       anvil
-scache    unix  -       -       y       -       1       scache
+lmtp      unix  -       -       n       -       -       lmtp
+anvil     unix  -       -       n       -       1       anvil
+scache    unix  -       -       n       -       1       scache
 postlog   unix-dgram n  -       n       -       1       postlogd
 #
 # ====================================================================
