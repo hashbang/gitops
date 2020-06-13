@@ -9,6 +9,16 @@ patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
   - grafana-dashboards.patch.yaml
+patchesJson6902:
+  - target:
+      version: v1
+      kind: Service
+      namespace: monitoring
+      name: grafana
+    patch: |-
+      - op: replace
+        path: /spec/ports/0/port
+        value: 80
 configMapGenerator:
   - name: grafana-dashboard-argocd
     options:
