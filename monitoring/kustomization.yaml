@@ -16,6 +16,8 @@ configMapGenerator:
     files:
       # From https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json
       - files/grafana-dashboard-argocd.json
+      # From https://argoproj-labs.github.io/argocd-notifications/grafana-dashboard.json
+      - files/grafana-dashboard-argocd-notifications.json
   - name: grafana-dashboard-cilium
     options:
       disableNameSuffixHash: true
