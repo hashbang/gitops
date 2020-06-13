@@ -15,13 +15,3 @@ spec:
     kind: '*'
   orphanedResources:
     warn: false
-  roles:
-  - groups:
-    - benharri
-    - daurnimator
-    - drgrove
-    - lrvick
-    - ryan
-    name: Admins
-    policies:
-    - p, proj:default:Admins, applications, *, default/*, allow

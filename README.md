@@ -26,6 +26,6 @@ done
 Create a new argocd local user for the admin (`argocd/users.yaml`).
 An existing admin will need to generate a password for the new admin.
 
-Add the new user to the default argo project (`argocd/projects/default.yaml`).
+Add the new user to the admin group (`argocd/argo-cd-rbac.yaml`).
 
 Have the new user create a password for accessing metrics and hash it with `htpasswd -n -B adminusername`. Add it to `monitoring/user-auth.env.yaml`.
