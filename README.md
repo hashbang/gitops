@@ -18,7 +18,7 @@ If you'd like to change anything about hashbang's infrastructure, please send a 
 Add the new admin's PGP key to `.sops.yaml`, then run:
 
 ```sh
-for file in */*.enc.yaml ; do 
+find . -name '*.enc.yaml' | while read file; do
 	sops updatekeys -y $file
 done
 ```
