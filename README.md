@@ -29,3 +29,15 @@ An existing admin will need to generate a password for the new admin.
 Add the new user to the default argo project (`argocd/projects/default.yaml`).
 
 Have the new user create a password for accessing metrics and hash it with `htpasswd -n -B adminusername`. Add it to `monitoring/user-auth.env.yaml`.
+
+### Removing an Admin
+
+Remove the admin's PGP key from `.sops.yaml`, then run:
+
+```sh
+for file in **/*.enc.yaml; do
+  sops -r -i $file
+done
+```
+
+It is also highly recommended that any passwords or secrets the admin had access to be rotated.
