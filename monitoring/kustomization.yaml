@@ -6,6 +6,7 @@ resources:
   - ingress.yaml
   - cilium-service-monitor.yaml
   - ./loki
+  - ./promtail
 patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml

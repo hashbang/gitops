@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Generated from promtail-0.23.1 helm chart
+  ## persistence.enabled=true
+  ## serviceMonitor.enabled=true
+  - resources.yaml
+configMapGenerator:
+  - name: loki-promtail
+    files:
+      - files/promtail.yaml
+images:
+  - name: "grafana/promtail:1.5.0"
+    digest: sha256:26605e6788a5de8b18634833c8f7e1d00936a1af18bbd7202d984bc2585131eb
