@@ -5,6 +5,7 @@ resources:
   - github.com/coreos/kube-prometheus?ref=ee8077db04965d6b4d9e6a328d5283dd6ba71d33
   - ingress.yaml
   - cilium-service-monitor.yaml
+  - ./loki
 patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
