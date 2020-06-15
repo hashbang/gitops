@@ -43,6 +43,14 @@ configMapGenerator:
     files:
       # https://github.com/kubernetes/ingress-nginx/blob/810acfafbef86d9dc05e0ece68c97d0c93344632/deploy/grafana/dashboards/nginx.json
       - files/grafana-dashboard-ingress-nginx.json
+secretGenerator:
+  - name: grafana-datasources
+    namespace: monitoring
+    behavior: merge
+    options:
+      disableNameSuffixHash: true
+    files:
+      - files/datasource-loki.yaml
 generators:
   - secret-generator.yaml
 images:
