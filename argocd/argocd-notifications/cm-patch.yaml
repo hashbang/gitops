@@ -1,4 +1,4 @@
-# https://argoproj-labs.github.io/argocd-notifications/services/webhook/#set-github-commit-status
+# https://argoproj-labs.github.io/argocd-notifications/services/webhook/
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -27,3 +27,17 @@ data:
               if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored: {{.app.status.operationState.message}}\x03{{end}}{{
               if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed: {{.app.status.operationState.message}}\x03{{end
             }} (blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03)"
+
+          github:
+            method: POST
+            path: /repos/{{call .repo.FullNameByRepoURL .app.spec.source.repoURL}}/statuses/{{.app.status.operationState.operation.sync.revision}}
+            body: |
+              {
+                {{if eq .app.status.operationState.phase "Running"}} "state": "pending"{{end}}
+                {{if eq .app.status.operationState.phase "Succeeded"}} "state": "success"{{end}}
+                {{if eq .app.status.operationState.phase "Error"}} "state": "error"{{end}}
+                {{if eq .app.status.operationState.phase "Failed"}} "state": "error"{{end}},
+                "description": "ArgoCD",
+                "target_url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                "context": "continuous-delivery/{{.app.metadata.name}}"
+              }
