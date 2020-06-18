@@ -1,0 +1,48 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mtls
+resources:
+  - github.com/drGrove/mtls-server/manifests/base?ref=705e1c2a5f193f1d309af4c6e0124b9096c2dce9
+patches:
+  - smaller-pvc.patch.yaml
+  - ingress.patch.yaml
+patchesJson6902:
+  - target:
+      group: networking.k8s.io
+      version: v1beta1
+      kind: Ingress
+      name: mtls
+    patch: |-
+      - op: replace
+        path: "/spec/tls/0/hosts/0"
+        value: "mtls.hashbang.sh"
+      - op: replace
+        path: "/spec/rules/0/host"
+        value: "mtls.hashbang.sh"
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: mtls
+    patch: |-
+      - op: replace
+        path: "/spec/template/spec/containers/0/env/0/value"
+        value: "mtls.hashbang.sh"
+generators:
+  - secret-generator.yaml
+configMapGenerator:
+  - name: mtls
+    behavior: replace
+    files:
+      - files/config.ini
+  - name: mtls-admin-seeds
+    behavior: replace
+    files:
+      - files/admin_seeds/benharri.asc
+      - files/admin_seeds/dannygrove.asc
+      - files/admin_seeds/daurnimator.asc
+      - files/admin_seeds/lrvick.asc
+      - files/admin_seeds/ryan.asc
+images:
+  - name: drgrove/mtls-server
+    digest: sha256:4acb6491bdfaecb08f7955a69beb77c517245939f8566e662a58f1591284b022
