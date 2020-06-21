@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: book
+  name: site
   labels:
-    app: book
+    app: site
 spec:
   selector:
     matchLabels:
-      app: book
+      app: site
   template:
     metadata:
       labels:
-        app: book
+        app: site
     spec:
       containers:
-      - name: book
-        image: hashbang/book
+      - name: site
+        image: hashbang/site
         ports:
         - name: http
           containerPort: 8080
@@ -24,43 +24,55 @@ spec:
           httpGet:
             path: /
             port: http
+            httpHeaders:
+            - name: X-Forwarded-Proto
+              value: "https"
+          initialDelaySeconds: 900
+          periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /
             port: http
+            httpHeaders:
+            - name: X-Forwarded-Proto
+              value: "https"
+          initialDelaySeconds: 900
+          periodSeconds: 3
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: book
+  name: site
   labels:
-    app: book
+    app: site
 spec:
   ports:
   - name: http
     port: 80
     targetPort: 8080
   selector:
-    app: book
+    app: site
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: book-ingress
+  name: site-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: book.hashbang.sh
+    external-dns.alpha.kubernetes.io/hostname: hashbang.sh
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   tls:
   - hosts:
-    - book.hashbang.sh
-    secretName: book-tls
+    - hashbang.sh
+    secretName: site-tls
   rules:
-  - host: book.hashbang.sh
+  - host: hashbang.sh
     http:
       paths:
       - path: /
         backend:
-          serviceName: book
+          serviceName: site
           servicePort: 80
