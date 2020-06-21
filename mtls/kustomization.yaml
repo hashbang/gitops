@@ -43,6 +43,7 @@ configMapGenerator:
       - files/admin_seeds/daurnimator.asc
       - files/admin_seeds/lrvick.asc
       - files/admin_seeds/ryan.asc
+      - files/admin_seeds/dpflug.asc
 images:
   - name: drgrove/mtls-server
     digest: sha256:4acb6491bdfaecb08f7955a69beb77c517245939f8566e662a58f1591284b022
