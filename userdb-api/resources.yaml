@@ -17,7 +17,8 @@ spec:
       - name: postgrest
         image: postgrest/postgrest:v7.0.1
         ports:
-        - containerPort: 3000
+        - name: http
+          containerPort: 3000
         env:
         - name: PGRST_DB_ANON_ROLE
           value: anon
@@ -37,8 +38,9 @@ metadata:
     app: userdb-api
 spec:
   ports:
-  - port: 80
-    targetPort: 3000
+  - name: http
+    port: 80
+    targetPort: http
   selector:
     app: userdb-api
 ---
