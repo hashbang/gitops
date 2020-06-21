@@ -4,6 +4,7 @@ namespace: userdb-api
 resources:
 - namespace.yaml
 - resources.yaml
+- service-monitor.yaml
 generators:
   - secret-generator.yaml
 replicas:
