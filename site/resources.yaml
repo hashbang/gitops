@@ -53,10 +53,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - site.hashbang.sh
+    - hashbang.sh
     secretName: site-tls
   rules:
-  - host: site.hashbang.sh
+  - host: hashbang.sh
     http:
       paths:
       - path: /
