@@ -2,11 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: site
 resources:
-- namespace.yaml
-- resources.yaml
-- networkpolicy.yaml
+  - namespace.yaml
+  - resources.yaml
+  - networkpolicy.yaml
 replicas:
-- name: site
-  count: 2
+  - name: site
+    count: 2
 images:
   - name: hashbang/site
+    digest: sha256:86f5695c524001425b3294d7bbade4f54f4f1e2af3396716bcd9b0c4b5b45ee8
