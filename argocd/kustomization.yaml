@@ -20,6 +20,7 @@ resources:
   - applications/ircd.yaml
   - applications/monitoring.yaml
   - applications/mtls.yaml
+  - applications/site.yaml
   - applications/userdb-api.yaml
   - applications/webirc.yaml
 patches:
