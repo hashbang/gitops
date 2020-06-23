@@ -25,8 +25,8 @@ done
 
 Create a new argocd local user for the admin (`argocd/users.yaml`).
 Add the new user to the admin group (`argocd/argo-cd-rbac.yaml`).
-Have the new user create a password for accessing argocd and hash it with e.g. `htpasswd -n -B adminusername`. Add it to `argocd/argocd-secret.enc.yaml`.
+Have the new user create a password for accessing argocd and hash it with e.g. `htpasswd -n -B -C 10 adminusername`. Add it to `argocd/argocd-secret.enc.yaml`.
 
-Have the new user create a password for accessing metrics and hash it with e.g. `htpasswd -n -B adminusername`. Add it to `monitoring/user-auth.enc.yaml`.
+Have the new user create a password for accessing metrics and hash it with e.g. `htpasswd -n -B -C 10 adminusername`. Add it to `monitoring/user-auth.enc.yaml`.
 
 Add the admin's PGP key to `mtls/files/admin_seeds/` (and update the list in `mtls/kustomization.yaml`)
