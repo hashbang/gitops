@@ -3,14 +3,14 @@ kind: Secret
 metadata:
     name: dns-iam-key
 type: Opaque
-data:
-    iam-key: ENC[AES256_GCM,data:EN9tS9AZnE2rEmpLvbRu3y66HCx1tQxNgf6xQ85J3plQySux2bIFKuc855YEgSuB3fnxCM9zwdU=,iv:aaTvqUnfKeLPti7/VRQbwACWo5BveYSKi9pufW2q0p4=,tag:RoD1HBWwuNxyh0QcYbaFPA==,type:str]
+stringData:
+    iam-key: ENC[AES256_GCM,data:xHE4+uzBkZ61i/J3qK6RtGBoVdjucsdcTu3TZ7+9CjpJfzUrZyOHmA==,iv:o0O0/fkB1jCllU+sJBsCwpzQdjPKWnX6CcZtE8waz94=,tag:vDFGO/XBwTG5vIom6712zA==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
-    lastmodified: '2020-05-26T10:02:08Z'
-    mac: ENC[AES256_GCM,data:+/hMNEjxG589mWqR5fNloO4o0xTR1cSuchtxYf8jOUGf8nNB2vZHENT/4yFtmbfLEzK/5ujC0TlC4FsZQvwrFtoRfbnfQ4H7+6yb21s4oDh53K6hRMdujVeeQzwYEfU44TCY8ZyiNzEVW9PuNgm7sRrm99RD29hIDGakICW41b4=,iv:yEV1ghjyFnjY4j7j4eSariada/76EPc6h3+89TFEA00=,tag:MwzdIX/KVULkDNJWY+9ozg==,type:str]
+    lastmodified: '2020-06-23T05:49:18Z'
+    mac: ENC[AES256_GCM,data:l929z+AQwpMPu6FsUU8jqiYEHDRXAFICqJs/mHBjY8G9HpNykl/VVqkh3pD/M62F6IX3EjZppctKxNI8QjwBCh06it+MjTYhk/+/F9DwEUd9CrInUBKh/ESMtj8MR/ToCxArVFzOkzd6yz+Hu3tfsoXr1IJIiJJkfuYop5Uz1RM=,iv:x7IVDpiy44AbZ9LN2PMPjks57fFz94Dw+fkjcd9zPvI=,tag:rAAEChLzntro26qfNw/PDg==,type:str]
     pgp:
     -   created_at: '2020-06-21T13:57:33Z'
         enc: |-
