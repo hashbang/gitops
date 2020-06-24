@@ -24,13 +24,13 @@ resources:
   - applications/userdb-api.yaml
   - applications/webirc.yaml
 patches:
-  - argo-cd-repo-server-ksops-patch.yaml
-  - argo-cd-allow-alpha-plugins-patch.yaml
-  - argo-cd-import-pgp-key.yaml
-  - argo-cd-repository-credentials-patch.yaml
-  - argo-cd-rbac.yaml
-  - argo-cd-allow-status-badges.yaml
-  - users.yaml
+  - argo-cd-repo-server-ksops.patch.yaml
+  - argo-cd-allow-alpha-plugins.patch.yaml
+  - argo-cd-import-pgp-key.patch.yaml
+  - argo-cd-repository-credentials.patch.yaml
+  - argo-cd-rbac.patch.yaml
+  - argo-cd-allow-status-badges.patch.yaml
+  - users.patch.yaml
 images:
   - name: argoproj/argocd:v1.6.0
     digest: sha256:4751ea709a932fc6f5667d3aff2680f762cad855ef99997d53fb003aeb1d7f0d
