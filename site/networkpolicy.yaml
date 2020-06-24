@@ -13,9 +13,10 @@ spec:
         protocol: TCP
   egress:
   - toServices:
-    - k8sService:
-        serviceName: userdb-api
-        namespace: userdb-api
+    - k8sServiceSelector:
+        selector:
+          matchLabels:
+            app: userdb-api
   - toPorts:
     - ports:
       - port: "53"
