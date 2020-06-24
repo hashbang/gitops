@@ -27,7 +27,7 @@ spec:
             httpHeaders:
             - name: X-Forwarded-Proto
               value: "https"
-          initialDelaySeconds: 900
+          initialDelaySeconds: 30
           periodSeconds: 5
         readinessProbe:
           httpGet:
