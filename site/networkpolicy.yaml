@@ -12,12 +12,12 @@ spec:
       - port: "8080"
         protocol: TCP
   egress:
-  - toPorts:
-    - ports:
-      - port: "80"
-        protocol: "TCP"
-      - port: "53"
-        protocol: UDP
+  - toEndpoints:
+    - {}
+  # - toPorts:
+  #   - ports:
+  #     - port: "53"
+  #       protocol: UDP
   # - toServices:
   #   - k8sServiceSelector:
   #       selector:
