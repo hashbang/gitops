@@ -16,3 +16,7 @@ spec:
     - k8sService:
         serviceName: userdb-api
         namespace: userdb-api
+  - toPorts:
+    - ports:
+      - port: "53"
+        protocol: UDP
