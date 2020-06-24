@@ -260,3 +260,33 @@ scrape_configs:
     - __meta_kubernetes_pod_annotation_kubernetes_io_config_mirror
     - __meta_kubernetes_pod_container_name
     target_label: __path__
+- job_name: journal
+  journal:
+    json: false
+    max_age: 12h
+    path: /var/log/journal
+    labels:
+      job: systemd-journal
+  relabel_configs:
+  - source_labels:
+    - __journal__transport
+    target_label: transport
+  - source_labels:
+    - __journal__systemd_unit
+    target_label: systemd_unit
+  - source_labels:
+    - __journal__hostname
+    target_label: nodename
+  - source_labels:
+    - __journal_syslog_identifier
+    target_label: syslog_identifier
+  # TODO: use __journal_priority_keyword once promtail >1.5.0 is released
+  - source_labels:
+    - __journal_priority
+    target_label: level
+  pipeline_stages:
+  - template:
+      source: level
+      template: '{{ if eq .Value "0" }}{{ Replace .Value "0" "emerg" 1 }}{{ else if eq .Value "1" }}{{ Replace .Value "1" "alert" 1 }}{{ else if eq .Value "2" }}{{ Replace .Value "2" "crit" 1 }}{{ else if eq .Value "3" }}{{ Replace .Value "3" "err" 1 }}{{ else if eq .Value "4" }}{{ Replace .Value "4" "warning" 1 }}{{ else if eq .Value "5" }}{{ Replace .Value "5" "notice" 1 }}{{ else if eq .Value "6" }}{{ Replace .Value "6" "info" 1 }}{{ else if eq .Value "7" }}{{ Replace .Value "7" "debug" 1 }}{{ end }}'
+  - labels:
+      level:

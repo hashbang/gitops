@@ -145,6 +145,12 @@ spec:
             - mountPath: /var/lib/docker/containers
               name: docker
               readOnly: true
+            - mountPath: /etc/machine-id
+              name: machine-id
+              readOnly: true
+            - mountPath: /var/log/journal
+              name: journal
+              readOnly: true
             - mountPath: /var/log/pods
               name: pods
               readOnly: true
@@ -183,6 +189,14 @@ spec:
         - hostPath:
             path: /var/lib/docker/containers
           name: docker
+        - hostPath:
+            path: /etc/machine-id
+            type: File
+          name: machine-id
+        - hostPath:
+            path: /run/log/journal
+            type: Directory
+          name: journal
         - hostPath:
             path: /var/log/pods
           name: pods
