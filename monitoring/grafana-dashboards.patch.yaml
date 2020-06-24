@@ -28,3 +28,6 @@ spec:
       - name: grafana-dashboard-ingress-nginx
         configMap:
           name: grafana-dashboard-ingress-nginx
+      - name: grafana-dashboard-userdb
+        configMap:
+          name: grafana-dashboard-userdb
