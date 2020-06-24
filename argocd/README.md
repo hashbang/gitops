@@ -1,4 +1,5 @@
-[ArgoCD](https://argoproj.github.io/argo-cd/)
+# [ArgoCD](https://argoproj.github.io/argo-cd/)
+![ArgoCD Status Indicator](https://argocd.hashbang.sh/api/badge?name=argocd)
 
 With [KSOPS](https://github.com/viaduct-ai/kustomize-sops) integration.
 

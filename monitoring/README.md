@@ -1,4 +1,5 @@
 # Monitoring
+![Monitoring Status Indicator](https://argocd.hashbang.sh/api/badge?name=monitoring)
 
 Uses [kube-prometheus](https://github.com/coreos/kube-prometheus) to create a monitoring solution for in-cluster components.
 
