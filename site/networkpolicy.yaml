@@ -12,4 +12,7 @@ spec:
       - port: "8080"
         protocol: TCP
   egress:
-  - {}
+  - toServices:
+    - k8sService:
+        serviceName: userdb-api
+        namespace: userdb-api
