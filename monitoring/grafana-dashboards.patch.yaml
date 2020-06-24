@@ -18,6 +18,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/ingress-nginx
           name: grafana-dashboard-ingress-nginx
           readOnly: true
+        - mountPath: /grafana-dashboard-definitions/0/userdb
+          name: grafana-dashboard-userdb
+          readOnly: true
       volumes:
       - name: grafana-dashboard-argocd
         configMap:
