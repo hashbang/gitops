@@ -10,4 +10,4 @@ replicas:
     count: 2
 images:
   - name: hashbang/hashbang.sh
-    digest: sha256:86f5695c524001425b3294d7bbade4f54f4f1e2af3396716bcd9b0c4b5b45ee8
+    digest: sha256:5d23915284c0c396b1bff1289016056eda16e036079633d13a0cd58887b21872
