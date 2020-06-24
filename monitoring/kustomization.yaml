@@ -1,8 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # release-0.4; held back due to 0.5 not supporting Kubernetes 1.18
-  - github.com/coreos/kube-prometheus?ref=ee8077db04965d6b4d9e6a328d5283dd6ba71d33
+  - github.com/coreos/kube-prometheus?ref=de9591cbb07ec4c2a3d3f95d5526753ea4247f08 # Random master commit that supports Kubernetes 1.18
   - ingress.yaml
   - cilium-service-monitor.yaml
   - ./loki
