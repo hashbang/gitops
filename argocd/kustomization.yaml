@@ -29,6 +29,7 @@ patches:
   - argo-cd-import-pgp-key.yaml
   - argo-cd-repository-credentials-patch.yaml
   - argo-cd-rbac.yaml
+  - argo-cd-allow-status-badges.yaml
   - users.yaml
 images:
   - name: argoproj/argocd:v1.6.0
