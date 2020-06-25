@@ -13,7 +13,7 @@ spec:
         protocol: TCP
   egress:
   - toEntities:
-    - all
+    - cluster
   # - toPorts:
   #   - ports:
   #     - port: "53"
