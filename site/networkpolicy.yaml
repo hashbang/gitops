@@ -12,8 +12,8 @@ spec:
       - port: "8080"
         protocol: TCP
   egress:
-  - toEndpoints:
-    - {}
+  - toEntities:
+    - all
   # - toPorts:
   #   - ports:
   #     - port: "53"
