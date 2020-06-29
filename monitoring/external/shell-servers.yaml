@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: de1-shell-server-exporter
+  labels:
+    k8s-app: de1-shell-server-exporter
+spec:
+  type: ExternalName
+  externalName: de1.hashbang.sh
+  ports:
+  - name: metrics
+    port: 9100
+    protocol: TCP
+    targetPort: 9100
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: de1-shell-server-metrics
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    prometheusInstance: default
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: de1-shell-server-exporter
+  endpoints:
+  - port: metrics

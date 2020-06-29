@@ -6,6 +6,7 @@ resources:
   - cilium-service-monitor.yaml
   - ./loki
   - ./promtail
+  - external/shell-servers.yaml
 patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
