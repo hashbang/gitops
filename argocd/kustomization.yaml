@@ -30,6 +30,7 @@ patches:
   - argo-cd-repository-credentials.patch.yaml
   - argo-cd-rbac.patch.yaml
   - argo-cd-allow-status-badges.patch.yaml
+  - argo-cd-test-unhealthy-notifications.patch.yaml
   - users.patch.yaml
 images:
   - name: argoproj/argocd:v1.6.0
