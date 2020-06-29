@@ -40,14 +40,14 @@ data:
         webhook:
           bitbot:
             method: POST
-            body: "Application {{.app.metadata.name}} has \x0304degraded\x03 (Commit: {{.app.status.sync.revision}})"
+            body: "Application {{.app.metadata.name}} has \x0304degraded\x03 (Commit: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
       - name: out-of-sync
         webhook:
           bitbot:
             method: POST
-            body: "Application {{.app.metadata.name}} is out of sync (Current: {{.app.status.sync.revision}})"
+            body: "Application {{.app.metadata.name}} is out of sync (Targeting: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
       - name: build-failed
         webhook:
           bitbot:
             method: POST
-            body: "Kustomize was unable to build {{.app.metadata.name}} (using {{.app.status.sync.revision}})"
+            body: "Kustomize was unable to build {{.app.metadata.name}} (Commit: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
