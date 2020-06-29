@@ -37,7 +37,7 @@ data:
         webhook:
           bitbot:
             method: POST
-            body: "Application {{.app.metadata.name}} has degraded (Commit: {{.app.status.sync.revision}})"
+            body: "Application {{.app.metadata.name}} has \x0304degraded\x03 (Commit: {{.app.status.sync.revision}})"
       - name: out-of-sync
         webhook:
           bitbot:
