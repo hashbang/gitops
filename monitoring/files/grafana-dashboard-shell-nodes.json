@@ -415,13 +415,13 @@
         {
           "expr": "rate(node_disk_read_bytes_total{instance=\"$server\"}[$__interval])",
           "interval": "1m",
-          "legendFormat": "{{instance}} read",
+          "legendFormat": "{{device}} read",
           "refId": "A"
         },
         {
           "expr": "rate(node_disk_written_bytes_total{instance=\"$server\"}[$__interval])",
           "interval": "1m",
-          "legendFormat": "{{instance}} written",
+          "legendFormat": "{{device}} written",
           "refId": "B"
         }
       ],
