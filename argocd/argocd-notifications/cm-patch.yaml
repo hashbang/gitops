@@ -15,6 +15,9 @@ data:
       - name: sync-operation-running
         condition: app.status.operationState.phase in ['Running']
         template: sync-operation-status-change
+      - name: out-of-sync
+        condition: app.status.sync.status == 'OutOfSync'
+        template: out-of-sync
       - name: app-unhealthy
         condition: app.status.health.status == 'Degraded'
         template: app-unhealthy
@@ -35,3 +38,8 @@ data:
           bitbot:
             method: POST
             body: "Application {{.app.metadata.name}} has degraded (Commit: {{.app.status.sync.revision}})"
+      - name: out-of-sync
+        webhook:
+          bitbot:
+            method: POST
+            body: "Application {{.app.metadata.name}} is out of sync (Current: {{.app.status.sync.revision}})"
