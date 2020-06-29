@@ -15,6 +15,9 @@ data:
       - name: sync-operation-running
         condition: app.status.operationState.phase in ['Running']
         template: sync-operation-status-change
+      - name: app-unhealthy
+        condition: app.status.health.status == 'Degraded'
+        template: app-unhealthy
 
     templates:
       - name: sync-operation-status-change
@@ -27,3 +30,8 @@ data:
               if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored: {{.app.status.operationState.message}}\x03{{end}}{{
               if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed: {{.app.status.operationState.message}}\x03{{end
             }} (blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03)"
+      - name: app-unhealthy
+        webhook:
+          bitbot:
+            method: POST
+            body: "Application {{.app.metadata.name}} has degraded (Commit: {{.app.status.sync.revision}})"
