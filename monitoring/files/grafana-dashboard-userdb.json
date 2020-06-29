@@ -172,7 +172,7 @@
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Panel Title",
+      "title": "Shell Users (Total)",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -397,7 +397,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Panel Title",
+      "title": "Group Statistics",
       "transform": "timeseries_aggregations",
       "type": "table"
     }
