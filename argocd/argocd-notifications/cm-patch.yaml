@@ -18,6 +18,9 @@ data:
       - name: out-of-sync
         condition: app.status.sync.status == 'OutOfSync'
         template: out-of-sync
+      - name: build-failed
+        condition: app.status.sync.status == 'Unknown'
+        template: build-failed
       - name: app-unhealthy
         condition: app.status.health.status == 'Degraded'
         template: app-unhealthy
@@ -43,3 +46,8 @@ data:
           bitbot:
             method: POST
             body: "Application {{.app.metadata.name}} is out of sync (Current: {{.app.status.sync.revision}})"
+      - name: build-failed
+        webhook:
+          bitbot:
+            method: POST
+            body: "Kustomize was unable to build {{.app.metadata.name}} (using {{.app.status.sync.revision}})"
