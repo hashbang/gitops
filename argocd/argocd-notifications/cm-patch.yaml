@@ -32,7 +32,7 @@ data:
               if eq .app.status.operationState.phase \"Succeeded\"}}has \x0303succeeded\x03: {{.app.status.operationState.message}}{{end}}{{
               if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored\x03: {{.app.status.operationState.message}}{{end}}{{
               if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed\x03: {{.app.status.operationState.message}}{{end
-            }} {{ if neq .app.status.operationState.phase \"Succeeded\" }}(blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03){{end}}"
+            }} {{ if ne .app.status.operationState.phase \"Succeeded\" }}(blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03){{end}}"
       - name: app-unhealthy
         webhook:
           bitbot:
