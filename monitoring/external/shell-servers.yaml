@@ -27,3 +27,4 @@ spec:
       app.kubernetes.io/name: de1-shell-server-exporter
   endpoints:
   - port: metrics
+    path: /metrics
