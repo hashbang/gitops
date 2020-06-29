@@ -5,7 +5,8 @@ metadata:
 type: Opaque
 stringData:
   prometheus-additional.yaml: |
-    - job_name: "prometheus"
+    - job_name: "shell-server"
+      metrics_path: /metrics
       static_configs:
       - targets:
-        - de1.hashbang.sh/metrics
+        - de1.hashbang.sh
