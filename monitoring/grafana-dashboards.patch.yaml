@@ -21,6 +21,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/userdb
           name: grafana-dashboard-userdb
           readOnly: true
+        - mountPath: /grafana-dashboard-definitions/0/shell-nodes
+          name: grafana-dashboard-shell-nodes
+          readOnly: true
       volumes:
       - name: grafana-dashboard-argocd
         configMap:
@@ -34,3 +37,6 @@ spec:
       - name: grafana-dashboard-userdb
         configMap:
           name: grafana-dashboard-userdb
+      - name: grafana-dashboard-shell-nodes
+        configMap:
+          name: grafana-dashboard-shell-nodes

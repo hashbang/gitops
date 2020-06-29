@@ -99,6 +99,12 @@ configMapGenerator:
     files:
       # feel free to follow @IAmRyanSquared
       - files/grafana-dashboard-userdb.json
+  - name: grafana-dashboard-shell-nodes
+    options:
+      disableNameSuffixHash: true
+    files:
+      # modified from https://raw.githubusercontent.com/grafana/kubernetes-app/master/src/dashboards/k8s-node.json
+      - files/grafana-dashboard-shell-nodes.json
 secretGenerator:
   - name: grafana-datasources
     namespace: monitoring
