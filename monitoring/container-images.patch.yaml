@@ -5,7 +5,7 @@ metadata:
   name: k8s
 spec:
   # Hash lock prometheus container
-  image: quay.io/prrometheus/prometheus@sha256:b6275644820cf7a256cd9502eafb35a0b1862b59a3c49afb8267f75ffe79efcc
+  image: quay.io/prometheus/prometheus@sha256:b6275644820cf7a256cd9502eafb35a0b1862b59a3c49afb8267f75ffe79efcc
   # Hash lock helper containers
   containers:
     - name: prometheus-config-reloader
