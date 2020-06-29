@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: de1-shell-server-exporter
   labels:
-    k8s-app: de1-shell-server-exporter
+    hashbang/shell-server: "de1.hashbang.sh"
 spec:
   type: ExternalName
   externalName: de1.hashbang.sh
@@ -24,7 +24,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: de1-shell-server-exporter
+      hashbang/shell-server: "de1.hashbang.sh"
   endpoints:
   - port: metrics
     path: /metrics
