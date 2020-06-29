@@ -9,9 +9,9 @@ spec:
   externalName: de1.hashbang.sh
   ports:
   - name: metrics
-    port: 9100
+    port: 80
     protocol: TCP
-    targetPort: 9100
+    targetPort: 80
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
