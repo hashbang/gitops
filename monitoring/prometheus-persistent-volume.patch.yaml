@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  namespace: monitoring
+  name: k8s
+spec:
+  volumeClaimTemplate:
+    spec:
+      resources:
+        requests:
+          storage: 2Gi

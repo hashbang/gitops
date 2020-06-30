@@ -12,6 +12,7 @@ patches:
   - cluster-wide.patch.yaml
   - grafana-dashboards.patch.yaml
   - prometheus-additional-scrape-configs.patch.yaml
+  - prometheus-persistent-volume.patch.yaml
 patchesJson6902:
   - target:
       version: v1
