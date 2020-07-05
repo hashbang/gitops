@@ -4,8 +4,9 @@ metadata:
   namespace: monitoring
   name: k8s
 spec:
-  volumeClaimTemplate:
-    spec:
-      resources:
-        requests:
-          storage: 2Gi
+  storage:
+    volumeClaimTemplate:
+      spec:
+        resources:
+          requests:
+            storage: 2Gi
