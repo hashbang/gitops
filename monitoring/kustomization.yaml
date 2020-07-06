@@ -117,7 +117,7 @@ secretGenerator:
 generators:
   - secret-generator.yaml
 images:
-  - name: grafana/grafana:7.0.5
+  - name: grafana/grafana:6.7.4  # actually 7.0.5
     digest: sha256:4171e7e8c44bb17f9e5bffdcd3710a6d624828d73b4eb638682543c5ce86bbe9
   - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.5.0
     digest: sha256:5882cda1ee0a8e65e7df4af93a7a1cf36ade9108ee35ef155d7009dc6eaad8a0
