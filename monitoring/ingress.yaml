@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: grafana
@@ -23,7 +23,7 @@ spec:
     - grafana.hashbang.sh
     secretName: grafana-tls
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: alertmanager
@@ -48,7 +48,7 @@ spec:
     - alertmanager.hashbang.sh
     secretName: alertmanager-tls
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: prometheus
