@@ -5,6 +5,7 @@ resources:
   ## persistence.enabled=true
   ## serviceMonitor.enabled=true
   - resources.yaml
+  - ingress.yaml
 configMapGenerator:
   - name: loki
     files:
