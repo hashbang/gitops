@@ -3,11 +3,13 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
+  # disable admin account
   accounts.admin.enabled: "false"
-  accounts.ryan: apiKey,login
-  accounts.daurnimator: apiKey,login
-  accounts.lrvick: apiKey,login
-  accounts.lrvick.enabled: "false"
-  accounts.drgrove: apiKey,login
+
+  # admins
   accounts.benharri: apiKey,login
+  accounts.daurnimator: apiKey,login
   accounts.dpflug: apiKey,login
+  accounts.drgrove: apiKey,login
+  accounts.lrvick: apiKey,login
+  accounts.ryan: apiKey,login
