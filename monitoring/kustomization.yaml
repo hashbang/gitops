@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - github.com/coreos/kube-prometheus?ref=de9591cbb07ec4c2a3d3f95d5526753ea4247f08 # Random master commit that supports Kubernetes 1.18
+  - github.com/coreos/kube-prometheus?ref=7d5d6d6a6315ad2f1fbdd87777dd05c3cdfc4a75 # Random master commit that supports Kubernetes 1.18
   - ingress.yaml
   - cilium-service-monitor.yaml
   - ./loki
@@ -117,8 +117,8 @@ secretGenerator:
 generators:
   - secret-generator.yaml
 images:
-  - name: grafana/grafana:6.7.4
-    digest: sha256:43340812d14aa3e60810b85ee9caaf0e423e7aad01000b704cd8ddfb2bb1248e
+  - name: grafana/grafana:7.1.0
+    digest: sha256:174987125ca36f8de41184267d15b7a68c65c19be6979bfaa0b49f205f58f479
   - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.5.0
     digest: sha256:5882cda1ee0a8e65e7df4af93a7a1cf36ade9108ee35ef155d7009dc6eaad8a0
   - name: quay.io/coreos/kube-rbac-proxy:v0.4.1
