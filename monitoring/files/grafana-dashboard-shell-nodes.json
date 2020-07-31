@@ -776,8 +776,8 @@
     ]
   },
   "time": {
-    "from": "2020-06-29T14:53:55.451Z",
-    "to": "2020-06-29T14:59:10.491Z"
+    "from": "now-1h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
