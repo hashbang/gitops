@@ -5,6 +5,9 @@ metadata:
   name: k8s
 spec:
   storage:
+    # This determines the maximum number of bytes that storage blocks can use
+    # (note that this does not include the WAL size, which can be substantial)
+    retensionSize: 1GB
     volumeClaimTemplate:
       spec:
         resources:
