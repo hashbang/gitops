@@ -11,6 +11,7 @@ resources:
 patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
+  - grafana-auth.patch.yaml
   - grafana-sidecar.patch.yaml
   - prometheus-additional-scrape-configs.patch.yaml
   - prometheus-persistent-volume.patch.yaml
