@@ -31,6 +31,17 @@ patches:
   - argo-cd-rbac.patch.yaml
   - argo-cd-allow-status-badges.patch.yaml
   - users.patch.yaml
+configMapGenerator:
+  - name: grafana-dashboard
+    options:
+      disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
+    files:
+      # From https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json
+      - files/grafana-dashboard-argocd.json
+      # From https://argoproj-labs.github.io/argocd-notifications/grafana-dashboard.json
+      - files/grafana-dashboard-argocd-notifications.json
 images:
   - name: argoproj/argocd:v1.6.2
     digest: sha256:b9ccb2655ea8784788b61a376b68776df4d4d0595fd603f12ea0724cbc31eb32

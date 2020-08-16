@@ -10,7 +10,7 @@ resources:
 patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
-  - grafana-dashboards.patch.yaml
+  - grafana-sidecar.patch.yaml
   - prometheus-additional-scrape-configs.patch.yaml
   - prometheus-persistent-volume.patch.yaml
 patchesJson6902:
@@ -73,17 +73,11 @@ patchesJson6902:
       - op: remove
         path: /status
 configMapGenerator:
-  - name: grafana-dashboard-argocd
-    options:
-      disableNameSuffixHash: true
-    files:
-      # From https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json
-      - files/grafana-dashboard-argocd.json
-      # From https://argoproj-labs.github.io/argocd-notifications/grafana-dashboard.json
-      - files/grafana-dashboard-argocd-notifications.json
   - name: grafana-dashboard-cilium
     options:
       disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
     files:
       # https://github.com/cilium/cilium/tree/6fe8d092a6796d36230a0e3480cd2a8472e1a6f0/examples/kubernetes/addons/prometheus/files/grafana-config
       - files/grafana-dashboard-cilium.json
@@ -91,18 +85,24 @@ configMapGenerator:
   - name: grafana-dashboard-ingress-nginx
     options:
       disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
     files:
       # https://github.com/kubernetes/ingress-nginx/blob/810acfafbef86d9dc05e0ece68c97d0c93344632/deploy/grafana/dashboards/nginx.json
       - files/grafana-dashboard-ingress-nginx.json
   - name: grafana-dashboard-userdb
     options:
       disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
     files:
       # feel free to follow @IAmRyanSquared
       - files/grafana-dashboard-userdb.json
   - name: grafana-dashboard-shell-nodes
     options:
       disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
     files:
       # modified from https://raw.githubusercontent.com/grafana/kubernetes-app/master/src/dashboards/k8s-node.json
       - files/grafana-dashboard-shell-nodes.json
@@ -119,6 +119,8 @@ generators:
 images:
   - name: grafana/grafana:7.1.0
     digest: sha256:174987125ca36f8de41184267d15b7a68c65c19be6979bfaa0b49f205f58f479
+  - name: kiwigrid/k8s-sidecar:0.1.178
+    digest: sha256:95feeef7afb892cb781fe67d5d487a087049386888b1f7e84a2c4a63c2f09259
   - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.5.0
     digest: sha256:5882cda1ee0a8e65e7df4af93a7a1cf36ade9108ee35ef155d7009dc6eaad8a0
   - name: quay.io/coreos/kube-rbac-proxy:v0.4.1
