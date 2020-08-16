@@ -7,9 +7,9 @@ spec:
   storage:
     # This determines the maximum number of bytes that storage blocks can use
     # (note that this does not include the WAL size, which can be substantial)
-    retensionSize: 1GB
+    retensionSize: 3GB
     volumeClaimTemplate:
       spec:
         resources:
           requests:
-            storage: 2Gi
+            storage: 4Gi
