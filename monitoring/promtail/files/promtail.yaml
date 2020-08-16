@@ -280,13 +280,6 @@ scrape_configs:
   - source_labels:
     - __journal_syslog_identifier
     target_label: syslog_identifier
-  # TODO: use __journal_priority_keyword once promtail >1.5.0 is released
   - source_labels:
-    - __journal_priority
+    - __journal_priority_keyword
     target_label: level
-  pipeline_stages:
-  - template:
-      source: level
-      template: '{{ if eq .Value "0" }}{{ Replace .Value "0" "emerg" 1 }}{{ else if eq .Value "1" }}{{ Replace .Value "1" "alert" 1 }}{{ else if eq .Value "2" }}{{ Replace .Value "2" "crit" 1 }}{{ else if eq .Value "3" }}{{ Replace .Value "3" "err" 1 }}{{ else if eq .Value "4" }}{{ Replace .Value "4" "warning" 1 }}{{ else if eq .Value "5" }}{{ Replace .Value "5" "notice" 1 }}{{ else if eq .Value "6" }}{{ Replace .Value "6" "info" 1 }}{{ else if eq .Value "7" }}{{ Replace .Value "7" "debug" 1 }}{{ end }}'
-  - labels:
-      level:
