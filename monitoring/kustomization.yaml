@@ -7,6 +7,7 @@ resources:
   - ./loki
   - ./promtail
   - prometheus-additional-targets.yaml
+  - grafana-role.yaml
 patches:
   - container-images.patch.yaml
   - cluster-wide.patch.yaml
