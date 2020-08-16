@@ -5,6 +5,15 @@ resources:
 - namespace.yaml
 - resources.yaml
 - service-monitor.yaml
+configMapGenerator:
+  - name: grafana-dashboard
+    options:
+      disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
+    files:
+      # feel free to follow @IAmRyanSquared
+      - files/grafana-dashboard-userdb.json
 generators:
   - secret-generator.yaml
 replicas:
