@@ -13,6 +13,9 @@ spec:
     - 'secret'
     - 'configMap'
     - 'hostPath'
+    - 'projected'
+    - 'downwardAPI'
+    - 'emptyDir'
   hostNetwork: false
   hostIPC: false
   hostPID: false
@@ -133,7 +136,7 @@ spec:
       serviceAccountName: loki-promtail
       containers:
         - name: promtail
-          image: "grafana/promtail:1.5.0"
+          image: "grafana/promtail:1.6.0"
           args:
             - "-config.file=/etc/promtail/promtail.yaml"
             - "-client.url=http://loki:3100/loki/api/v1/push"

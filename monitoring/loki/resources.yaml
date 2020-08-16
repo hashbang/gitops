@@ -14,6 +14,8 @@ spec:
     - 'emptyDir'
     - 'persistentVolumeClaim'
     - 'secret'
+    - 'projected'
+    - 'downwardAPI'
   hostNetwork: false
   hostIPC: false
   hostPID: false
@@ -134,9 +136,11 @@ spec:
         runAsGroup: 10001
         runAsNonRoot: true
         runAsUser: 10001
+      initContainers:
+        []
       containers:
         - name: loki
-          image: "grafana/loki:1.5.0"
+          image: "grafana/loki:1.6.0"
           args:
             - "-config.file=/etc/loki/loki.yaml"
           volumeMounts:
