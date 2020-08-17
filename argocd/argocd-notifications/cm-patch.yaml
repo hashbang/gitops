@@ -19,7 +19,7 @@ data:
         condition: app.status.sync.status == 'OutOfSync'
         template: out-of-sync
       - name: build-failed
-        condition: app.status.sync.status == 'Unknown'
+        condition: app.status.sync.status == 'Unknown' and app.status.sync.revision != nil
         template: build-failed
       - name: app-unhealthy
         condition: app.status.health.status == 'Degraded'
