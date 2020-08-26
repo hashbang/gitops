@@ -11,3 +11,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: book
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

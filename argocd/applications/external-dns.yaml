@@ -11,3 +11,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: external-dns
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
