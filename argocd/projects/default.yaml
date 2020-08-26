@@ -15,3 +15,10 @@ spec:
     kind: '*'
   orphanedResources:
     warn: false
+  signatureKeys:
+    - keyID: C91A9911192C187A
+    - keyID: 6785F7AF28DE7081
+    - keyID: E90A401336C8AAA9
+    - keyID: 68907D8BCCD85A5A
+    - keyID: B10116B8193F2DBD
+    - keyID: 26CDD32189AA2885

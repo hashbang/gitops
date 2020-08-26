@@ -34,4 +34,6 @@ Add the admin's PGP key to `argocd/gpg-keys/KEYID` (and update the list in `argo
 gpg -a --export --export-options export-minimal C91A9911192C187A > argocd/gpg-keys/C91A9911192C187A
 ```
 
+Add the admin's PGP key to the allowed list in `argocd/projects/default.yaml`.
+
 Add the admin's PGP key to `mtls/files/admin_seeds/` (and update the list in `mtls/kustomization.yaml`)
