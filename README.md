@@ -29,4 +29,9 @@ Have the new user create a password for accessing argocd and hash it with e.g. `
 
 Have the new user create a password for accessing metrics and hash it with e.g. `htpasswd -n -B -C 10 adminusername`. Add it to `monitoring/user-auth.enc.yaml`.
 
+Add the admin's PGP key to `argocd/gpg-keys/KEYID` (and update the list in `argocd/kustomization.yaml`) e.g.
+```shell
+gpg -a --export --export-options export-minimal C91A9911192C187A > argocd/gpg-keys/C91A9911192C187A
+```
+
 Add the admin's PGP key to `mtls/files/admin_seeds/` (and update the list in `mtls/kustomization.yaml`)
