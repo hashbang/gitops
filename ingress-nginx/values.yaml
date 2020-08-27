@@ -19,6 +19,8 @@ nginx-ingress:
     service:
       annotations:
         service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+    extraArgs:
+      enable-ssl-passthrough: ""
     autoscaling:
       enabled: true
       minReplicas: 2
