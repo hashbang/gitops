@@ -11,6 +11,20 @@ On a new kubernetes cluster you can run:
 kustomize build . | kubectl apply -f -
 ```
 
+# Using the ArgoCD CLI
+
+Without mTLS:
+
+```sh
+argocd --grpc-web <your command>
+```
+
+With mTLS:
+
+```sh
+argocd --grpc-web --client-crt $HOME/.mtls/hashbang.crt --client-cert-key $HOME/.mtls/hashbang.key <your command>
+```
+
 
 # Upgrading
 
