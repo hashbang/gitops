@@ -4,10 +4,10 @@ metadata:
   namespace: monitoring
   name: k8s
 spec:
+  # This determines the maximum number of bytes that storage blocks can use
+  # (note that this does not include the WAL size, which can be substantial)
+  retentionSize: 3GB
   storage:
-    # This determines the maximum number of bytes that storage blocks can use
-    # (note that this does not include the WAL size, which can be substantial)
-    retensionSize: 3GB
     volumeClaimTemplate:
       spec:
         resources:
