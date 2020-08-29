@@ -1,0 +1,118 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mail
+spec:
+  selector:
+    matchLabels:
+      app: mail
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mail
+    spec:
+      shareProcessNamespace: true
+      containers:
+      - name: postfix
+        image: hashbang/postfix
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            ln -sf /etc/postfix/secrets/aliases /etc/aliases;
+            exec bash ./run.sh;
+        ports:
+        - containerPort: 25
+          name: smtp
+        readinessProbe:
+          tcpSocket:
+            port: 25
+        livenessProbe:
+          tcpSocket:
+            port: 25
+        volumeMounts:
+        - mountPath: /etc/postfix/main.cf
+          name: mail-config
+          subPath: main.cf
+          readOnly: true
+        - mountPath: /etc/postfix/master.cf
+          name: mail-config
+          subPath: master.cf
+          readOnly: true
+        - mountPath: /etc/postfix/userdb-aliases.cf
+          name: mail-config
+          subPath: userdb-aliases.cf
+          readOnly: true
+        - mountPath: /etc/postfix/secrets
+          name: mail-secrets
+          readOnly: true
+        - mountPath: /etc/postfix/certs
+          name: mail-certs
+          readOnly: true
+        - mountPath: /var/spool/postfix
+          name: mail-spool
+      - name: config-reloader
+        # image includes busybox's inotifyd + pkill
+        image: alpine
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "Watching /etc/postfix/certs";
+            inotifyd - /etc/postfix/certs:wMymndox | while read -r notifies ; do
+              echo "notify received: $notifies";
+              echo "sending SIGHUP";
+              pkill -HUP tlsmgr;
+            done
+            echo "Exiting.";
+        volumeMounts:
+        - mountPath: /etc/postfix/certs
+          name: mail-certs
+          readOnly: true
+      volumes:
+      - name: mail-config
+        configMap:
+          name: mail-config
+      - name: mail-secrets
+        secret:
+          secretName: mail-secrets
+      - name: mail-certs
+        secret:
+          secretName: mail-certs
+      - name: mail-spool
+        persistentVolumeClaim:
+          claimName: mail-spool
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mail
+  labels:
+    app: mail
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+    external-dns.alpha.kubernetes.io/hostname: "mail.hashbang.sh"
+spec:
+  type: LoadBalancer
+  ports:
+  - name: smtp
+    port: 25
+    targetPort: 25
+  selector:
+    app: mail
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mail-spool
+  labels:
+    app: mail
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

@@ -16,6 +16,7 @@ spec:
         dnsZones:
           - "irc.hashbang.sh"
           - "hashbang.sh"
+          - "mail.hashbang.sh"
       dns01:
         route53:
           region: us-west-2

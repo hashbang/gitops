@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  namespace: mail
+  name: mail.hashbang.sh
+spec:
+  secretName: mail-certs
+  dnsNames:
+    - mail.hashbang.sh
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
