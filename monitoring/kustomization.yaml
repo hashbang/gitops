@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - github.com/coreos/kube-prometheus?ref=7d5d6d6a6315ad2f1fbdd87777dd05c3cdfc4a75 # Random master commit that supports Kubernetes 1.18
+  - github.com/coreos/kube-prometheus?ref=4f872f1e3187509e4c8d53d7e1f654b5fa422977 # Random master commit that supports Kubernetes 1.18
   - ingress.yaml
   - cilium-service-monitor.yaml
   - ./loki
@@ -115,13 +115,13 @@ images:
     digest: sha256:174987125ca36f8de41184267d15b7a68c65c19be6979bfaa0b49f205f58f479
   - name: kiwigrid/k8s-sidecar:0.1.178
     digest: sha256:95feeef7afb892cb781fe67d5d487a087049386888b1f7e84a2c4a63c2f09259
-  - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.5.0
-    digest: sha256:5882cda1ee0a8e65e7df4af93a7a1cf36ade9108ee35ef155d7009dc6eaad8a0
+  - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.7.0
+    digest: sha256:f2648165668eae24c91b6213843c9890e8a4dd68fb2c8f26137ba1499a5f4c7a
   - name: quay.io/coreos/kube-rbac-proxy:v0.4.1
     digest: sha256:9d07c391aeb1a9d02eb4343c113ed01825227c70c32b3cae861711f90191b0fd
-  - name: quay.io/coreos/kube-state-metrics:v1.9.2
-    digest: sha256:99e18bb3ca7344cb8ece2b5ced2599d561d2de2306531366e8198364d17b0f22
-  - name: quay.io/coreos/prometheus-operator:v0.34.0
-    digest: sha256:c0bcb231fe67cd11fd26f7adf5ac1080dfac189ac94705538bd4ab7dd99a98a9
+  - name: quay.io/coreos/kube-state-metrics:v1.9.7
+    digest: sha256:2f82f0da199c60a7699c43c63a295c44e673242de0b7ee1b17c2d5a23bec34cb
+  - name: quay.io/coreos/prometheus-operator:v0.41.0
+    digest: sha256:caeff84e4222de9f9a5ff9fa512dc3c1479df6fee1c9b674f72a1c6ea6199296
   - name: quay.io/prometheus/node-exporter:v0.18.1
     digest: sha256:a2f29256e53cc3e0b64d7a472512600b2e9410347d53cdc85b49f659c17e02ee
