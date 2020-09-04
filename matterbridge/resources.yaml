@@ -19,7 +19,23 @@ spec:
         volumeMounts:
         - name: matterbridge-config
           mountPath: /etc/matterbridge
+        env:
+        - name: MATTERBRIDGE_IRC_HASHBANG_NICKSERVPASS
+          valueFrom:
+            secretKeyRef:
+              name: matterbridge-secret
+              value: hashbang-password
+        - name: MATTERBRIDGE_IRC_FREENODE_NICKSERVPASS
+          valueFrom:
+            secretKeyRef:
+              name: matterbridge-secret
+              value: freenode-password
+        - name: MATTERBRIDGE_MATRIX_MAIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: matterbridge-secret
+              value: matrix-password
       volumes:
       - name: matterbridge-config
-        secret:
-          secretName: matterbridge-config
+        configmap:
+          name: matterbridge-config

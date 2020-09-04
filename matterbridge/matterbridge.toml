@@ -1,0 +1,35 @@
+[irc.hashbang]
+Server = "irc.hashbang.sh:6697"
+Nick = "HashBot"
+UseTLS = true
+Label = "h"
+RemoteNickFormat = "<{NICK}[{LABEL}]> "
+NickServNick = "HashBot"
+UseSASL = true
+
+[irc.freenode]
+Server = "irc.freenode.net:6697"
+Nick = "HashBot"
+UseTLS = true
+Label = "f"
+RemoteNickFormat = "<{NICK}[{LABEL}]> "
+NickServNick = "HashBot"
+
+[matrix.main]
+Server = "https://matrix.org"
+Login = "HashBot"
+Label = "m"
+RemoteNickFormat = "<{NICK}[{LABEL}]> "
+NoHomeServerSuffix = true
+
+[[gateway]]
+name = "default"
+enable = true
+
+[[gateway.inout]]
+account = "irc.hashbang"
+channel = "#!"
+
+[[gateway.inout]]
+account = "irc.freenode"
+channel = "#!"
