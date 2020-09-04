@@ -18,7 +18,7 @@ spec:
         image: 42wim/matterbridge
         volumeMounts:
         - name: matterbridge-config
-          mountPath: "/etc/matterbridge"
+          mountPath: /etc/matterbridge
       volumes:
       - name: matterbridge-config
         secret:
