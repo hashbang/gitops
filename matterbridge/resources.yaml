@@ -24,17 +24,17 @@ spec:
           valueFrom:
             secretKeyRef:
               name: matterbridge-secret
-              value: hashbang-password
+              key: hashbang-password
         - name: MATTERBRIDGE_IRC_FREENODE_NICKSERVPASS
           valueFrom:
             secretKeyRef:
               name: matterbridge-secret
-              value: freenode-password
+              key: freenode-password
         - name: MATTERBRIDGE_MATRIX_MAIN_PASSWORD
           valueFrom:
             secretKeyRef:
               name: matterbridge-secret
-              value: matrix-password
+              key: matrix-password
       volumes:
       - name: matterbridge-config
         configmap:
