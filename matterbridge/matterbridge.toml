@@ -33,3 +33,7 @@ channel = "#!"
 [[gateway.inout]]
 account = "irc.freenode"
 channel = "#!"
+
+[[gateway.inout]]
+account = "matrix.main"
+channel = "#!:matrix.org"
