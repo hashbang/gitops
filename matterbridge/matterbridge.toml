@@ -2,6 +2,8 @@
 Server = "irc-internal.ircd.svc:6697"
 Nick = "HashBot"
 UseTLS = true
+# because it uses internal traffic
+SkipTLSVerify = true
 Label = "h"
 RemoteNickFormat = "<{NICK}[{LABEL}]> "
 NickServNick = "HashBot"
