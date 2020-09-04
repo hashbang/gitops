@@ -94,6 +94,22 @@ spec:
     app: irc
 ---
 apiVersion: v1
+kind: Service
+metadata:
+  name: irc-internal
+  labels:
+    app: irc
+  annotations:
+spec:
+  type: ClusterIP
+  ports:
+  - name: irc
+    port: 6697
+    targetPort: 16697
+  selector:
+    app: irc
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: irc-db

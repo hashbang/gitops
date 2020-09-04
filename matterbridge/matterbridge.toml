@@ -1,5 +1,5 @@
 [irc.hashbang]
-Server = "irc.ircd.svc:6697"
+Server = "irc-internal.ircd.svc:6697"
 Nick = "HashBot"
 UseTLS = true
 Label = "h"
