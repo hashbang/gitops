@@ -3,6 +3,12 @@ kind: Kustomization
 namespace: matterbridge
 resources:
 - resources.yaml
+configMapGenerator:
+- name: matterbridge-config
+  options:
+    disableNameSuffixHash: true
+  files:
+  - matterbridge.toml
 generators:
 - secret-generator.yaml
 images:
