@@ -20,12 +20,12 @@ spec:
         - name: matterbridge-config
           mountPath: /etc/matterbridge
         env:
-        - name: MATTERBRIDGE_IRC_HASHBANG_NICKSERVPASS
+        - name: MATTERBRIDGE_IRC_HASHBANG_NICKSERVPASSWORD
           valueFrom:
             secretKeyRef:
               name: matterbridge-secret
               key: hashbang-password
-        - name: MATTERBRIDGE_IRC_FREENODE_NICKSERVPASS
+        - name: MATTERBRIDGE_IRC_FREENODE_NICKSERVPASSWORD
           valueFrom:
             secretKeyRef:
               name: matterbridge-secret
