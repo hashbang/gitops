@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: Secret
 metadata:
+    annotations:
+        kustomize.config.k8s.io/needs-hash: true
     name: matterbridge-secret
 stringData:
     hashbang-password: ENC[AES256_GCM,data:kP/2u/wBqUOHU2tn1uS7NgzGCqg5xyorOw==,iv:orMASrV4SoRA+JUFfVArWfv8qnBmILywS2CQvVHJb5o=,tag:Fy1LrL1bDajxYa4dlfJPJw==,type:str]
@@ -10,8 +12,8 @@ sops:
     kms: []
     gcp_kms: []
     azure_kv: []
-    lastmodified: '2020-09-04T07:45:41Z'
-    mac: ENC[AES256_GCM,data:Q06UkFfxq1Hjkb4rT7NpT0mqyiNkHHROGr/ZE7WroipGsEo7zXFcRM+vskv5on6TGZQfjYqfPoZ0zl7zy3wR/C9XLC7B+JkQYD0Bn90y8Q/slyCuv49zQt3peQycSFo07N1rpuvMNdmb9MyXFBrLzvw9kFpROAxWj9hRlSaiMyA=,iv:ljkDFQHzR49XJQHLnWoC26/mKvs9INUbC1KfHEhbZBI=,tag:k0mlfA1M4qSVCvDmKmpAQQ==,type:str]
+    lastmodified: '2020-09-04T08:08:54Z'
+    mac: ENC[AES256_GCM,data:eJm58baOflYkuDfzB6hr6FBCdg6292xgJ+0gbMocZwjL2z67BbGsQkGJNCySi+qI6UHu5esepqkJXKkwUlErCC4+HaJxHE02+5L1yk4Uu9R3dTxg5C/Xeyfsg1uqGiPrVwCrL+34TBwvhb1d5rXw6GjicMx2twTM9DaoN8lzh7s=,iv:9XqA94iYRdm14vidXgkAT4ciz9Yd53PzXC2z+OqHpX4=,tag:pHUCqLMMAhohxWUJ9FxN2Q==,type:str]
     pgp:
     -   created_at: '2020-09-04T00:34:05Z'
         enc: |
