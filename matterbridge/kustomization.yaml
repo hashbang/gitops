@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: matterbridge
+resources:
+- namespace.yaml
+- resources.yaml
+generators:
+- secret-generator.yaml
+images:
+- name: 42wim/matterbridge
+  digest: sha256:22c5235c8ad2f28591b3f6d6357e0b6a42700a362faa671fed84718f0f3b70ca
+

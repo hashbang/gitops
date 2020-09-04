@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matterbridge
+  labels:
+    app: matterbridge
+spec:
+  selector:
+    matchLabels:
+      app: matterbridge
+  template:
+    metadata:
+      labels:
+        app: matterbridge
+    spec:
+      containers:
+      - name: matterbridge
+        image: 42wim/matterbridge
+        volumeMounts:
+        - name: matterbridge-config
+          mountPath: "/etc/matterbridge"
+      volumes:
+      - name: matterbridge-config
+        secret:
+          secretName: matterbridge-config

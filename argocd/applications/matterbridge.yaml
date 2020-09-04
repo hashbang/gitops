@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: matterbridge
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:hashbang/gitops.git
+    path: matterbridge/
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: matterbridge
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
