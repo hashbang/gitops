@@ -37,5 +37,5 @@ spec:
               key: matrix-password
       volumes:
       - name: matterbridge-config
-        configmap:
+        configMap:
           name: matterbridge-config
