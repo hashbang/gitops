@@ -20,7 +20,7 @@ Server = "https://matrix.org"
 Login = "HashBot"
 Label = "m"
 RemoteNickFormat = "<{NICK}[{LABEL}]> "
-NoHomeServerSuffix = true
+NoHomeServerSuffix = false
 
 [[gateway]]
 name = "default"
