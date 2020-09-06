@@ -28,6 +28,13 @@ spec:
           httpGet:
             path: /
             port: http
+        volumeMounts:
+        - name: kiwiirc-config
+          mountPath: /usr/share/nginx/html/static/
+      volumes:
+      - name: kiwiirc-config
+        configMap:
+          name: kiwiirc-config
 ---
 apiVersion: v1
 kind: Service
