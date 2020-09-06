@@ -13,4 +13,4 @@ configMapGenerator:
   - files/ircd.yaml
 images:
   - name: oragono/oragono:latest
-    digest: sha256:f3dbcfc77fa839414b3fe4335eaf724fd476484489ccfbba273fd04092bc60fa
+    digest: sha256:62d0fd2af5cbb8f0555204199aa7948f85fb14cb6f9cbc52c5ce198e1fa0df7f
