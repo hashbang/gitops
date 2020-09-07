@@ -30,7 +30,8 @@ spec:
             port: http
         volumeMounts:
         - name: kiwiirc-config
-          mountPath: /usr/share/nginx/html/static/
+          mountPath: /usr/share/nginx/html/static/config.json
+          subPath: config.json
       volumes:
       - name: kiwiirc-config
         configMap:
