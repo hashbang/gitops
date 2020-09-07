@@ -9,8 +9,6 @@ replicas:
   count: 2
 configMapGenerator:
 - name: kiwiirc-config
-  options:
-    disableNameSuffixHash: true
   files:
   - files/config.json
 images:
