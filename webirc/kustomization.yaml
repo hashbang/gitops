@@ -12,7 +12,7 @@ configMapGenerator:
   options:
     disableNameSuffixHash: true
   files:
-  - kiwiirc-config.json
+  - files/config.json
 images:
   - name: hashbang/webirc
     digest: sha256:5b5d8a7b0e84fa4c5e03643c2feff0ef45a209b5e3613fd98a65a80b30007470
