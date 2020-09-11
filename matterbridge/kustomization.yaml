@@ -8,7 +8,7 @@ configMapGenerator:
   options:
     disableNameSuffixHash: true
   files:
-  - matterbridge.toml
+  - files/matterbridge.toml
 generators:
 - secret-generator.yaml
 images:
