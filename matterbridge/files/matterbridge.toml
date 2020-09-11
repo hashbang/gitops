@@ -23,6 +23,7 @@ Login = "HashBot"
 Label = "m"
 RemoteNickFormat = "<{NICK}[{LABEL}]> "
 NoHomeServerSuffix = false
+HTMLDisable = true
 
 [[gateway]]
 name = "default"
