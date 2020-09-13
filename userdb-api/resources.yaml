@@ -52,6 +52,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: userdb.hashbang.sh
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   tls:
   - hosts:
@@ -61,7 +62,7 @@ spec:
   - host: userdb.hashbang.sh
     http:
       paths:
-      - path: /
+      - path: /v1(/|$)(.*)
         backend:
           serviceName: userdb-api
           servicePort: 80
