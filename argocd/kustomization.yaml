@@ -6,6 +6,7 @@ resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=f8cbd6bf432327cc3b0f70d23b66511bb906a178
   - ingress.yaml
   - argo-cd-service-monitor.yaml
+  - argocd-bot/
   - argocd-notifications/
   # Projects
   - projects/default.yaml

@@ -6,6 +6,9 @@ data:
   # disable admin account
   accounts.admin.enabled: "false"
 
+  # account for argocd-bot
+  accounts.github_bot: apiKey
+
   # admins
   accounts.benharri: apiKey,login
   accounts.daurnimator: apiKey,login
