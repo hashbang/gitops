@@ -493,7 +493,7 @@ oper-classes:
 
 # ircd operators
 opers:
-     lrvic:
+    lrvick:
         class: "server-admin"
         whois-line: "is a person"
         vhost: "staff.hashbang.sh"
