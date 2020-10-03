@@ -493,7 +493,12 @@ oper-classes:
 
 # ircd operators
 opers:
-    # operator named 'lrvick'
+     ryan:
+        class: "server-admin"
+        whois-line: "is a person"
+        vhost: "staff.hashbang.sh"
+        fingerprint: "6E:47:84:15:D6:49:9C:11:AC:27:6E:8D:F0:28:99:D7:86:90:AF:03:AB:CE:3F:59:D6:B0:91:53:40:A9:01:F5"
+        auto: true
 
     slingamn:
         # which capabilities this oper has access to
