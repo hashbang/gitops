@@ -6,37 +6,30 @@ metadata:
 spec:
   template:
     spec:
-      # 1. Define an emptyDir volume which will hold the custom binaries
+      # 1. Define an emptyDir volume which will hold the custom tools
       volumes:
         - name: custom-tools
           emptyDir: {}
-      # 2. Use an init container to download/copy custom binaries into the emptyDir
+      # 2. Use an init container to download/copy custom tools into the emptyDir
       initContainers:
         - name: install-ksops
-          # Match Argo CD Go version
           image: viaductoss/ksops:v2.2.0
           command: ["/bin/sh", "-c"]
           args:
             - echo "Installing KSOPS...";
-              export PKG_NAME=ksops;
-              mv ${PKG_NAME}.so /custom-tools/;
-              mv $GOPATH/bin/kustomize /custom-tools/;
+              mv ksops /custom-tools/;
               echo "Done.";
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools
-      # 3. Volume mount the custom binary to the bin directory (overriding the existing version)
+      # 3. Volume mount the custom tools to their relevant directories (possibly overriding the existing version)
       containers:
         - name: argocd-repo-server
           volumeMounts:
-            - mountPath: /usr/local/bin/kustomize
-              name: custom-tools
-              subPath: kustomize
-              readOnly: true
               # Verify this matches a XDG_CONFIG_HOME=/.config env variable
-            - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops.so
+            - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
               name: custom-tools
-              subPath: ksops.so
+              subPath: ksops
               readOnly: true
           # 4. Set the XDG_CONFIG_HOME env variable to allow kustomize to detect the plugin
           env:
