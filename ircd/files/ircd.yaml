@@ -140,7 +140,7 @@ server:
 
     # ignore the supplied user/ident string from the USER command; always set the value to
     # `~user` (literally) instead. this can potentially reduce confusion and simplify bans.
-    suppress-ident: true
+    coerce-ident: "~u"
 
     # password to login to the server
     # generated using  "oragono genpasswd"
@@ -153,6 +153,19 @@ server:
     # motd formatting codes
     # if this is true, the motd is escaped using formatting codes like $c, $b, and $i
     motd-formatting: true
+
+    # relaying using the RELAYMSG command
+    relaymsg:
+        # is relaymsg enabled at all?
+        enabled: true
+
+        # which character(s) are reserved for relayed nicks?
+        separators: "/"
+
+        # can channel operators use RELAYMSG in their channels?
+        # our implementation of RELAYMSG makes it safe for chanops to use without the
+        # possibility of real users being silently spoofed
+        available-to-chanops: true
 
     # addresses/CIDRs the PROXY command can be used from
     # this should be restricted to 127.0.0.1/8 and ::1/128 (unless you have a good reason)
@@ -252,6 +265,8 @@ server:
         # whether to enable IP cloaking
         enabled: true
 
+        enabled-for-always-on: true
+
         # fake TLD at the end of the hostname, e.g., pwbs2ui4377257x8.oragono
         netname: "hashbang.sh"
 
@@ -281,6 +296,9 @@ accounts:
         # can users register new accounts for themselves? if this is false, operators with
         # the `accreg` capability can still create accounts with `/NICKSERV SAREGISTER`
         enabled: true
+
+        # can users use the REGISTER command to register before fully connecting?
+        allow-before-connect: true
 
         # this is the bcrypt cost we'll use for account passwords
         bcrypt-cost: 9
@@ -779,3 +797,7 @@ history:
         # direct messages are only stored in the database for persistent clients;
         # you can control how they are stored here (same options as above)
         direct-messages: "opt-out"
+
+# whether to allow customization of the config at runtime using environment variables,
+# e.g., ORAGONO__SERVER__MAX_SENDQ=128k. see the manual for more details.
+allow-environment-overrides: true
