@@ -51,6 +51,10 @@ scrape_configs:
     source_labels:
     - __meta_kubernetes_pod_container_name
     target_label: container
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_pod_node_name
+    target_label: node
   - replacement: /var/log/pods/*$1/*.log
     separator: /
     source_labels:
@@ -98,6 +102,10 @@ scrape_configs:
     source_labels:
     - __meta_kubernetes_pod_container_name
     target_label: container
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_pod_node_name
+    target_label: node
   - replacement: /var/log/pods/*$1/*.log
     separator: /
     source_labels:
@@ -151,6 +159,10 @@ scrape_configs:
     source_labels:
     - __meta_kubernetes_pod_container_name
     target_label: container
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_pod_node_name
+    target_label: node
   - replacement: /var/log/pods/*$1/*.log
     separator: /
     source_labels:
@@ -206,6 +218,10 @@ scrape_configs:
     source_labels:
     - __meta_kubernetes_pod_container_name
     target_label: container
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_pod_node_name
+    target_label: node
   - replacement: /var/log/pods/*$1/*.log
     separator: /
     source_labels:
@@ -254,6 +270,10 @@ scrape_configs:
     source_labels:
     - __meta_kubernetes_pod_container_name
     target_label: container
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_pod_node_name
+    target_label: node
   - replacement: /var/log/pods/*$1/*.log
     separator: /
     source_labels:
