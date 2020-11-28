@@ -127,9 +127,14 @@ server:
     # already up and running is problematic).
     casemapping: "precis"
 
+    # enforce-utf8 controls whether the server allows non-UTF8 bytes in messages
+    # (as in traditional IRC) or preemptively discards non-UTF8 messages (since
+    # they cannot be relayed to websocket clients).
+    enforce-utf8: true
+
     # whether to look up user hostnames with reverse DNS
     # (to suppress this for privacy purposes, use the ip-cloaking options below)
-    lookup-hostnames: true
+    lookup-hostnames: false
     # whether to confirm hostname lookups using "forward-confirmed reverse DNS", i.e., for
     # any hostname returned from reverse DNS, resolve it back to an IP address and reject it
     # unless it matches the connecting IP
@@ -197,7 +202,7 @@ server:
 
     # maximum length of clients' sendQ in bytes
     # this should be big enough to hold bursts of channel/direct messages
-    max-sendq: 16k
+    max-sendq: 96k
 
     # compatibility with legacy clients
     compatibility:
@@ -268,7 +273,7 @@ server:
         enabled-for-always-on: true
 
         # fake TLD at the end of the hostname, e.g., pwbs2ui4377257x8.oragono
-        netname: "hashbang.sh"
+        netname: "irc"
 
         # the cloaked hostname is derived only from the CIDR (most significant bits
         # of the IP address), up to a configurable number of bits. this is the
@@ -463,6 +468,14 @@ channels:
         # how many channels can each account register?
         max-channels-per-account: 15
 
+    # as a crude countermeasure against spambots, anonymous connections younger
+    # than this value will get an empty response to /LIST (a time period of 0 disables)
+    list-delay: 0s
+
+    # INVITE to an invite-only channel expires after this amount of time
+    # (0 or omit for no expiration):
+    invite-expiration: 24h
+
 # operator classes
 oper-classes:
     # local operator
@@ -472,10 +485,11 @@ oper-classes:
 
         # capability names
         capabilities:
-            - "oper:local_kill"
-            - "oper:local_ban"
-            - "oper:local_unban"
+            - "local_kill"
+            - "local_ban"
+            - "local_unban"
             - "nofakelag"
+            - "relaymsg"
 
     # network operator
     "network-oper":
@@ -501,13 +515,15 @@ oper-classes:
 
         # capability names
         capabilities:
-            - "oper:rehash"
-            - "oper:die"
+            - "rehash"
+            - "die"
             - "accreg"
             - "sajoin"
             - "samode"
             - "vhosts"
             - "chanreg"
+            - "history"
+            - "defcon"
 
 # ircd operators
 opers:
@@ -797,6 +813,32 @@ history:
         # direct messages are only stored in the database for persistent clients;
         # you can control how they are stored here (same options as above)
         direct-messages: "opt-out"
+
+    # options to control how messages are stored and deleted:
+    retention:
+        # allow users to delete their own messages from history?
+        allow-individual-delete: false
+
+        # if persistent history is enabled, create additional index tables,
+        # allowing deletion of JSON export of an account's messages. this
+        # may be needed for compliance with data privacy regulations.
+        enable-account-indexing: false
+
+    # options to control storage of TAGMSG
+    tagmsg-storage:
+        # by default, should TAGMSG be stored?
+        default: false
+
+        # if `default` is false, store TAGMSG containing any of these tags:
+        whitelist:
+            - "+draft/react"
+            - "react"
+
+        # if `default` is true, don't store TAGMSG containing any of these tags:
+        #blacklist:
+        #    - "+draft/typing"
+        #    - "typing"
+
 
 # whether to allow customization of the config at runtime using environment variables,
 # e.g., ORAGONO__SERVER__MAX_SENDQ=128k. see the manual for more details.
