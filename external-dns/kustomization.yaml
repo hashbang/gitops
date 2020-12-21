@@ -11,5 +11,5 @@ generators:
 - secret-generator.yaml
 images:
 - name: external-dns
-  newName: eu.gcr.io/k8s-artifacts-prod/external-dns/external-dns:v0.7.3
-  digest: sha256:221454cbba7aa159097e89751c3b461de84a23f652450e645d97e29190c5d5de
+  newName: eu.gcr.io/k8s-artifacts-prod/external-dns/external-dns:v0.7.5
+  digest: sha256:ec0b0f8fe353f827511e3e74493e2b77f5ba5def83baf403f9e36ef7dfd7f5f6
