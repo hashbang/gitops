@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["/kustomization.yaml$"],
+      "matchStrings": [
+        "- github\\.com\\/(?<depName>[^/]+?\\/[^/]*?)\\/.*\\?ref=(?<currentDigest>[a-f0-9]{40}) # tag\\s*=\\s*(?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ],
+  "commitMessagePrefix": "*/kustomization.yaml:",
+  "pinDigests": true
+}

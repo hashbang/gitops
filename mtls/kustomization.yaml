@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: mtls
 resources:
-  - github.com/drGrove/mtls-server/manifests/base?ref=705e1c2a5f193f1d309af4c6e0124b9096c2dce9
+  - github.com/drGrove/mtls-server/manifests/base?ref=d73b60dcd4769d0bc3e1047007b2b22d6546a3b5 # tag=v0.18.0
 patches:
   - smaller-pvc.patch.yaml
   - ingress.patch.yaml
