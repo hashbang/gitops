@@ -1,12 +1,10 @@
-nginx-ingress:
+ingress-nginx:
   controller:
     admissionWebhooks:
       patch:
         enabled: false
     config:
       use-proxy-protocol: "true"
-    image:
-      digest: sha256:bc95fdbd64452185e73599dc4d69e5346b307c8fdd0851149a62886930f5a4d2
     publishService:
       enabled: true
     resources:
