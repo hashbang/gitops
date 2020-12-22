@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - github.com/coreos/kube-prometheus?ref=4f872f1e3187509e4c8d53d7e1f654b5fa422977 # Random master commit that supports Kubernetes 1.18
+  - github.com/coreos/kube-prometheus?ref=09ca49fce0353a90b63e172ce76435d2f85eccbb # Random master commit that supports Kubernetes 1.19
   - ingress.yaml
   - cilium-service-monitor.yaml
   - ./loki
@@ -111,17 +111,17 @@ secretGenerator:
 generators:
   - secret-generator.yaml
 images:
-  - name: grafana/grafana:7.1.0
-    digest: sha256:174987125ca36f8de41184267d15b7a68c65c19be6979bfaa0b49f205f58f479
+  - name: grafana/grafana:7.3.5
+    digest: sha256:511bc20bfcd1b79f3947bb1c33d152f7484e7a91418883fb4dddf71274227321
   - name: kiwigrid/k8s-sidecar:0.1.178
     digest: sha256:95feeef7afb892cb781fe67d5d487a087049386888b1f7e84a2c4a63c2f09259
-  - name: quay.io/coreos/k8s-prometheus-adapter-amd64:v0.7.0
-    digest: sha256:f2648165668eae24c91b6213843c9890e8a4dd68fb2c8f26137ba1499a5f4c7a
-  - name: quay.io/coreos/kube-rbac-proxy:v0.4.1
-    digest: sha256:9d07c391aeb1a9d02eb4343c113ed01825227c70c32b3cae861711f90191b0fd
+  - name: directxman12/k8s-prometheus-adapter:v0.8.2
+    digest: sha256:2b09a571757a12c0245f2f1a74db4d1b9386ff901cf57f5ce48a0a682bd0e3af
+  - name: quay.io/brancz/kube-rbac-proxy:v0.8.0
+    digest: sha256:05e15e1164fd7ac85f5702b3f87ef548f4e00de3a79e6c4a6a34c92035497a9a
   - name: quay.io/coreos/kube-state-metrics:v1.9.7
     digest: sha256:2f82f0da199c60a7699c43c63a295c44e673242de0b7ee1b17c2d5a23bec34cb
-  - name: quay.io/coreos/prometheus-operator:v0.41.0
-    digest: sha256:caeff84e4222de9f9a5ff9fa512dc3c1479df6fee1c9b674f72a1c6ea6199296
-  - name: quay.io/prometheus/node-exporter:v0.18.1
-    digest: sha256:a2f29256e53cc3e0b64d7a472512600b2e9410347d53cdc85b49f659c17e02ee
+  - name: quay.io/prometheus-operator/prometheus-operator:v0.44.1
+    digest: sha256:850c86bfeda4389bc9c757a9fd17ca5a090ea6b424968178d4467492cfa13921
+  - name: quay.io/prometheus/node-exporter:v1.0.1
+    digest: sha256:cf66a6bbd573fd819ea09c72e21b528e9252d58d01ae13564a29749de1e48e0f
