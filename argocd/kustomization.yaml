@@ -60,8 +60,8 @@ images:
     digest: sha256:7bcf286807b8158c0d772b388a733ce7bb9e5765e82a5f546d2569b5d929c3ef
   - name: redis:5.0.10-alpine
     digest: sha256:b38e34d20bfedc5a4331c97373e3508e8a7a855008ef9ba78d25887da36ce088
-  - name: viaductoss/ksops:v2.2.0
-    digest: sha256:bb59c0605b5d7e4d945e9dce4016b80d003f78cce2a23f7e5354de8b9c8fec43
+  - name: viaductoss/ksops:v2.3.1
+    digest: sha256:8801de984f2cfc7a845bdd73f7b0435acdf156763f6b97ca86d27b58d9c9b617
 generators:
   - secret-generator.yaml
 replicas:
