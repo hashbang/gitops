@@ -30,30 +30,25 @@ server:
             tls:
                 key: /ircd/tls/tls.key
                 cert: /ircd/tls/tls.crt
-                # 'proxy' should typically be false. It's only for Kubernetes-style load
-                # balancing that does not terminate TLS, but sends an initial PROXY line
-                # in plaintext.
-                proxy: true
+            proxy: true
 
         # Add another SSL/TLS port for internal traffic on port 16697.
         ":16697":
             tls:
                 key: /ircd/tls/tls.key
                 cert: /ircd/tls/tls.crt
-                # 'proxy' is false here because internal traffic won't be routed through
-                # the Kubernetes LoadBalancer. Relevant links:
-                # https://github.com/kubernetes/kubernetes/issues/66607
-                # https://github.com/kubernetes/kubernetes/pull/92312
-                proxy: false
+            # 'proxy' is false here because internal traffic won't be routed through
+            # the Kubernetes LoadBalancer. Relevant links:
+            # https://github.com/kubernetes/kubernetes/issues/66607
+            # https://github.com/kubernetes/kubernetes/pull/92312
 
-        # Native websockets over TLS on a nonstandard (non-443) port. This is typically not
-        # used directly, since application firewalls may block it:
+        # Native websockets over TLS:
         ":443":
             websocket: true
             tls:
                 key: /ircd/tls/tls.key
                 cert: /ircd/tls/tls.crt
-                proxy: true
+            proxy: true
 
         # Example of a Unix domain socket for proxying:
         # "/tmp/oragono_sock":
@@ -485,25 +480,10 @@ oper-classes:
 
         # capability names
         capabilities:
-            - "local_kill"
-            - "local_ban"
-            - "local_unban"
+            - "kill"
+            - "ban"
             - "nofakelag"
             - "relaymsg"
-
-    # network operator
-    "network-oper":
-        # title shown in WHOIS
-        title: Network Operator
-
-        # oper class this extends from
-        extends: "local-oper"
-
-        # capability names
-        capabilities:
-            - "oper:remote_kill"
-            - "oper:remote_ban"
-            - "oper:remote_unban"
 
     # server admin
     "server-admin":
