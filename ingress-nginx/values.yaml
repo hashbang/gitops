@@ -1,8 +1,5 @@
 ingress-nginx:
   controller:
-    admissionWebhooks:
-      patch:
-        enabled: false
     config:
       use-proxy-protocol: "true"
     publishService:
