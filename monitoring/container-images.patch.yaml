@@ -10,8 +10,6 @@ spec:
   containers:
     - name: prometheus-config-reloader
       image: quay.io/coreos/prometheus-config-reloader@sha256:459bc1b1fc51420cd244b082fe14444f6d8596997c2e40f52c08d1f5a09ab860
-    - name: rules-configmap-reloader
-      image: quay.io/coreos/configmap-reload@sha256:e2fd60ff0ae4500a75b80ebaa30e0e7deba9ad107833e8ca53f0047c42c5a057
     # - name: thanos-sidecar
     #   image:
 ---
@@ -25,5 +23,3 @@ spec:
   # Hashlocking unsupported for config-reloader
   # https://github.com/coreos/prometheus-operator/issues/3262
   # containers:
-  #   - name: config-reloader
-  #     image: quay.io/coreos/configmap-reload@sha256:e2fd60ff0ae4500a75b80ebaa30e0e7deba9ad107833e8ca53f0047c42c5a057
