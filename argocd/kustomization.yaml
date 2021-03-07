@@ -6,6 +6,7 @@ resources:
   - ingress.yaml
   - argo-cd-service-monitor.yaml
   - argocd-notifications/
+  - applicationset/
   - deploy-key.yaml
   # Projects
   - projects/default.yaml
