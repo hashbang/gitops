@@ -5,8 +5,6 @@ resources:
 - resources.yaml
 configMapGenerator:
 - name: matterbridge-config
-  options:
-    disableNameSuffixHash: true
   files:
   - files/matterbridge.toml
 generators:
