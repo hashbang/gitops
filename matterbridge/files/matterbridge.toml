@@ -20,7 +20,8 @@ NickServNick = "HashBot"
 [matrix.main]
 Server = "https://matrix.org"
 Login = "HashBot"
-RemoteNickFormat = "<{NICK}> "
+Label = "m"
+RemoteNickFormat = "<{NICK}[{LABEL}]> "
 NoHomeServerSuffix = false
 HTMLDisable = true
 
