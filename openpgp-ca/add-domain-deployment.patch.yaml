@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openpgp-ca
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: init
+          env:
+            - name: DOMAIN
+              value: "hashbang.sh"
