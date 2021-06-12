@@ -7,16 +7,19 @@ metadata:
 stringData:
     hashbang-password: ENC[AES256_GCM,data:GfzR4h0XsaWGzTJPtKHQjIsTA0txhYUnRw==,iv:ZrlLj7AwGgRFpmcdwjGfXRTOcsw86sbH4reRdPQT/YI=,tag:3OgWqZybYBn9oseq1vnyAg==,type:str]
     freenode-password: ENC[AES256_GCM,data:0IhIDvvWvAfyJOf7IPRWI1VfknhkQ7Bn2w==,iv:JFTsZrvZTvgXLNanjUemDrZKTgXCK+9r5PnMARQjtBA=,tag:71uo33YEjdxOi13lXnprhA==,type:str]
+    libera-password: ENC[AES256_GCM,data:2HxjynR2ta9kEVICyhOtraJH06BD+etrtA==,iv:IfIBb+2Byf0z5xL22yRPSQfZNQmieu7v69ihzhg5BHE=,tag:KstHX2V3YsRPBrAgTB17GQ==,type:str]
     matrix-password: ENC[AES256_GCM,data:Y0kpEWaBk6ZX0tgfsnTEaQJeef/K5gbVfw==,iv:V3dnoNjMqfxzpq3H7pBF0RCPZjzfGw2XyjheUPI6L2s=,tag:oW4DjpvjZPFrP5s3nIPnvQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
-    lastmodified: '2020-09-04T09:55:01Z'
-    mac: ENC[AES256_GCM,data:TEdQQqonEvTcuO/ARMO5BEjf0mpIIwqJqNbSBdYP3kZH7l3kOvdGvKgkXu2zXQnTUcrk93Lf5lltucOFRQXtXUlgywgkV+ax0EdEK7WmfxveHqMr2MUHefonXRVSUsnC6OU7HgZFxogk+lRckwKCzOzig6dcy5QGx35zOwPtpvk=,iv:qo6OK/vinTlkTrs4MaU+Gn7didMpFCOhWVX1Cpvbd1w=,tag:qBnD+55MhdpyedZlydKyIQ==,type:str]
+    hc_vault: []
+    age: []
+    lastmodified: "2021-06-12T05:36:58Z"
+    mac: ENC[AES256_GCM,data:PKpgoFcTa4442kqoBgmlWxxSo4gXdiGSR/s1vkfcKziqsSuPXr/fCE7aX2GGi0tWIt8vDyzc5ulWUPwDVzzNVxrXE4XtGjx4Q2U9PgjkmBjN/WZrAIvMpt2cgFqducj511acG/C7PADiHROhv4VBKFUb1C77R4eBsjfR9ZcS8qI=,iv:yMRHd/zr+AoHlr7WC/w+AdTSLr7g9JU9eddzHB5UwsU=,tag:9BM1BDW66drIswH4rUgBJw==,type:str]
     pgp:
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQIMA4FedWMNSzdLARAA1kKaRYEIhbgBSEHdkLb8MWP1S5Qp3dkMVS1B968ZA0gq
@@ -34,9 +37,9 @@ sops:
             ZoP90Lde1axRh1LupHgXMl7SNFwx5xLk7cey/Ku5+i5TffA2YGfJPuK3Q5LJ
             =IdrR
             -----END PGP MESSAGE-----
-        fp: 954A3772D62EF90E4B31FBC6C91A9911192C187A
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+          fp: 954A3772D62EF90E4B31FBC6C91A9911192C187A
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQEMA4SNlT+wHnqoAQgAlIWlKv4dkSFJRzK29kLcCuySFLhT7JIIUwJ7Z5hYAUEM
@@ -49,9 +52,9 @@ sops:
             3JXyRLov4zzDl4Mo2j1fN8r/BJh5m2QYzasEBw4=
             =tLmq
             -----END PGP MESSAGE-----
-        fp: 8333F292B1BBD334A61E6F566785F7AF28DE7081
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+          fp: 8333F292B1BBD334A61E6F566785F7AF28DE7081
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQIMA82rPM2mSf/aARAAoutkMXd91nRm5fBYv5ZnZd4CEHeL8seh+NOKWJ45mNUx
@@ -69,9 +72,9 @@ sops:
             phu1SN3LCmFgft7+z9jMzP4kjg1do3zgNIrGpftE81YQ6Jltaxj0R9UKCW6m
             =CyJZ
             -----END PGP MESSAGE-----
-        fp: 6B61ECD76088748C70590D55E90A401336C8AAA9
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+          fp: 6B61ECD76088748C70590D55E90A401336C8AAA9
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQIMA6dhVUuTLV7oARAAgwVa+vwvbh621xs6j8IH+wFoUgvipI1OgtCVGeJ7LKPZ
@@ -89,9 +92,9 @@ sops:
             eljuoX5gLW+OD3xX89LaT6MW8CFR2OM4a/WB8irTWwywPfkd16btx/7omLgO
             =nTl5
             -----END PGP MESSAGE-----
-        fp: FC2255B7BBC7EABD4EFAFA1068907D8BCCD85A5A
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+          fp: FC2255B7BBC7EABD4EFAFA1068907D8BCCD85A5A
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQIMA8KRInHl7Vz+ARAAgfucvu7Ybe0GwEDPTURyk3qUoA1OaKVoeXPVR1grQ4WW
@@ -109,9 +112,9 @@ sops:
             +R3DPFifgPw7jLDNoy1IIP+c7qA4XEQZneS5ilAlwWmC8ski3vrbKF97ftGm
             =SynB
             -----END PGP MESSAGE-----
-        fp: C92FE5A3FBD58DD3EC5AA26BB10116B8193F2DBD
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+          fp: C92FE5A3FBD58DD3EC5AA26BB10116B8193F2DBD
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQIMA/AOBFOW6Hm2AQ/9E12gyUxTOmSPOC3FYaEk7Uj3BwE42ojH6GC/p/o0MXgh
@@ -129,9 +132,9 @@ sops:
             ETkKwze+wYDhrwgl9rsQr0TXt/qAE2tCkB7uLAL0g+Y5n3w+Tbnsa9nvy9A8
             =c1oq
             -----END PGP MESSAGE-----
-        fp: F2B7999666D83093F8D4212926CDD32189AA2885
-    -   created_at: '2020-09-04T09:55:01Z'
-        enc: |
+          fp: F2B7999666D83093F8D4212926CDD32189AA2885
+        - created_at: "2020-09-04T09:55:01Z"
+          enc: |
             -----BEGIN PGP MESSAGE-----
 
             hQIMA+pWRuJw67SWAQ//S06mXiNzN07xHB/d7EsZZWx1q9uIB5GyCwYYzHdMFYMJ
@@ -149,6 +152,6 @@ sops:
             49u6xpEigL1rPrWkI09wdQajWVUn5ciLqbvttLcjWTeL8QEMCDrjeux/oHOK
             =qM/i
             -----END PGP MESSAGE-----
-        fp: 1FD6667A0808D4D48BDB8757A61B48D8288FCF8A
+          fp: 1FD6667A0808D4D48BDB8757A61B48D8288FCF8A
     encrypted_regex: ^(data|stringData)$
-    version: 3.5.0
+    version: 3.7.1

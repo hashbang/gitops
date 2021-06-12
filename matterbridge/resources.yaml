@@ -30,6 +30,11 @@ spec:
             secretKeyRef:
               name: matterbridge-secret
               key: freenode-password
+        - name: MATTERBRIDGE_IRC_LIBERA_NICKSERVPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: matterbridge-secret
+              key: libera-password
         - name: MATTERBRIDGE_MATRIX_MAIN_PASSWORD
           valueFrom:
             secretKeyRef:
