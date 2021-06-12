@@ -17,6 +17,15 @@ Label = "f"
 RemoteNickFormat = "<{NICK}[{LABEL}]> "
 NickServNick = "HashBot"
 
+[irc.libera]
+Server = "irc.libera.chat:6697"
+Nick = "HashBot"
+UseTLS = true
+Label = "l"
+RemoteNickFormat = "<{NICK}[{LABEL}]> "
+NickServNick = "HashBot"
+UseSASL = true
+
 [matrix.main]
 Server = "https://matrix.org"
 Login = "HashBot"
@@ -35,6 +44,10 @@ channel = "#!"
 
 [[gateway.inout]]
 account = "irc.freenode"
+channel = "#!"
+
+[[gateway.inout]]
+account = "irc.libera"
 channel = "#!"
 
 [[gateway.inout]]
