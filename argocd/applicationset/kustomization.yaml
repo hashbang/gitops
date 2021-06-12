@@ -1,7 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - github.com/argoproj-labs/applicationset/manifests/namespace-install?ref=01e712853859ec51ba5269a7319252f5a19e82bd # tag=v0.1.0
-images:
-  - name: quay.io/argocdapplicationset/argocd-applicationset:v0.1.0
-    digest: sha256:358f5821e31c125b872548bb687aa2602a6d16fedbc7ee8707490734f1ee0c7b
