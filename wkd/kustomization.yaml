@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: wkd
 resources:
-  - github.com/drGrove/docker-wkd/kustomize/direct?ref=7d81b14e809401b8b163b3278e41254b1a05b2be
+  - github.com/drGrove/docker-wkd/kustomize/advanced?ref=7d81b14e809401b8b163b3278e41254b1a05b2be
   - ingress.yaml
 patches:
   - target:
