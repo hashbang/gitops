@@ -4,10 +4,8 @@ namespace: wkd
 resources:
   - github.com/drGrove/docker-wkd/kustomize/direct?ref=7d81b14e809401b8b163b3278e41254b1a05b2be
   - ingress.yaml
-patchesJson6902:
+patches:
   - target:
-      group: apps
-      version: v1
       kind: Deployment
       name: wkd
     patch: |-
