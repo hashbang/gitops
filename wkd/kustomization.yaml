@@ -1,0 +1,47 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: wkd
+resources:
+  - github.com/drGrove/docker-wkd/kustomize/direct?ref=7d81b14e809401b8b163b3278e41254b1a05b2be
+  - ingress.yaml
+patchesJson6902:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: wkd
+    patch: |-
+      - op: add
+        path: "/spec/template/spec/containers/0/args/-"
+        value: "-m"
+      - op: add
+        path: "/spec/template/spec/containers/0/args/-"
+        value: "hashbang.sh"
+images:
+  - name: drgrove/wkd
+    digest: sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42
+configMapGenerator:
+  - name: benharri-key
+    options:
+      labels:
+        wkd: 'enroll'
+    files:
+      - files/benharri.asc
+  - name: dannygrove-key
+    options:
+      labels:
+        wkd: 'enroll'
+    files:
+      - files/dannygrove.asc
+  - name: lrvick-key
+    options:
+      labels:
+        wkd: 'enroll'
+    files:
+      - files/lrvick.asc
+  - name: ryan-key
+    options:
+      labels:
+        wkd: 'enroll'
+    files:
+      - files/ryan.asc
