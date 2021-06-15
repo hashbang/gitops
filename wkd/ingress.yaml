@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: openpgpkey-hashbang-sh
+  labels:
+    app.kubernetes.io/name: openpgpkey-hashbang-sh
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+      - openpgpkey.hashbang.sh
+      secretName: openpgpkey-hashbang-sh-tls
+  rules:
+    - host: openpgpkey.hashbang.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: wkd
+              servicePort: http
