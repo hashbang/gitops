@@ -9,14 +9,6 @@ RemoteNickFormat = "<{NICK}[{LABEL}]> "
 NickServNick = "HashBot"
 UseSASL = true
 
-[irc.freenode]
-Server = "irc.freenode.net:6697"
-Nick = "HashBot"
-UseTLS = true
-Label = "f"
-RemoteNickFormat = "<{NICK}[{LABEL}]> "
-NickServNick = "HashBot"
-
 [irc.libera]
 Server = "irc.libera.chat:6697"
 Nick = "HashBot"
@@ -40,10 +32,6 @@ enable = true
 
 [[gateway.inout]]
 account = "irc.hashbang"
-channel = "#!"
-
-[[gateway.inout]]
-account = "irc.freenode"
 channel = "#!"
 
 [[gateway.inout]]
