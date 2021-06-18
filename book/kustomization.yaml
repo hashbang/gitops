@@ -9,4 +9,4 @@ replicas:
   count: 2
 images:
   - name: hashbang/book
-    digest: sha256:d78464eac3d69c15c018a387b4b97a628db982ef7c3eaf40ac05610333e50d35
+    digest: sha256:58e17cff921ad8d030326fc1f0a9364f46414b7d393dc26a732393870fbe8a36
