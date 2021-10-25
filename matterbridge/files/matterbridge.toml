@@ -41,3 +41,15 @@ channel = "#!"
 [[gateway.inout]]
 account = "matrix.main"
 channel = "#!:matrix.org"
+
+[[gateway]]
+name = "social"
+enable = true
+
+[[gateway.inout]]
+account = "irc.hashbang"
+channel = "#!social"
+
+[[gateway.inout]]
+account = "matrix.main"
+channel = "#!social:matrix.org"
