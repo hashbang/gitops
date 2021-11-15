@@ -12,6 +12,6 @@ configMapGenerator:
   - files/ircd.motd
   - files/ircd.yaml
 images:
-  - name: oragono/oragono:latest
-    # v2.6.0:
-    digest: sha256:a009909ac5a9484b049ade79905d8579a10443e51bc00582d65d33f59fdf634a
+  - name: ghcr.io/ergochat/ergo:stable
+    # v2.8.0:
+    digest: sha256:deb460e85e4206db4efd810c3a9d8b01bf3f889580de0b861380d9cb53037f68

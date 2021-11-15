@@ -19,7 +19,7 @@ spec:
       shareProcessNamespace: true
       containers:
       - name: irc
-        image: oragono/oragono:latest
+        image: ghcr.io/ergochat/ergo:stable
         ports:
         - containerPort: 6697
           name: ircs
@@ -42,7 +42,7 @@ spec:
           name: irc-db
       - name: config-reloader
         # image is based on busybox which includes inotifyd + pkill
-        image: oragono/oragono:latest
+        image: ghcr.io:ergochat/ergo:stable
         command: ["/bin/sh"]
         args:
           - "-c"

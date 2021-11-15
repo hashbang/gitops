@@ -1,4 +1,4 @@
-# oragono IRCd config
+# ergo IRCd config
 
 # network configuration
 network:
@@ -51,12 +51,12 @@ server:
             proxy: true
 
         # Example of a Unix domain socket for proxying:
-        # "/tmp/oragono_sock":
+        # "/tmp/ergo_sock":
 
         # Example of a Tor listener: any connection that comes in on this listener will
         # be considered a Tor connection. It is strongly recommended that this listener
         # *not* be on a public interface --- it should be on 127.0.0.0/8 or unix domain:
-        # "/hidden_service_sockets/oragono_tor_sock":
+        # "/hidden_service_sockets/ergo_tor_sock":
         #     tor: true
 
     # sets the permissions for Unix listen sockets. on a typical Linux system,
@@ -102,9 +102,9 @@ server:
 
     websockets:
         # Restrict the origin of WebSocket connections by matching the "Origin" HTTP
-        # header. This settings makes oragono reject every WebSocket connection,
+        # header. This setting makes ergo reject every WebSocket connection,
         # except when it originates from one of the hosts in this list. Use this to
-        # prevent malicious websites from making their visitors connect to oragono
+        # prevent malicious websites from making their visitors connect to ergo
         # without their knowledge. An empty list means that there are no restrictions.
         allowed-origins:
             - "https://hashbang.sh"
@@ -143,7 +143,7 @@ server:
     coerce-ident: "~u"
 
     # password to login to the server
-    # generated using  "oragono genpasswd"
+    # generated using  "ergo genpasswd"
     #password: ""
 
     # motd filename
@@ -181,7 +181,7 @@ server:
     #         # (comment this out to use passwords only)
     #         fingerprint: "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"
 
-    #         # password the gateway uses to connect, made with oragono genpasswd
+    #         # password the gateway uses to connect, made with ergo genpasswd
     #         password: "$2a$04$sLEFDpIOyUp55e6gTMKbOeroT6tMXTjPFvA0eGvwvImVR9pkwv7ee"
 
     #         # addresses/CIDRs that can use this webirc command
@@ -258,7 +258,7 @@ server:
     # IP cloaking hides users' IP addresses from other users and from channel admins
     # (but not from server admins), while still allowing channel admins to ban
     # offending IP addresses or networks. In place of hostnames derived from reverse
-    # DNS, users see fake domain names like pwbs2ui4377257x8.oragono. These names are
+    # DNS, users see fake domain names like pwbs2ui4377257x8.irc. These names are
     # generated deterministically from the underlying IP address, but if the underlying
     # IP is not already known, it is infeasible to recover it from the cloaked name.
     ip-cloaking:
@@ -267,7 +267,7 @@ server:
 
         enabled-for-always-on: true
 
-        # fake TLD at the end of the hostname, e.g., pwbs2ui4377257x8.oragono
+        # fake TLD at the end of the hostname, e.g., pwbs2ui4377257x8.irc
         netname: "irc"
 
         # the cloaked hostname is derived only from the CIDR (most significant bits
@@ -390,7 +390,7 @@ accounts:
         # as equivalent for the purpose of ban/invite/exception lists.
         force-nick-equals-account: true
 
-    # bouncer controls whether oragono can act as a bouncer, i.e., allowing
+    # bouncer controls whether ergo can act as a bouncer, i.e., allowing
     # multiple connections to attach to the same client/nickname identity
     multiclient:
         # when disabled, each connection must use a separate nickname (as is the
@@ -615,7 +615,7 @@ logging:
 
 # debug options
 debug:
-    # when enabled, oragono will attempt to recover from certain kinds of
+    # when enabled, ergo will attempt to recover from certain kinds of
     # client-triggered runtime errors that would normally crash the server.
     # this makes the server more resilient to DoS, but could result in incorrect
     # behavior. deployments that would prefer to "start from scratch", e.g., by
@@ -818,7 +818,7 @@ history:
         # if `default` is false, store TAGMSG containing any of these tags:
         whitelist:
             - "+draft/react"
-            - "react"
+            - "+react"
 
         # if `default` is true, don't store TAGMSG containing any of these tags:
         #blacklist:
