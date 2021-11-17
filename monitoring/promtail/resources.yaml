@@ -1,36 +1,4 @@
 ---
-# Source: promtail/templates/podsecuritypolicy.yaml
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: loki-promtail
-  labels:
-    app: promtail
-spec:
-  allowPrivilegeEscalation: false
-  fsGroup:
-    rule: RunAsAny
-  hostIPC: false
-  hostNetwork: false
-  hostPID: false
-  privileged: false
-  readOnlyRootFilesystem: true
-  requiredDropCapabilities:
-  - ALL
-  runAsUser:
-    rule: RunAsAny
-  seLinux:
-    rule: RunAsAny
-  supplementalGroups:
-    rule: RunAsAny
-  volumes:
-  - secret
-  - configMap
-  - hostPath
-  - projected
-  - downwardAPI
-  - emptyDir
----
 # Source: promtail/templates/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -72,34 +40,6 @@ roleRef:
   name: loki-promtail-clusterrole
   apiGroup: rbac.authorization.k8s.io
 ---
-# Source: promtail/templates/role.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: loki-promtail
-  labels:
-    app: promtail
-rules:
-- apiGroups:      ['extensions']
-  resources:      ['podsecuritypolicies']
-  verbs:          ['use']
-  resourceNames:  [loki-promtail]
----
-# Source: promtail/templates/rolebinding.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: loki-promtail
-  labels:
-    app: promtail
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: loki-promtail
-subjects:
-- kind: ServiceAccount
-  name: loki-promtail
----
 # Source: promtail/templates/service-headless.yaml
 apiVersion: v1
 kind: Service
@@ -136,7 +76,7 @@ spec:
       serviceAccountName: loki-promtail
       containers:
         - name: promtail
-          image: "grafana/promtail:2.0.0"
+          image: grafana/promtail:2.4.1
           args:
             - "-config.file=/etc/promtail/promtail.yaml"
             - "-client.url=http://loki:3100/loki/api/v1/push"

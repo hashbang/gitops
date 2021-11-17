@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # Generated from loki-2.5.0 helm chart
+  # Generated from loki helm chart
   ## persistence.enabled=true
   ## serviceMonitor.enabled=true
   - resources.yaml
@@ -10,5 +10,5 @@ configMapGenerator:
     files:
       - files/loki.yaml
 images:
-  - name: grafana/loki:2.2.1
-    digest: sha256:f18ec9b6102d8ff8a429d9c74ede7ba3061f31fb6821db5ca0f5f95e40cd4908
+  - name: grafana/loki:2.4.1
+    digest: sha256:1d802d29cf041601895ce16439757baf4dac71a21069957616ee7988746bf59c

@@ -1,42 +1,4 @@
 ---
-# Source: loki/templates/podsecuritypolicy.yaml
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: loki
-  labels:
-    app: loki
-spec:
-  privileged: false
-  allowPrivilegeEscalation: false
-  volumes:
-    - 'configMap'
-    - 'emptyDir'
-    - 'persistentVolumeClaim'
-    - 'secret'
-    - 'projected'
-    - 'downwardAPI'
-  hostNetwork: false
-  hostIPC: false
-  hostPID: false
-  runAsUser:
-    rule: 'MustRunAsNonRoot'
-  seLinux:
-    rule: 'RunAsAny'
-  supplementalGroups:
-    rule: 'MustRunAs'
-    ranges:
-    - min: 1
-      max: 65535
-  fsGroup:
-    rule: 'MustRunAs'
-    ranges:
-    - min: 1
-      max: 65535
-  readOnlyRootFilesystem: true
-  requiredDropCapabilities:
-    - ALL
----
 # Source: loki/templates/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -44,19 +6,6 @@ metadata:
   labels:
     app: loki
   name: loki
----
-# Source: loki/templates/role.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: loki
-  labels:
-    app: loki
-rules:
-- apiGroups:      ['extensions']
-  resources:      ['podsecuritypolicies']
-  verbs:          ['use']
-  resourceNames:  [loki]
 ---
 # Source: loki/templates/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -140,7 +89,7 @@ spec:
         []
       containers:
         - name: loki
-          image: "grafana/loki:2.2.1"
+          image: "grafana/loki:2.4.1"
           args:
             - "-config.file=/etc/loki/loki.yaml"
           volumeMounts:
