@@ -1,4 +1,4 @@
-# https://github.com/kubernetes-sigs/external-dns/blob/v0.7.1/docs/tutorials/aws.md#manifest-for-clusters-with-rbac-enabled
+# https://github.com/kubernetes-sigs/external-dns/blob/v0.10.1/docs/tutorials/aws.md#manifest-for-clusters-with-rbac-enabled
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -12,12 +12,12 @@ rules:
 - apiGroups: [""]
   resources: ["endpoints", "pods", "services"]
   verbs: ["get", "watch", "list"]
-- apiGroups: ["extensions"]
+- apiGroups: ["extensions", "networking.k8s.io"]
   resources: ["ingresses"]
   verbs: ["get", "watch", "list"]
 - apiGroups: [""]
   resources: ["nodes"]
-  verbs: ["list"]
+  verbs: ["watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
@@ -59,7 +59,7 @@ spec:
         - --txt-owner-id=digitalocean-hashbang
         - --txt-prefix=_owner.
         ports:
-          - containerPort: 7979
-            name: metrics
+        - containerPort: 7979
+          name: metrics
       securityContext:
         fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes and AWS token files
