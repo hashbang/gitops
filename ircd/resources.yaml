@@ -42,7 +42,7 @@ spec:
           name: irc-db
       - name: config-reloader
         # image is based on busybox which includes inotifyd + pkill
-        image: ghcr.io:ergochat/ergo:stable
+        image: ghcr.io/ergochat/ergo:stable
         command: ["/bin/sh"]
         args:
           - "-c"
