@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - github.com/coreos/kube-prometheus?ref=de2d1b523135cd4e561b899b294f015e52e4f704 # Random master commit that supports Kubernetes 1.19
+  - github.com/coreos/kube-prometheus?ref=42ea595d60265b803ad460a971a7186488f6be7e # 0.10.0
   - ingress.yaml
   - cilium-service-monitor.yaml
   - ./loki
@@ -111,21 +111,21 @@ secretGenerator:
 generators:
   - secret-generator.yaml
 images:
-  - name: grafana/grafana:7.3.7
-    digest: sha256:f140fde5ba622745926b1e390b6ff335c1a0b7a1126cd4211600534f922ef4c0
+  - name: grafana/grafana:8.3.3
+    digest: sha256:18d94ae734accd66bccf22daed7bdb20c6b99aa0f2c687eea3ce4275fe275062
   - name: kiwigrid/k8s-sidecar:0.1.178
     digest: sha256:95feeef7afb892cb781fe67d5d487a087049386888b1f7e84a2c4a63c2f09259
-  - name: directxman12/k8s-prometheus-adapter:v0.8.3
-    digest: sha256:4aab584153e7cd9caad64ec6c3e7ab7750c99f60aa042bf31cd440a397407cb7
-  - name: quay.io/brancz/kube-rbac-proxy:v0.8.0
-    digest: sha256:05e15e1164fd7ac85f5702b3f87ef548f4e00de3a79e6c4a6a34c92035497a9a
-  - name: quay.io/coreos/kube-state-metrics:v1.9.7
-    digest: sha256:2f82f0da199c60a7699c43c63a295c44e673242de0b7ee1b17c2d5a23bec34cb
-  - name: quay.io/prometheus-operator/prometheus-operator:v0.45.0
-    digest: sha256:59b431d69a023d5baa44e868cc5c8f04ab4e5b045ca5b10dbd5a9dc9d67b7868
-  - name: quay.io/prometheus/node-exporter:v1.1.0
-    digest: sha256:8f9dc6bafcb1d10e1b1de65491465797bd0d264175e5a1131f83ad873cf54064
-  - name: quay.io/prometheus/blackbox-exporter:v0.18.0
-    digest: sha256:83e57545859abeb5ebfb878b2ca12bba7155279bec704fdf160b6e913f967257
+  - name: k8s.gcr.io/prometheus-adapter/prometheus-adapter:v0.9.1
+    digest: sha256:d025d1a109234c28b4a97f5d35d759943124be8885a5bce22a91363025304e9d
+  - name: quay.io/brancz/kube-rbac-proxy:v0.11.0
+    digest: sha256:b62289c3f3f883ee76dd4e8879042dd19abff743340e451cb59f9654fc472e4f
+  - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.3.0
+    digest: sha256:c9137505edaef138cc23479c73e46e9a3ef7ec6225b64789a03609c973b99030
+  - name: quay.io/prometheus-operator/prometheus-operator:v0.53.1
+    digest: sha256:e652e4156a1db67e9e2c39cfc64900707b340e18316744686e3eee73111a8f73
+  - name: quay.io/prometheus/node-exporter:v1.3.1
+    digest: sha256:f2269e73124dd0f60a7d19a2ce1264d33d08a985aed0ee6b0b89d0be470592cd
+  - name: quay.io/prometheus/blackbox-exporter:v0.19.0
+    digest: sha256:94de5897eef1b3c1ba7fbfebb9af366e032c0ff915a52c0066ff2e0c1bcd2e45
   - name: jimmidyson/configmap-reload:v0.5.0
     digest: sha256:91467ba755a0c41199a63fe80a2c321c06edc4d3affb4f0ab6b3d20a49ed88d1
