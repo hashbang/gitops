@@ -51,7 +51,7 @@ spec:
             inotifyd - /ircd/:wMymndox /ircd/tls/:wMymndox | while read -r notifies ; do
               echo "$notifies";
               echo "notify received, sending SIGHUP";
-              pkill -HUP oragono;
+              pkill -HUP ergo;
             done
             echo "Exiting.";
         volumeMounts:
