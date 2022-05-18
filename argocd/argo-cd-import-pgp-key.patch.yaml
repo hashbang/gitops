@@ -13,7 +13,7 @@ spec:
             secretName: deploy-pgp-key
       initContainers:
         - name: import-gpg-key
-          image: quay.io/argoproj/argocd:v2.2.5
+          image: quay.io/argoproj/argocd:v2.3.4
           command: ["gpg", "--import", "/deploy-pgp-key/deploy-key"]
           env:
             - name: GNUPGHOME
