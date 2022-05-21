@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: argocd
 resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=ac8b7df9467ffcc0920b826c62c4b603a7bfed24 # tag=v2.3.4
-  - github.com/argoproj-labs/applicationset/manifests/namespace-install?ref=8100e6bf539029a39ebeb9d8094fc3885afa36d7 # v0.1.0
+  #- github.com/argoproj-labs/applicationset/manifests/namespace-install?ref=8100e6bf539029a39ebeb9d8094fc3885afa36d7 # v0.1.0
+  #- argocd-notifications/
   - ingress.yaml
   - argo-cd-service-monitor.yaml
-  - argocd-notifications/
   - deploy-key.yaml
   # Projects
   - projects/default.yaml
@@ -55,7 +55,7 @@ configMapGenerator:
       - gpg-keys/B10116B8193F2DBD
       - gpg-keys/26CDD32189AA2885
 images:
-  - name: quay.io/argoproj/argocd:v2.3.4
+  - name: quay.io/argoproj/argocd:v2.3.4  # pinned Kustomize: 4.4.1
     digest: sha256:e4a175d16f7714228d0fb4addb34f3aae5c2e5b905d489170617a0e69c06d9ae
   - name: quay.io/argocdapplicationset/argocd-applicationset:v0.1.0
     digest: sha256:bd62ff6ee18f16e9021ae89e347cd6ded960d6054bdd3c608fc05acdf8a03bc3
@@ -63,8 +63,8 @@ images:
     digest: sha256:27cf2e8644f2ea1ebc6de711b0ace4b5ee2d1f442e148eabbaa8c68308062475
   - name: redis:7.0.0-alpine
     digest: sha256:a22bc2d15940ae67680611827b3e9b69150d7c11c063415c3775c35d163bb555
-  - name: viaductoss/ksops:v2.3.4
-    digest: sha256:75759f2927eaf64f214a55952b312243eb83ec0b8bebb4753e2bc7f346fc7088
+  - name: viaductoss/ksops:v3.0.2  # pinned Kustomize: 4.4.1
+    digest: sha256:b61c00a295066ce97c3e6b6e1fc0ddf56a42e9a309a316b01d89726521c1b8aa
 generators:
   - secret-generator.yaml
 replicas:
