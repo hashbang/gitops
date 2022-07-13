@@ -23,7 +23,10 @@ Server = "https://matrix.org"
 Login = "HashBot"
 Label = "m"
 RemoteNickFormat = "<{NICK}[{LABEL}]> "
-NoHomeServerSuffix = false
+# Matterbridge no longer uses usernames, instead uses display names
+# To re-enable:
+# UseUsername = true
+# NoHomeServerSuffix = false
 HTMLDisable = true
 
 [[gateway]]
