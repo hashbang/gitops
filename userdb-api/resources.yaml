@@ -67,4 +67,5 @@ spec:
         backend:
           service:
             name: userdb-api
-            port: 80
+            port:
+              number: 80
