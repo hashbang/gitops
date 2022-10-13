@@ -44,16 +44,16 @@ spec:
   selector:
     app: userdb-api
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: userdb-api-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: userdb.hashbang.sh
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: nignx
   tls:
   - hosts:
     - userdb.hashbang.sh
@@ -64,5 +64,6 @@ spec:
       paths:
       - path: /v1(/|$)(.*)
         backend:
-          serviceName: userdb-api
-          servicePort: 80
+          service:
+            name: userdb-api
+            port: 80
