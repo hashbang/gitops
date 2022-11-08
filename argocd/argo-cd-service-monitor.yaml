@@ -58,3 +58,19 @@ spec:
       app.kubernetes.io/name: argocd-applicationset-controller
   endpoints:
   - port: metrics
+---
+# https://argoproj-labs.github.io/argocd-notifications/monitoring/
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-notifications-controller-metrics
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    prometheusInstance: default
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-notifications-controller-metrics
+  endpoints:
+  - port: metrics

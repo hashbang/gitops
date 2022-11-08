@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+data:
+  trigger.sync-operation-failed: |
+    - when: app.status.operationState.phase in ['Error', 'Failed']
+      send: [sync-operation-status-change]
+  trigger.sync-operation-succeeded: |
+    - when: app.status.operationState.phase in ['Succeeded']
+      send: [sync-operation-status-change]
+  trigger.sync-operation-running: |
+    - when: app.status.operationState.phase in ['Running']
+      send: [sync-operation-status-change]
+  trigger.out-of-sync: |
+    - when: app.status.sync.status == 'OutOfSync'
+      send: [out-of-sync]
+  trigger.build-failed: |
+    - when: app.status.sync.status == 'Unknown' and app.status.sync.revision != nil
+      send: [build-failed]
+  trigger.app-unhealthy: |
+    - when: app.status.health.status == 'Degraded'
+      send: [app-unhealthy]
+
+  template.sync-operation-status-change: |
+    webhook:
+      bitbot:
+        method: POST
+        body: "Sync for application \x0315{{.app.metadata.name}}\x03 (\x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03) {{
+          if eq .app.status.operationState.phase \"Running\"  }}is \x0307running\x03{{end}}{{
+          if eq .app.status.operationState.phase \"Succeeded\"}}has \x0303succeeded\x03: {{.app.status.operationState.message}}{{end}}{{
+          if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored\x03: {{.app.status.operationState.message}}{{end}}{{
+          if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed\x03: {{.app.status.operationState.message}}{{end
+        }} {{ if ne .app.status.operationState.phase \"Succeeded\" }}(blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03){{end}}"
+  template.app-unhealthy: |
+    webhook:
+      bitbot:
+        method: POST
+        body: "Application {{.app.metadata.name}} has \x0304degraded\x03 (Commit: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
+  template.out-of-sync: |
+    webhook:
+      bitbot:
+        method: POST
+        body: "Application {{.app.metadata.name}} is out of sync (Targeting: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
+  template.build-failed: |
+    webhook:
+      bitbot:
+        method: POST
+        body: "Unable to build {{.app.metadata.name}} (Commit: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
+
+  service.grafana: |
+    apiUrl: http://grafana.monitoring.svc/api
+    apiKey: $grafana-apiKey
+  service.webhook.bitbot: |
+    url: $bitbot-url

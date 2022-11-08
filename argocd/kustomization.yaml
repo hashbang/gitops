@@ -23,6 +23,7 @@ resources:
   - applications/userdb-api.yaml
   - applications/webirc.yaml
 patches:
+  - argocd-notifications-cm.patch.yaml
   - argo-cd-repo-server-ksops.patch.yaml
   - argo-cd-allow-alpha-plugins.patch.yaml
   - argo-cd-import-pgp-key.patch.yaml
