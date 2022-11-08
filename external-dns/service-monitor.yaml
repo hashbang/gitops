@@ -2,15 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: external-dns
-  labels:
-    app: external-dns
 spec:
   ports:
   - name: metrics
     port: 7979
     targetPort: 7979
-  selector:
-    app: external-dns
+  selector: {}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -25,4 +22,4 @@ spec:
     - port: metrics
   selector:
     matchLabels:
-      app: external-dns
+      app.kubernetes.io/name: external-dns

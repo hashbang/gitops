@@ -1,25 +1,28 @@
-# https://github.com/kubernetes-sigs/external-dns/blob/v0.10.1/docs/tutorials/aws.md#manifest-for-clusters-with-rbac-enabled
+# https://github.com/kubernetes-sigs/external-dns/blob/v0.13.1/docs/tutorials/aws.md#manifest-for-clusters-with-rbac-enabled
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: external-dns
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: external-dns
 rules:
-- apiGroups: [""]
-  resources: ["endpoints", "pods", "services"]
-  verbs: ["get", "watch", "list"]
-- apiGroups: ["extensions", "networking.k8s.io"]
+- apiGroups: ['']
+  resources: ['endpoints', 'pods', 'services']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['extensions']
+  resources: ['ingresses']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ["networking.k8s.io"]
   resources: ["ingresses"]
-  verbs: ["get", "watch", "list"]
+  verbs: ["get","watch","list"]
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["watch", "list"]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: external-dns-viewer
@@ -39,13 +42,7 @@ metadata:
 spec:
   strategy:
     type: Recreate
-  selector:
-    matchLabels:
-      app: external-dns
   template:
-    metadata:
-      labels:
-        app: external-dns
     spec:
       serviceAccountName: external-dns
       containers:
@@ -54,8 +51,8 @@ spec:
         args:
         - --source=service
         - --source=ingress
-        - --provider=aws
         - --registry=txt
+        - --provider=aws
         - --txt-owner-id=digitalocean-hashbang
         - --txt-prefix=_owner.
         ports:
