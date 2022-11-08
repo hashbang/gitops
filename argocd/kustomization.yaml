@@ -12,7 +12,6 @@ resources:
   - applications/argocd.yaml
   - applications/book.yaml
   - applications/cert-manager.yaml
-  - applications/cert-manager-issuers.yaml
   - applications/external-dns.yaml
   - applications/ingress-nginx.yaml
   - applications/ircd.yaml

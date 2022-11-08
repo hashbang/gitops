@@ -1,5 +1,4 @@
-# Cert-Manager Issuer
-![Cert-Manager Issuer Status Indicator](https://argocd.hashbang.sh/api/badge?name=cert-manager-issuer)
+# Cert-Manager Issuers
 
 # variables
 
