@@ -5,11 +5,11 @@ metadata:
   name: k8s
 spec:
   # Hash lock prometheus container
-  image: quay.io/prometheus/prometheus@sha256:f4a858861e05c8611cdb5867a07e48742b8295400a5993ac05ad1ee67e6d5696 # v2.24.1
+  image: quay.io/prometheus/prometheus@sha256:f4c5fa1018a5c15f81250b8122f36f90146d5c2b323f9ec1f41d1b36dc0e7cb9 # v2.36.1
   # Hash lock helper containers
   containers:
     - name: prometheus-config-reloader
-      image: quay.io/coreos/prometheus-config-reloader@sha256:459bc1b1fc51420cd244b082fe14444f6d8596997c2e40f52c08d1f5a09ab860
+      image: quay.io/prometheus-operator/prometheus-config-reloader@sha256:8c45787645d17c51acb44aa0386af3aa5d8bfd7bddd8d57dd041878b9494c5ff # v0.57.0
     # - name: thanos-sidecar
     #   image:
 ---
@@ -19,7 +19,7 @@ metadata:
   namespace: monitoring
   name: main
 spec:
-  image: quay.io/prometheus/alertmanager@sha256:3d52ab7ef3a2e23e26a73cfd0ce13189e3796fb276b9af3e79664e4f743d8a1d
+  image: quay.io/prometheus/alertmanager@sha256:088464f949de8065b9da7dfce7302a633d700e9d598e2bebc03310712f083b31 # v0.24.0
   # Hashlocking unsupported for config-reloader
   # https://github.com/coreos/prometheus-operator/issues/3262
   # containers:
