@@ -9,18 +9,7 @@ resources:
   # Projects
   - projects/default.yaml
   # Applications to deploy
-  - applications/argocd.yaml
-  - applications/book.yaml
-  - applications/cert-manager.yaml
-  - applications/external-dns.yaml
-  - applications/ingress-nginx.yaml
-  - applications/ircd.yaml
-  - applications/matterbridge.yaml
-  - applications/monitoring.yaml
-  - applications/mtls.yaml
-  - applications/site.yaml
-  - applications/userdb-api.yaml
-  - applications/webirc.yaml
+  - applicationset-generator.yaml
 patches:
   - argocd-notifications-cm.patch.yaml
   - argo-cd-repo-server-ksops.patch.yaml
