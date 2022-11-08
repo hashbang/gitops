@@ -54,25 +54,28 @@ spec:
   selector:
     app: site
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: site-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: hashbang.sh
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  tls:
-  - hosts:
-    - hashbang.sh
-    secretName: site-tls
+  ingressClassName: nginx
   rules:
   - host: hashbang.sh
     http:
       paths:
-      - path: /
-        backend:
-          serviceName: site
-          servicePort: 80
+      - backend:
+          service:
+            name: site
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - hashbang.sh
+    secretName: site-tls

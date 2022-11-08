@@ -50,24 +50,27 @@ spec:
   selector:
     app: webirc
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: webirc-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: webirc.hashbang.sh
 spec:
-  tls:
-  - hosts:
-    - webirc.hashbang.sh
-    secretName: webirc-tls
+  ingressClassName: nginx
   rules:
   - host: webirc.hashbang.sh
     http:
       paths:
-      - path: /
-        backend:
-          serviceName: webirc
-          servicePort: 80
+      - backend:
+          service:
+            name: webirc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - webirc.hashbang.sh
+    secretName: webirc-tls

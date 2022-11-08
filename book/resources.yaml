@@ -43,15 +43,15 @@ spec:
   selector:
     app: book
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: book-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: book.hashbang.sh
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
     - book.hashbang.sh
@@ -60,7 +60,10 @@ spec:
   - host: book.hashbang.sh
     http:
       paths:
-      - path: /
-        backend:
-          serviceName: book
-          servicePort: 80
+      - backend:
+          service:
+            name: book
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
