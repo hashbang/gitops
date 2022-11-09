@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: wkd
 resources:
-  - github.com/drGrove/docker-wkd/kustomize/advanced?ref=7d81b14e809401b8b163b3278e41254b1a05b2be
+  - github.com/drGrove/docker-wkd/kustomize/advanced?ref=9e0721ef88ed33aac78533bbb5e21f7d9a0c69cd
   - ingress.yaml
 patches:
   - target:
@@ -17,7 +17,7 @@ patches:
         value: "hashbang.sh"
 images:
   - name: drgrove/wkd
-    digest: sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42 # v2.2.0
+    digest: sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42 # v2.2.2
 configMapGenerator:
   - name: benharri-key
     options:
