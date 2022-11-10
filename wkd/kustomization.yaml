@@ -18,6 +18,8 @@ patches:
 images:
   - name: drgrove/wkd
     digest: sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42 # v2.2.2
+  - name: kiwigrid/k8s-sidecar
+    digest: sha256:9b6e173c61ca4a9470a52729f362dabd5962581d85d9e6746dcfb9fcfa484b42 # 1.21.0
 configMapGenerator:
   - name: benharri-key
     options:
