@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misskey
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: migrate
+          image: misskey/misskey
+          command: [npm, run, migrate]
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: misskey-configuration
+                  key: PGPASSWORD
+            - name: PGSSLMODE
+              value: no-verify
+          volumeMounts:
+            - name: misskey-configuration
+              mountPath: /misskey/.config
+              readOnly: true
+      containers:
+        - name: misskey
+          image: misskey/misskey
+          command: [npm, run, start]
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: misskey-configuration
+                  key: PGPASSWORD
+            - name: PGSSLMODE
+              value: no-verify
+          resources:
+            requests:
+              memory: 350M
+          volumeMounts:
+            - name: misskey-configuration
+              mountPath: /misskey/.config
+              readOnly: true
+          ports:
+            - name: http
+              containerPort: 3000
+      volumes:
+        - name: misskey-configuration
+          configMap:
+            name: misskey-configuration

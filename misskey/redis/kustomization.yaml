@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namePrefix: misskey-
+commonLabels:
+  app.kubernetes.io/component: redis
+resources:
+  - deployment.yaml
+  - service.yaml
+images:
+  - name: redis
+    newTag: 7.0.5-alpine
+    digest: sha256:40b02b7a48829317e973114d07968d28eaaf75ec6b80ddef20f3999238aad7c8
