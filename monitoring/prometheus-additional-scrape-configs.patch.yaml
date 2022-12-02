@@ -1,9 +1,0 @@
-apiVersion: monitoring.coreos.com/v1
-kind: Prometheus
-metadata:
-  namespace: monitoring
-  name: k8s
-spec:
-  additionalScrapeConfigs:
-    name: additional-scrape-configs
-    key: prometheus-additional.yaml
