@@ -4,6 +4,7 @@ namespace: ingress-nginx
 resources:
 - rbac.yaml
 - configmap.yaml
+- tcp-services-cm.yaml
 - resources.yaml
 - webhook.yaml
 - ingressclass.yaml
