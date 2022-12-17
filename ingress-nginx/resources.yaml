@@ -30,6 +30,7 @@ spec:
         - --election-id=ingress-controller-leader
         - --controller-class=k8s.io/ingress-nginx
         - --ingress-class=nginx
+        - --tcp-services-configmap=ingress-nginx/tcp-services
         - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
         - --validating-webhook=:8443
         - --validating-webhook-certificate=/usr/local/certificates/cert
