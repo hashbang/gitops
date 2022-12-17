@@ -70,6 +70,9 @@ spec:
         - containerPort: 443
           name: https
           protocol: TCP
+        - containerPort: 22
+          name: ssh
+          protocol: TCP
         - containerPort: 8443
           name: webhook
           protocol: TCP
@@ -137,6 +140,11 @@ spec:
     port: 443
     protocol: TCP
     targetPort: https
+  - appProtocol: ssh
+    name: ssh
+    port: 22
+    protocol: TCP
+    targetPort: ssh
   selector:
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: ingress-nginx
