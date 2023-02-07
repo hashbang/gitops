@@ -52,7 +52,7 @@ images:
   - name: ghcr.io/dexidp/dex:v2.35.3-distroless
     digest: sha256:849ef71dc33ff0c29b559b802b0db160872d70d1d1a18e247a382c796374e823
   - name: redis:7.0.5-alpine
-    digest: sha256:40b02b7a48829317e973114d07968d28eaaf75ec6b80ddef20f3999238aad7c8
+    digest: sha256:518c024ec78b3074917bad2d40863e882e5297d65587e6d7c6e0b7281d9b8270
   - name: viaductoss/ksops:v3.0.2
     digest: sha256:b61c00a295066ce97c3e6b6e1fc0ddf56a42e9a309a316b01d89726521c1b8aa
 generators:
