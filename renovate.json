@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "commitMessagePrefix": "{{packageFileDir}}:",
+  "commitMessageAction": "update",
+  "regexManagers": [
+    {
+      "fileMatch": ["(^|/)kustomization.yaml$"],
+      "matchStrings": [
+        "- github\\.com\\/(?<repoOwner>[^/?#]+)\\/(?<depName>[^/?#]+)(?:\\/[^?#]*)?\\?ref=(?<currentDigest>[a-f0-9]{40}) # branch=(?<currentValue>\\S+)\\n"
+      ],
+      "packageNameTemplate": "https://github.com/{{repoOwner}}/{{depName}}",
+      "datasourceTemplate": "git-refs",
+      "versioningTemplate": "git"
+    },
+    {
+      "fileMatch": ["(^|/)kustomization.yaml$"],
+      "matchStrings": [
+        "- github\\.com\\/(?<depName>[^/?#]+\\/[^/?#]+)(?:\\/[^?#]*)?\\?ref=(?<currentDigest>[a-f0-9]{40}) # tag=(?<currentValue>\\S+)\\n"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ]
+}
