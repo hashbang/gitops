@@ -17,9 +17,9 @@ patches:
         value: "hashbang.sh"
 images:
   - name: drgrove/wkd
-    digest: sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42 # v2.2.2
+    newTag: v2.2.2@sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42
   - name: kiwigrid/k8s-sidecar
-    digest: sha256:710e23b489c5cad305fdcffd6ee3b5578f6a5a1bb73b7c181a05b5be068a0d6b # 1.21.0
+    newTag: 1.21.0@sha256:710e23b489c5cad305fdcffd6ee3b5578f6a5a1bb73b7c181a05b5be068a0d6b
 configMapGenerator:
   - name: benharri-key
     options:
