@@ -8,7 +8,7 @@ resources:
 - networkpolicy.yaml
 - service-monitor.yaml
 patches:
-- aws_credentials.yaml
+- path: aws_credentials.yaml
 generators:
 - secret-generator.yaml
 images:

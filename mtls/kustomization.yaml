@@ -4,9 +4,8 @@ namespace: mtls
 resources:
   - github.com/drGrove/mtls-server/manifests/base?ref=705e1c2a5f193f1d309af4c6e0124b9096c2dce9
 patches:
-  - smaller-pvc.patch.yaml
-  - ingress.patch.yaml
-patchesJson6902:
+  - path: smaller-pvc.patch.yaml
+  - path: ingress.patch.yaml
   - target:
       group: networking.k8s.io
       version: v1beta1

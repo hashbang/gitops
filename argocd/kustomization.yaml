@@ -11,14 +11,14 @@ resources:
   # Applications to deploy
   - applicationset-generator.yaml
 patches:
-  - argocd-notifications-cm.patch.yaml
-  - argo-cd-repo-server-ksops.patch.yaml
-  - argo-cd-allow-alpha-plugins.patch.yaml
-  - argo-cd-import-pgp-key.patch.yaml
-  - argo-cd-repository-credentials.patch.yaml
-  - argo-cd-rbac.patch.yaml
-  - argo-cd-allow-status-badges.patch.yaml
-  - users.patch.yaml
+  - path: argocd-notifications-cm.patch.yaml
+  - path: argo-cd-repo-server-ksops.patch.yaml
+  - path: argo-cd-allow-alpha-plugins.patch.yaml
+  - path: argo-cd-import-pgp-key.patch.yaml
+  - path: argo-cd-repository-credentials.patch.yaml
+  - path: argo-cd-rbac.patch.yaml
+  - path: argo-cd-allow-status-badges.patch.yaml
+  - path: users.patch.yaml
 configMapGenerator:
   - name: argocd-cm
     behavior: merge
