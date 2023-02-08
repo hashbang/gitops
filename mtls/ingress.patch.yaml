@@ -4,7 +4,6 @@ metadata:
   name: mtls
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: mtls.hashbang.sh
 spec:
   ingressClassName: nginx
   tls:
