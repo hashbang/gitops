@@ -1,12 +1,12 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mtls
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: mtls.hashbang.sh
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
     - mtls.hashbang.sh

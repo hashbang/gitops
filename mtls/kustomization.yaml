@@ -2,13 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: mtls
 resources:
-  - github.com/drGrove/mtls-server/manifests/base?ref=705e1c2a5f193f1d309af4c6e0124b9096c2dce9
+  - github.com/drGrove/mtls-server/manifests/base?ref=124865fadd23dca58f74064c681fd3830aac5b59 # tag=v0.20.0
+
 patches:
   - path: smaller-pvc.patch.yaml
   - path: ingress.patch.yaml
   - target:
       group: networking.k8s.io
-      version: v1beta1
+      version: v1
       kind: Ingress
       name: mtls
     patch: |-
@@ -45,4 +46,4 @@ configMapGenerator:
       - files/admin_seeds/dpflug.asc
 images:
   - name: drgrove/mtls-server
-    newTag: latest@sha256:4acb6491bdfaecb08f7955a69beb77c517245939f8566e662a58f1591284b022
+    newTag: v0.20.0@sha256:78a5fd3f56ca9034a4a326d598c7a3a43414b57b7f0b4f8d4a579d0df4b2b0ea
