@@ -48,8 +48,5 @@ data:
         method: POST
         body: "Unable to build {{.app.metadata.name}} (Commit: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
 
-  service.grafana: |
-    apiUrl: http://grafana.monitoring.svc/api
-    apiKey: $grafana-apiKey
   service.webhook.bitbot: |
     url: $bitbot-url
