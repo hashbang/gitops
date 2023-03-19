@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 resources:
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=7be094f38d06859b594b98eb75c7c70d39b80b1e # tag=v2.6.4
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=6d4de2ec5d49fa2c6823f2b7d101607a839be3fa # tag=v2.6.6
   - ingress.yaml
   - argo-cd-service-monitor.yaml
   - deploy-key.yaml
@@ -48,7 +48,7 @@ configMapGenerator:
       - gpg-keys/26CDD32189AA2885
 images:
   - name: quay.io/argoproj/argocd
-    newTag: v2.6.4@sha256:fc41749eb46dafac17a0b16877145bde6ed07b2c7109dd736054be0e7d2efd2c
+    newTag: v2.6.6@sha256:1f0bfb91825550d979eee29a82069b28bf4e3aa94f0e15a56d72f7d61721ec03
   - name: ghcr.io/dexidp/dex
     newTag: v2.35.3-distroless@sha256:849ef71dc33ff0c29b559b802b0db160872d70d1d1a18e247a382c796374e823
   - name: redis
