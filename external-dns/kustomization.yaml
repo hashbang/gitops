@@ -14,4 +14,4 @@ generators:
 images:
 - name: external-dns
   newName: eu.gcr.io/k8s-artifacts-prod/external-dns/external-dns
-  newTag: v0.13.2@sha256:d6e0a677f5b685308d45cb0d812423300ee2c6a324910230427fc00f4b449954
+  newTag: v0.13.4@sha256:b1ee7b829bd4c8bc5fbae0e4671cc423304a5a4c8228dc13e2c961c1e5eb90e4
