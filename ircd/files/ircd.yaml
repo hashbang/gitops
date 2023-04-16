@@ -571,6 +571,13 @@ opers:
         fingerprint: "41:AE:61:33:58:25:B2:BB:30:D1:07:1A:2C:F6:A7:CB:59:A6:E6:81:16:CA:86:82:09:2F:F3:F3:3F:0D:0E:88"
         auto: true
 
+    kellerfuchs:
+        class: server-admin
+        whois-line: in your shell
+        vhost: "staff.hashbang.sh"
+        fingerprint: B7:B5:FC:8E:0E:F4:60:57:65:39:03:D9:C7:2B:2E:C6:5B:03:59:03:47:09:72:8F:71:17:DF:0E:7C:5B:62:C9
+        auto: true
+
 
 # logging, takes inspiration from Insp
 logging:
