@@ -11,5 +11,6 @@ data:
   accounts.daurnimator: apiKey,login
   accounts.dpflug: apiKey,login
   accounts.drgrove: apiKey,login
+  accounts.kellerfuchs: apiKey,login
   accounts.lrvick: apiKey,login
   accounts.ryan: apiKey,login
