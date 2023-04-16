@@ -38,6 +38,7 @@ configMapGenerator:
       - files/admin_seeds/benharri.asc
       - files/admin_seeds/dannygrove.asc
       - files/admin_seeds/daurnimator.asc
+      - files/admin_seeds/kellerfuchs.asc
       - files/admin_seeds/lrvick.asc
       - files/admin_seeds/ryan.asc
       - files/admin_seeds/dpflug.asc
