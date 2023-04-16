@@ -39,6 +39,11 @@ configMapGenerator:
         wkd: 'enroll'
     files:
       - files/lrvick.asc
+  - name: kellerfuchs-key
+    options:
+      labels:
+        wkd: 'enroll'
+    files: [ files/kellerfuchs.asc ]
   - name: ryan-key
     options:
       labels:
