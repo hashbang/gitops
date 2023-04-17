@@ -52,7 +52,7 @@ images:
   - name: ghcr.io/dexidp/dex
     newTag: v2.36.0-distroless@sha256:35146b7ab0552f73fa5f9b4eaa71059ce44345d96e465c840c21b2b71a701239
   - name: redis
-    newTag: 7.0.10-alpine@sha256:92f3e116c1e719acf78004dd62992c3ad56f68f810c93a8db3fe2351bb9722c2
+    newTag: 7.0.11-alpine@sha256:da0cc759968a286f9fa8e3a0d8faca70e4dcf8ffc25fd290a041c59a9eb725c7
   - name: viaductoss/ksops
     newTag: v4.1.1@sha256:1707bd0f84124680cb17927f13b3b1c34f6aa9f07e0a6a6705980aaab75995f4
 generators:
