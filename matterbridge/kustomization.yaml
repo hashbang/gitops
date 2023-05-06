@@ -11,4 +11,4 @@ generators:
 - secret-generator.yaml
 images:
 - name: 42wim/matterbridge
-  newTag: latest@sha256:09745d6ffb93c7636936bdb217818d9f671c664f9566789019be1c3eef08bd8e
+  newTag: 1.26.0@sha256:ba9ae3b54776d4e4a1317cd7929d62326f7d3dd75e37eb038e01e33e18e41164
