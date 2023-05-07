@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tcp-services
-data:
-  "22": "hashbangctl/hashbangctl:2222"
