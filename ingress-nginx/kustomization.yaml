@@ -1,10 +1,24 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: ingress-nginx
+commonLabels:
+  app.kubernetes.io/name: ingress-nginx
 resources:
-- rbac.yaml
-- configmap.yaml
-- tcp-services-cm.yaml
-- resources.yaml
-- webhook.yaml
-- ingressclass.yaml
+  - controller/
+  - webhook/
+configMapGenerator:
+  - name: ingress-nginx-controller
+    options:
+      disableNameSuffixHash: true
+    literals:
+      # NOTE: This configuration is specific to DigitalOcean and should not be
+      # included if used on other cloud providers.
+      # See: resources.yaml Service{name="ingress-nginx-controller"}
+      - use-proxy-protocol=true
+  - name: tcp-services
+    options:
+      disableNameSuffixHash: true
+    literals:
+      # Note that quotes here are a workaround as mentioned in https://github.com/kubernetes-sigs/kustomize/issues/3446#issuecomment-1199631047
+      - |
+        "22"=hashbangctl/hashbangctl:2222
