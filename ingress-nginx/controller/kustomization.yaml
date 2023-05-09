@@ -3,6 +3,7 @@ kind: Kustomization
 commonLabels:
   app.kubernetes.io/component: controller
 resources:
+  - ingressclass.yaml
   - rbac.yaml
   - resources.yaml
   - webhook.yaml
