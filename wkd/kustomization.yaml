@@ -50,3 +50,10 @@ configMapGenerator:
         wkd: 'enroll'
     files:
       - files/ryan.asc
+
+  - name: team-key
+    options:
+      labels:
+        wkd: 'enroll'
+    files:
+      - files/team.asc
