@@ -16,3 +16,27 @@ configMapGenerator:
       # included if used on other cloud providers.
       # See: resources.yaml Service{name="ingress-nginx-controller"}
       - use-proxy-protocol=true
+replacements:
+  - source:
+      kind: Certificate
+      fieldPath: metadata.namespace
+    targets:
+      - select:
+          kind: ValidatingWebhookConfiguration
+        fieldPaths:
+          - metadata.annotations.[cert-manager.io/inject-ca-from]
+        options:
+          delimiter: /
+  - source:
+      kind: Service
+      fieldPath: metadata.namespace
+      name: ingress-nginx-controller-admission
+    targets:
+      - select:
+          kind: Certificate
+          name: ingress-nginx-admission
+        fieldPaths:
+          - spec.dnsNames.1
+        options:
+          delimiter: .
+          index: 1
