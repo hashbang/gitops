@@ -6,6 +6,7 @@ commonLabels:
 resources:
   - controller/
   - webhook/
+  - tcp-services-cm.yaml
 configMapGenerator:
   - name: ingress-nginx-controller
     options:
@@ -15,10 +16,3 @@ configMapGenerator:
       # included if used on other cloud providers.
       # See: resources.yaml Service{name="ingress-nginx-controller"}
       - use-proxy-protocol=true
-  - name: tcp-services
-    options:
-      disableNameSuffixHash: true
-    literals:
-      # Note that quotes here are a workaround as mentioned in https://github.com/kubernetes-sigs/kustomize/issues/3446#issuecomment-1199631047
-      - |
-        "22"=hashbangctl/hashbangctl:2222
