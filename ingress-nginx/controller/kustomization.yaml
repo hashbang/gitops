@@ -9,4 +9,4 @@ resources:
   - webhook.yaml
 images:
   - name: registry.k8s.io/ingress-nginx/controller
-    newTag: v1.3.0@sha256:d1707ca76d3b044ab8a28277a2466a02100ee9f58a86af1535a3edf9323ea1b5
+    newTag: v1.7.1@sha256:7244b95ea47bddcb8267c1e625fb163fc183ef55448855e3ac52a7b260a60407
