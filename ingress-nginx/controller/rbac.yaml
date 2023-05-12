@@ -57,18 +57,18 @@ rules:
   - list
   - watch
 - apiGroups:
-  - ""
+  - coordination.k8s.io
   resourceNames:
   - ingress-controller-leader
   resources:
-  - configmaps
+  - leases
   verbs:
   - get
   - update
 - apiGroups:
-  - ""
+  - coordination.k8s.io
   resources:
-  - configmaps
+  - leases
   verbs:
   - create
 - apiGroups:
