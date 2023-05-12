@@ -17,8 +17,8 @@ spec:
         - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
         - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
         - --validating-webhook=:8443
-        - --validating-webhook-certificate=/usr/local/certificates/cert
-        - --validating-webhook-key=/usr/local/certificates/key
+        - --validating-webhook-certificate=/usr/local/certificates/tls.crt
+        - --validating-webhook-key=/usr/local/certificates/tls.key
         env:
         - name: POD_NAME
           valueFrom:
