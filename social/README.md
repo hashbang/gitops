@@ -1,5 +1,5 @@
-# Misskey
-![Misskey Status Indicator](https://argocd.hashbang.sh/api/badge?name=misskey)
+# Social
+![Social Status Indicator](https://argocd.hashbang.sh/api/badge?name=social)
 
 ## TODO:
 

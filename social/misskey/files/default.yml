@@ -6,7 +6,7 @@
 #───┘ URL └─────────────────────────────────────────────────────
 
 # Final accessible URL seen by a user.
-url: https://misskey.hashbang.sh/
+url: https://social.hashbang.sh/
 
 # ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE
 # URL SETTINGS AFTER THAT!
@@ -55,7 +55,7 @@ db:
 #───┘ Redis configuration └─────────────────────────────────────
 
 redis:
-  host: misskey-redis
+  host: social-redis
   port: 6379
   #family: 0  # 0=Both, 4=IPv4, 6=IPv6
   #pass: example-pass

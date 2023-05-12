@@ -1,23 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: misskey-ingress
+  name: social
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   rules:
-  - host: misskey.hashbang.sh
+  - host: social.hashbang.sh
     http:
       paths:
       - backend:
           service:
-            name: misskey
+            name: calckey
             port:
               name: http
         path: /
         pathType: Prefix
   tls:
   - hosts:
-    - misskey.hashbang.sh
-    secretName: misskey-tls
+    - social.hashbang.sh
+    secretName: social-tls
