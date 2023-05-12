@@ -4,7 +4,7 @@ namespace: social
 commonLabels:
   app.kubernetes.io/name: social
 resources:
-  - ./misskey
+  - ./calckey
   - ./redis
   - networkpolicy.yaml
   - ingress.yaml

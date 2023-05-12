@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: misskey
+  name: calckey
 spec:
   template:
     spec:
       initContainers:
         - name: migrate
-          image: misskey/misskey
+          image: thatonecalculator/calckey
           command: [npm, run, migrate]
           env:
             - name: NODE_ENV
@@ -15,17 +15,17 @@ spec:
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: misskey-configuration
+                  name: calckey-db
                   key: PGPASSWORD
             - name: PGSSLMODE
               value: no-verify
           volumeMounts:
-            - name: misskey-configuration
-              mountPath: /misskey/.config
+            - name: configuration
+              mountPath: /calckey/.config
               readOnly: true
       containers:
-        - name: misskey
-          image: misskey/misskey
+        - name: calckey
+          image: thatonecalculator/calckey
           command: [npm, run, start]
           env:
             - name: NODE_ENV
@@ -33,7 +33,7 @@ spec:
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: misskey-configuration
+                  name: calckey-db
                   key: PGPASSWORD
             - name: PGSSLMODE
               value: no-verify
@@ -41,13 +41,13 @@ spec:
             requests:
               memory: 350M
           volumeMounts:
-            - name: misskey-configuration
-              mountPath: /misskey/.config
+            - name: configuration
+              mountPath: /calckey/.config
               readOnly: true
           ports:
             - name: http
               containerPort: 3000
       volumes:
-        - name: misskey-configuration
+        - name: configuration
           configMap:
-            name: misskey-configuration
+            name: calckey-configuration

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: misskey-configuration
+    name: calckey-db
     annotations:
         kustomize.config.k8s.io/needs-hash: true
 type: Opaque
@@ -13,8 +13,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-02-08T14:20:24Z"
-    mac: ENC[AES256_GCM,data:EI5uz9DFTfrqGfzb+UAnxacu9blmpOAM684InDjNHTp2A/W4AYMAPG/rfVqzn1BOC5GCtNXrKRQvhy1PYtnh5rLtV0qbfHv8uvc4iyc+JK7EVcVibv6zMLm2Dm/a408vhHDGMFpo1sZBjFEcKWfzZXcG2cELKpzm7OtjFByCqX4=,iv:tixU1u5gfPXRL3j0/xZhdLtpywc0B5l/Ml8nC/bqjM8=,tag:dEmeIipYR3pMjxUed03XiQ==,type:str]
+    lastmodified: "2023-05-12T13:16:40Z"
+    mac: ENC[AES256_GCM,data:OL7O0OjS9M4ctfEmeZr3waQVpp96aatVy50wULFpFdsmoCH9txgvz7POrVl7PZUOC95XrknedXLXshbHRGm6DUCARPIcGxiHj9aAiVjFnFnZQsl8VGVfaREuiYB09uIrRHDHpm7z7myNJtKHxjoM2bwHW5NtddG23jLyGWWyXY0=,iv:4MAtReNn6N1dBHvt209r80k91H8McQtP8WKYy6X5bvg=,tag:lXnmpCCgAao9wyMarj9HcA==,type:str]
     pgp:
         - created_at: "2023-02-08T13:39:37Z"
           enc: |-

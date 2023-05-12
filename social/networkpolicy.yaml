@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: misskey-redis-network-policy
+  name: calckey-redis-network-policy
 spec:
   egress:
   - ports:
@@ -16,7 +16,7 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          app.kubernetes.io/name: misskey
+          app.kubernetes.io/name: calckey
     ports:
     - port: 6379
       protocol: TCP

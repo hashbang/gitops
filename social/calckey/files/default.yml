@@ -1,5 +1,5 @@
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Misskey configuration
+# Calckey configuration
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 #   ┌─────┐
@@ -38,7 +38,7 @@ db:
   port: 25060
 
   # Database name
-  db: misskey
+  db: calckey
 
   # Auth
   user: misskey
@@ -93,6 +93,9 @@ id: 'aid'
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
 
+# Max note length, should be < 8000.
+#maxNoteLength: 3000
+
 # Whether disable HSTS
 #disableHsts: true
 
@@ -114,15 +117,18 @@ id: 'aid'
 # IP address family used for outgoing request (ipv4, ipv6 or dual)
 #outgoingAddressFamily: ipv4
 
+# Syslog option
+#syslog:
+#  host: localhost
+#  port: 514
+
 # Proxy for HTTP/HTTPS
 #proxy: http://127.0.0.1:3128
 
-proxyBypassHosts:
-  - api.deepl.com
-  - api-free.deepl.com
-  - www.recaptcha.net
-  - hcaptcha.com
-  - challenges.cloudflare.com
+#proxyBypassHosts: [
+#  'example.com',
+#  '192.0.2.8'
+#]
 
 # Proxy for SMTP/SMTPS
 #proxySmtp: http://127.0.0.1:3128   # use HTTP/1.1 CONNECT
@@ -130,19 +136,66 @@ proxyBypassHosts:
 #proxySmtp: socks5://127.0.0.1:1080 # use SOCKS5
 
 # Media Proxy
-# Reference Implementation: https://github.com/misskey-dev/media-proxy
 #mediaProxy: https://example.com/proxy
 
 # Proxy remote files (default: false)
 #proxyRemoteFiles: true
 
-# Sign to ActivityPub GET request (default: true)
-signToActivityPubGet: true
-
 #allowedPrivateNetworks: [
 #  '127.0.0.1/32'
 #]
 
+# TWA
+#twa:
+#  nameSpace: android_app
+#  packageName: tld.domain.twa
+#  sha256CertFingerprints: ['AB:CD:EF']
+
 # Upload or download file size limits (bytes)
 #maxFileSize: 262144000
 
+# Managed hosting settings
+# !!!!!!!!!!
+# >>>>>> NORMAL SELF-HOSTERS, STAY AWAY! <<<<<<
+# >>>>>> YOU DON'T NEED THIS! <<<<<<
+# !!!!!!!!!!
+# Each category is optional, but if each item in each category is mandatory!
+# If you mess this up, that's on you, you've been warned...
+
+#maxUserSignups: 100
+#isManagedHosting: true
+#deepl:
+#  managed: true
+#  authKey: ''
+#  isPro: false
+#
+#email:
+#  managed: true
+#  address: 'example@email.com'
+#  host: 'email.com'
+#  port: 587
+#  user: 'example@email.com'
+#  pass: ''
+#  useImplicitSslTls: false
+#
+#objectStorage:
+#  managed: true
+#  baseUrl: ''
+#  bucket: ''
+#  prefix: ''
+#  endpoint: ''
+#  region: ''
+#  accessKey: ''
+#  secretKey: ''
+#  useSsl: true
+#  connnectOverProxy: false
+#  setPublicReadOnUpload: true
+#  s3ForcePathStyle: true
+
+# !!!!!!!!!!
+# >>>>>> AGAIN, NORMAL SELF-HOSTERS, STAY AWAY! <<<<<<
+# >>>>>> YOU DON'T NEED THIS, ABOVE SETTINGS ARE FOR MANAGED HOSTING ONLY! <<<<<<
+# !!!!!!!!!!
+
+# Seriously. Do NOT fill out the above settings if you're self-hosting.
+# They're much better off being set from the control panel.
