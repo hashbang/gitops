@@ -46,6 +46,7 @@ configMapGenerator:
       - gpg-keys/68907D8BCCD85A5A
       - gpg-keys/B10116B8193F2DBD
       - gpg-keys/26CDD32189AA2885
+      - gpg-keys/E6A270B1A4DA649A
 images:
   - name: quay.io/argoproj/argocd
     newTag: v2.7.2@sha256:9b867d3175815d6d253dbc817bb7da34a3ba49a99ffade9a36cad238cf78963e
