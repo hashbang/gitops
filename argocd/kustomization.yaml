@@ -55,7 +55,7 @@ images:
   - name: redis
     newTag: 7.0.11-alpine@sha256:1f27b9eb680ffcf6c68966c0d5f578bb1b030ca7cd8ec4e758c429e7f72005a0
   - name: viaductoss/ksops
-    newTag: v4.2.0@sha256:bee1f14601ef0befb004eb04aa1994f6a3c101a6c3fed87a3dc91a0f5a9e5f15
+    newTag: v4.2.1@sha256:55d4d4f8986419bd7f591643175c3d8bd064d3de72ff5678bd81311ee157b60a
 generators:
   - secret-generator.yaml
 replicas:
