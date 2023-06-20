@@ -19,7 +19,7 @@ images:
   - name: drgrove/wkd
     newTag: v2.2.2@sha256:b00e9e42486efa6e8601f4aff3d61c9417dcaba993411905a4b63cd2dee72f42
   - name: kiwigrid/k8s-sidecar
-    newTag: 1.24.4@sha256:fe97a19c9734d88a406baca173e382c28cfd6829ce0bf346bd03f1a27a10022c
+    newTag: 1.24.4@sha256:4138bea678f0725a5c329aeb1264f5c850b8ae9a2a89a421c6d9cdc510a7e0eb
 configMapGenerator:
   - name: benharri-key
     options:
