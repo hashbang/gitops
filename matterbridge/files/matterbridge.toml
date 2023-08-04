@@ -5,9 +5,10 @@ UseTLS = true
 # because it uses internal traffic
 SkipTLSVerify = true
 Label = "h"
-RemoteNickFormat = "<{NICK}[{LABEL}]> "
+RemoteNickFormat = "{NICK}/{LABEL}"
 NickServNick = "HashBot"
 UseSASL = true
+UseRelayMsg = true
 
 [irc.libera]
 Server = "irc.libera.chat:6697"
