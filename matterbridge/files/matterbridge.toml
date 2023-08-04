@@ -29,6 +29,7 @@ RemoteNickFormat = "<{NICK}[{LABEL}]> "
 # UseUsername = true
 # NoHomeServerSuffix = false
 HTMLDisable = true
+SpoofUsername = true
 
 [[gateway]]
 name = "default"
