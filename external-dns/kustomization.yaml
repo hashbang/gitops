@@ -12,6 +12,5 @@ patches:
 generators:
 - secret-generator.yaml
 images:
-- name: external-dns
-  newName: eu.gcr.io/k8s-artifacts-prod/external-dns/external-dns
-  newTag: v0.13.4@sha256:b1ee7b829bd4c8bc5fbae0e4671cc423304a5a4c8228dc13e2c961c1e5eb90e4
+- name: registry.k8s.io/external-dns/external-dns
+  newTag: v0.13.6@sha256:404fafa9f814832bb0a46c562ce03b84dc6fb4326643e2315c17a15ffd0783e4
