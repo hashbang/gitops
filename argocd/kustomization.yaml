@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 resources:
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=77556d9e64304c27c718bb0794676713628e435e # tag=v2.8.3
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=c27929928104dc37b937764baf65f38b78930e59 # tag=v2.8.4
   - ingress.yaml
   - argo-cd-service-monitor.yaml
   - deploy-key.yaml
