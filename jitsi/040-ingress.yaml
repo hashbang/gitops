@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jitsi-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    external-dns.alpha.kubernetes.io/hostname: meet.hashbang.sh
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - meet.hashbang.sh
+    secretName: meet-tls
+  rules:
+  - host: meet.hashbang.sh
+    http:
+      paths:
+      - backend:
+          service:
+            name: web
+            port:
+              number: 443
+        path: /
+        pathType: Prefix
