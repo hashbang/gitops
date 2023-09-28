@@ -6,12 +6,10 @@ metadata:
   name: jvb-udp
   namespace: jitsi
 spec:
-  type: NodePort
-  externalTrafficPolicy: Cluster
+  type: ClusterIP
   ports:
   - port: 30300
     protocol: UDP
     targetPort: 30300
-    nodePort: 30300
   selector:
-    k8s-app: jitsi
+    app.kubernetes.io/name: jvb

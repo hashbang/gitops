@@ -9,8 +9,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    k8s-app: jitsi
-  name: jitsi
+    app.kubernetes.io/name: jicofo
+    app.kubernetes.io/part-of: jitsi
+  name: jicofo
   namespace: jitsi
 spec:
   replicas: 1
@@ -18,43 +19,65 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      k8s-app: jitsi
+      app.kubernetes.io/name: jicofo
   template:
     metadata:
       labels:
-        k8s-app: jitsi
+        app.kubernetes.io/name: jicofo
     spec:
       containers:
         - name: jicofo
           image: jitsi/jicofo:stable-8922-1
           imagePullPolicy: IfNotPresent
           env:
-            - name: XMPP_SERVER
-              value: localhost
-            - name: XMPP_DOMAIN
-              value: meet.jitsi
-            - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
-            - name: XMPP_MUC_DOMAIN
-              value: muc.meet.jitsi
-            - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
-            - name: JICOFO_COMPONENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: JICOFO_COMPONENT_SECRET
-            - name: JICOFO_AUTH_USER
-              value: focus
-            - name: JICOFO_AUTH_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: JICOFO_AUTH_PASSWORD
-            - name: TZ
-              value: America/Los_Angeles
-            - name: JVB_BREWERY_MUC
-              value: jvbbrewery
+          - name: XMPP_SERVER
+            value: prosody
+          - name: XMPP_DOMAIN
+            value: meet.jitsi
+          - name: XMPP_AUTH_DOMAIN
+            value: auth.meet.jitsi
+          - name: XMPP_MUC_DOMAIN
+            value: muc.meet.jitsi
+          - name: XMPP_INTERNAL_MUC_DOMAIN
+            value: internal-muc.meet.jitsi
+          - name: JICOFO_COMPONENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: jitsi-config
+                key: JICOFO_COMPONENT_SECRET
+          - name: JICOFO_AUTH_USER
+            value: focus
+          - name: JICOFO_AUTH_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: jitsi-config
+                key: JICOFO_AUTH_PASSWORD
+          - name: TZ
+            value: America/Los_Angeles
+          - name: JVB_BREWERY_MUC
+            value: jvbbrewery
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: prosody
+    app.kubernetes.io/part-of: jitsi
+  name: prosody
+  namespace: jitsi
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prosody
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: prosody
+    spec:
+      containers:
         - name: prosody
           image: jitsi/prosody:stable-8922-1
           imagePullPolicy: IfNotPresent
@@ -90,12 +113,34 @@ spec:
               value: America/Los_Angeles
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: jitsi
+  name: web
+  namespace: jitsi
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: web
+    spec:
+      containers:
         - name: web
           image: jitsi/web:stable-8922-1
           imagePullPolicy: IfNotPresent
           env:
             - name: XMPP_SERVER
-              value: localhost
+              value: prosody
             - name: JICOFO_AUTH_USER
               value: focus
             - name: XMPP_DOMAIN
@@ -112,12 +157,34 @@ spec:
               value: America/Los_Angeles
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: jvb
+    app.kubernetes.io/part-of: jitsi
+  name: jvb
+  namespace: jitsi
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jvb
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: jvb
+    spec:
+      containers:
         - name: jvb
           image: jitsi/jvb:stable-8922-1
           imagePullPolicy: IfNotPresent
           env:
             - name: XMPP_SERVER
-              value: localhost
+              value: prodosy
             - name: DOCKER_HOST_ADDRESS
               value: localhost
             - name: XMPP_DOMAIN
@@ -151,3 +218,4 @@ spec:
             - name: TZ
               value: America/Los_Angeles
       serviceAccountName: jitsi
+---
