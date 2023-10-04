@@ -15,3 +15,30 @@ spec:
     targetPort: 443
   selector:
     app.kubernetes.io/name: web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: prosody
+  name: prosody
+  namespace: jitsi
+spec:
+  ports:
+  - name: bosh-insecure
+    protocol: TCP
+    port: 5280
+  - name: bosh-secure
+    protocol: TCP
+    port: 5281
+  - name: xmpp-c2s
+    protocol: TCP
+    port: 5222
+  - name: xmpp-s2s
+    protocol: TCP
+    port: 5269
+  - name: xmpp-component
+    protocol: TCP
+    port: 5347
+  selector:
+    app.kubernetes.io/name: prosody
