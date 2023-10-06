@@ -90,6 +90,8 @@ spec:
               value: muc.meet.jitsi
             - name: XMPP_INTERNAL_MUC_DOMAIN
               value: internal-muc.meet.jitsi
+            - name: PUBLIC_URL
+              value: https://meet.hashbang.sh
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -139,6 +141,8 @@ spec:
           image: jitsi/web:stable-8922-1
           imagePullPolicy: IfNotPresent
           env:
+            - name: PUBLIC_URL
+              value: https://meet.hashbang.sh
             - name: XMPP_SERVER
               value: prosody
             - name: JICOFO_AUTH_USER
@@ -150,7 +154,7 @@ spec:
             - name: XMPP_INTERNAL_MUC_DOMAIN
               value: internal-muc.meet.jitsi
             - name: XMPP_BOSH_URL_BASE
-              value: http://127.0.0.1:5280
+              value: http://prosody:5280
             - name: XMPP_MUC_DOMAIN
               value: muc.meet.jitsi
             - name: TZ
