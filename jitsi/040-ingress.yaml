@@ -17,6 +17,13 @@ spec:
       paths:
       - backend:
           service:
+            name: jvb
+            port:
+              number: 9090
+        path: /colibri-ws
+        pathType: Prefix
+      - backend:
+          service:
             name: web
             port:
               number: 443
