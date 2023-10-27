@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: jvb
+  name: jvb-udp
+  namespace: jitsi
+spec:
+  type: ClusterIP
+  ports:
+  - port: 30300
+    protocol: UDP
+    targetPort: 30300
+  selector:
+    app.kubernetes.io/name: jvb
