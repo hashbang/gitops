@@ -156,7 +156,7 @@ spec:
             - name: XMPP_INTERNAL_MUC_DOMAIN
               value: internal-muc.meet.jitsi
             - name: XMPP_BOSH_URL_BASE
-              value: http://prosody:5280
+              value: http://prosody.jitsi.svc.cluster.local:5280
             - name: XMPP_MUC_DOMAIN
               value: muc.meet.jitsi
             - name: TZ
