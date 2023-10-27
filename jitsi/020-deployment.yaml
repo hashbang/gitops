@@ -30,6 +30,8 @@ spec:
           image: jitsi/jicofo:stable-8922-1
           imagePullPolicy: IfNotPresent
           env:
+          - name: PUBLIC_URL
+            value: https://meet.hashbang.sh
           - name: XMPP_SERVER
             value: prosody.jitsi.svc.cluster.local
           - name: XMPP_DOMAIN
@@ -187,6 +189,8 @@ spec:
           image: jitsi/jvb:stable-8922-1
           imagePullPolicy: IfNotPresent
           env:
+            - name: PUBLIC_URL
+              value: https://meet.hashbang.sh
             - name: XMPP_SERVER
               value: prosody.jitsi.svc.cluster.local
             - name: XMPP_DOMAIN
