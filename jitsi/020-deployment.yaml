@@ -236,15 +236,9 @@ spec:
               containerPort: 9090
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /about/health
-              port: 8080
             tcpSocket:
               port: 9090
           readinessProbe:
-           httpGet:
-            path: /about/health
-            port: 8080
            tcpSocket:
             port: 9090
 ---
