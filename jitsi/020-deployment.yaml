@@ -184,6 +184,7 @@ spec:
       labels:
         app.kubernetes.io/name: jvb
     spec:
+      serviceAccountName: jitsi
       containers:
         - name: jvb
           image: jitsi/jvb:stable-8922-1
@@ -227,5 +228,18 @@ spec:
               value: jvbbrewery
             - name: TZ
               value: America/Los_Angeles
-      serviceAccountName: jitsi
+          ports:
+            - name: rtp-udp
+              containerPort: 10000
+              protocol: UDP
+            - name: colibri-ws-tcp
+              containerPort: 9090
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /about/health
+              port: 8080
+          readinessProbe:
+            path: /about/health
+            port: 8080
 ---
