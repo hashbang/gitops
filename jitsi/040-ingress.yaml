@@ -19,7 +19,7 @@ spec:
           service:
             name: jvb
             port:
-              number: 9090
+              number: 30300
         path: /colibri-ws
         pathType: Prefix
       - backend:
