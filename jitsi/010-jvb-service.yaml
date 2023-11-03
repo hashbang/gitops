@@ -3,6 +3,8 @@ kind: Service
 metadata:
   labels:
     service: jvb
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
   name: jvb
   namespace: jitsi
 spec:
