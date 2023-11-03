@@ -6,14 +6,10 @@ metadata:
   name: jvb
   namespace: jitsi
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - port: 30300
+  - port: 10000
     protocol: UDP
-    targetPort: 30300
-    name: ice
-  - port: 9090
-    targetPort: 9090
-    name: http
+    name: rtp-udp
   selector:
     app.kubernetes.io/name: jvb
