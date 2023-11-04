@@ -240,7 +240,6 @@ spec:
               path: /about/health
               port: 8080
           readinessProbe:
-           httpGet:
-            path: /about/health
+           tcpSocket:
             port: 8080
 ---
