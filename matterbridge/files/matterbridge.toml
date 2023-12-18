@@ -9,6 +9,8 @@ RemoteNickFormat = "{NICK}/{LABEL}"
 NickServNick = "HashBot"
 UseSASL = true
 UseRelayMsg = true
+# RELAYMSG barfs on non-ascii, but we can limit to just alphanumeric
+StripNick = true
 
 [irc.libera]
 Server = "irc.libera.chat:6697"
