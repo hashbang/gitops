@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: keycloak
+        image: quay.io/keycloak/keycloak
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        command:
+          - /opt/keycloak/bin/kc.sh
+        args:
+          - start
+        env:
+        - name: KC_PROXY
+          value: "edge"
+        - name: KC_HEALTH_ENABLED
+          value: "true"
+        envFrom:
+          - configMapRef:
+              name: keycloak-config
+          - secretRef:
+              name: keycloak-config
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8080
+          initialDelaySeconds: 60
+        livenessProbe:
+          httpGet:
+            path: /health/live
+            port: 8080
+          initialDelaySeconds: 60
+        startupProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 15
+          failureThreshold: 60
+          periodSeconds: 5
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels: {}
+          matchLabelKeys:
+            - pod-template-hash

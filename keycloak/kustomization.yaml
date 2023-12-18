@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonLabels:
+    app.kubernetes.io/name: keycloak
+resources:
+  - deployment.yaml
+  - service.yaml
+  - service-account.yaml
+  - ingress.yaml
+configMapGenerator:
+  - name: keycloak-config
+    literals:
+      - KC_HOSTNAME_URL=https://keycloak.hashbang.sh
+      - KC_DB=postgres
+      - KC_DB_URL_HOST=userdb-attempt-too-do-user-989073-0.db.ondigitalocean.com
+      - KC_DB_URL_PORT=25060
+      - KC_DB_URL_DATABASE=keycloak
+      - KC_DB_URL_PROPERTIES=?sslmode=require
+      - KC_DB_USERNAME=keycloak
+      - KEYCLOAK_ADMIN=admin
+generators:
+  - secret-generator.yaml
+images:
+  - name: quay.io/keycloak/keycloak
+    newTag: 23.0.3@sha256:4f72a5b0c076755e806457d96404dd28dc1394013933d7170c154c26db9b6a16
