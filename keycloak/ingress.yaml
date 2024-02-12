@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-hashbang-sh
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+      - keycloak.hashbang.sh
+      secretName: keycloak-hashbang-sh-tls
+  rules:
+    - host: keycloak.hashbang.sh
+      http:
+        paths:
+          # https://www.keycloak.org/server/reverseproxy#_exposed_path_recommendations
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
+          - path: /js
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
+          - path: /realms
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
+          - path: /resources
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
+          - path: /robots.txt
+            pathType: Exact
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
