@@ -22,10 +22,12 @@ spec:
         args:
           - start
         env:
-        - name: KC_PROXY
-          value: "edge"
         - name: KC_HEALTH_ENABLED
           value: "true"
+        - name: KC_HTTP_ENABLED
+          value: "true"
+        - name: KC_PROXY_HEADERS
+          value: xforwarded
         envFrom:
           - configMapRef:
               name: keycloak-config
