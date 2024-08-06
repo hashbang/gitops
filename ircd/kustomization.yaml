@@ -13,4 +13,4 @@ configMapGenerator:
   - files/ircd.yaml
 images:
   - name: ghcr.io/ergochat/ergo
-    newTag: v2.13.1@sha256:b14e45079fecf90ffeb9ff4a941212f0602bc6630b881a7aa40015965d500789
+    newTag: v2.14.0@sha256:ef4040d18044a53c8c995defb3159018cf2e83030e5db068c3976d9343c826a5
