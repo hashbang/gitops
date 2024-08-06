@@ -10,7 +10,7 @@ resources:
 configMapGenerator:
   - name: keycloak-config
     literals:
-      - KC_HOSTNAME_URL=https://keycloak.hashbang.sh
+      - KC_HOSTNAME=https://keycloak.hashbang.sh
       - KC_DB=postgres
       - KC_DB_URL_HOST=userdb-attempt-too-do-user-989073-0.db.ondigitalocean.com
       - KC_DB_URL_PORT=25060
