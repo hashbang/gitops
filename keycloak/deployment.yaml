@@ -36,20 +36,22 @@ spec:
         ports:
         - name: http
           containerPort: 8080
+        - name: management
+          containerPort: 9000
         readinessProbe:
           httpGet:
             path: /health/ready
-            port: 8080
+            port: management
           initialDelaySeconds: 60
         livenessProbe:
           httpGet:
             path: /health/live
-            port: 8080
+            port: management
           initialDelaySeconds: 60
         startupProbe:
           httpGet:
             path: /health
-            port: http
+            port: management
           initialDelaySeconds: 15
           failureThreshold: 60
           periodSeconds: 5
