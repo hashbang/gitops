@@ -49,7 +49,7 @@ configMapGenerator:
       - gpg-keys/E6A270B1A4DA649A
 images:
   - name: quay.io/argoproj/argocd
-    newTag: v2.11.0@sha256:e81cfc1f5761edc54684e00ca7f368a2a95ccd80a032ad9f1f97eaa3fdfb06c7
+    newTag: v2.12.0@sha256:3eb03fb533e5152ef3b4b57e6d8a5294963a3afe1cf5a6ee0459bce93fd309f7
   - name: ghcr.io/dexidp/dex
     newTag: v2.37.0-distroless@sha256:ea447c975c9fb79fc7930e80197810b425148557c5bd43fb74ca638e35e4b5f8
   - name: redis
