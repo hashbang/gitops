@@ -51,7 +51,7 @@ images:
   - name: quay.io/argoproj/argocd
     newTag: v2.12.3@sha256:68894064bc381c19ea951029510aa614bd26bf46c2ec65ea445c7d8d095a9417
   - name: ghcr.io/dexidp/dex
-    newTag: v2.38.0@sha256:b1d793440a98d7ecde7fa5dbc8cee1204ef0e8918d9e51ef6201f50d12d55925
+    newTag: v2.41.1@sha256:bc7cfce7c17f52864e2bb2a4dc1d2f86a41e3019f6d42e81d92a301fad0c8a1d
   - name: redis
     newTag: 7.2.0-alpine@sha256:fd5de2340bc46cbc2241975ab027797c350dec6fd86349e3ac384e3a41be6fee
   - name: viaductoss/ksops
