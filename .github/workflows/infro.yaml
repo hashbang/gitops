@@ -10,7 +10,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: infro-io/comment-diffs-action@08be5a9ac792e06ed87b26faaa52da44dd67ce42 # v1.4
+      - uses: infro-io/comment-diffs-action@db395c6537ddf0e5cf78d989d668581a9b4e394d # v1.4
         with:
           repo: ${{ github.repository }}
           revision: ${{ github.sha }}
