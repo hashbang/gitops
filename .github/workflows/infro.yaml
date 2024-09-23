@@ -1,0 +1,26 @@
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  comment-diffs:
+    name: comment diffs
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: infro-io/comment-diffs-action@08be5a9ac792e06ed87b26faaa52da44dd67ce42 # commit just after v1.4
+        with:
+          repo: ${{ github.repository }}
+          revision: ${{ github.sha }}
+          pull-number: ${{ github.event.number }}
+          config: |
+            deployers:
+              - type: argocd
+                name: argocd.hashbang.sh
+                endpoint: argocd.hashbang.sh
+                authtoken: ${{ secrets.INFRO_ARGOCD_TOKEN }}
+            vcs:
+              type: github
+              authtoken: ${{ secrets.GITHUB_TOKEN }}

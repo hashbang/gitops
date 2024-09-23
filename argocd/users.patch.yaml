@@ -15,3 +15,6 @@ data:
   accounts.lrvick: apiKey,login
   accounts.ryan: apiKey,login
   accounts.michael: apiKey,login
+
+  # bots
+  accounts.infro: apiKey # https://github.com/infro-io/infro-core?tab=readme-ov-file#argocd
