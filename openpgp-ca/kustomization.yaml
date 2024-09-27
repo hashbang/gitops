@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: openpgp-ca
+resources:
+  - https://gitlab.com/openpgp-ca/openpgp-ca/kustomize/restd/?ref=e0d66ddf4a36d391546c70e73b592c530721260a # 0.10.1
+  - ingress.yaml
+images:
+  - name: registry.gitlab.com/openpgp-ca/openpgp-ca
+    digest: sha256:66782e94aea9fb41ba2b6636aa37617d7d4e9031e363b6a0a1f552b2ee0b804c # 0.10.1
+  - name: registry.gitlab.com/openpgp-ca/openpgp-ca/openpgp-ca-restd
+    digest: sha256:458d8f0f51cf59b3536fc716cdabbf065e2f5b212c64d7e9c43af9bce67143f8  # 0.10.1
+patches:
+  - path: add-domain-deployment.patch.yaml
