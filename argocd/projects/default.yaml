@@ -15,3 +15,11 @@ spec:
     kind: '*'
   orphanedResources:
     warn: false
+  signatureKeys:
+    - keyID: C91A9911192C187A  # daurnimator
+    - keyID: 6785F7AF28DE7081  # Ryan Heywood
+    - keyID: E90A401336C8AAA9  # Lance R. Vick
+    - keyID: 68907D8BCCD85A5A  # Ben Harris
+    - keyID: B10116B8193F2DBD  # Daniel Grove
+    - keyID: 26CDD32189AA2885  # David Pflug
+    - keyID: E6A270B1A4DA649A  # kellerfuchs
