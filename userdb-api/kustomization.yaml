@@ -20,4 +20,4 @@ replicas:
   count: 2
 images:
 - name: postgrest/postgrest
-  newTag: v12.2.5@sha256:67c851793e115be6afba434bfd41908dfd155b868f0666ff11d6006be12c03ab
+  newTag: v12.2.8@sha256:e5978740a590628f2114730bb942f35342ea70b8b7a86697a3df283c0caea109
