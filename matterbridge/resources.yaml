@@ -35,6 +35,11 @@ spec:
             secretKeyRef:
               name: matterbridge-secret
               key: libera-password
+        - name: MATTERBRIDGE_IRC_OFTC_NICKSERVPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: matterbridge-secret
+              key: oftc-password
         - name: MATTERBRIDGE_MATRIX_MAIN_PASSWORD
           valueFrom:
             secretKeyRef:

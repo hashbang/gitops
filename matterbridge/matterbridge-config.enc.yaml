@@ -8,6 +8,7 @@ stringData:
     hashbang-password: ENC[AES256_GCM,data:GfzR4h0XsaWGzTJPtKHQjIsTA0txhYUnRw==,iv:ZrlLj7AwGgRFpmcdwjGfXRTOcsw86sbH4reRdPQT/YI=,tag:3OgWqZybYBn9oseq1vnyAg==,type:str]
     freenode-password: ENC[AES256_GCM,data:0IhIDvvWvAfyJOf7IPRWI1VfknhkQ7Bn2w==,iv:JFTsZrvZTvgXLNanjUemDrZKTgXCK+9r5PnMARQjtBA=,tag:71uo33YEjdxOi13lXnprhA==,type:str]
     libera-password: ENC[AES256_GCM,data:2HxjynR2ta9kEVICyhOtraJH06BD+etrtA==,iv:IfIBb+2Byf0z5xL22yRPSQfZNQmieu7v69ihzhg5BHE=,tag:KstHX2V3YsRPBrAgTB17GQ==,type:str]
+    oftc-password: ENC[AES256_GCM,data:yRhsRErF6KiD+zaNEIwrf/2vKn8wn3hvdQ==,iv:d7vwt064Tjwvj4PJiXFANRYVEGOc+f6aWd133O2HBeU=,tag:9Zv6w4FIZw2MqWF3coesiw==,type:str]
     matrix-password: ENC[AES256_GCM,data:Y0kpEWaBk6ZX0tgfsnTEaQJeef/K5gbVfw==,iv:V3dnoNjMqfxzpq3H7pBF0RCPZjzfGw2XyjheUPI6L2s=,tag:oW4DjpvjZPFrP5s3nIPnvQ==,type:str]
 sops:
     kms: []
@@ -15,8 +16,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-06-12T05:36:58Z"
-    mac: ENC[AES256_GCM,data:PKpgoFcTa4442kqoBgmlWxxSo4gXdiGSR/s1vkfcKziqsSuPXr/fCE7aX2GGi0tWIt8vDyzc5ulWUPwDVzzNVxrXE4XtGjx4Q2U9PgjkmBjN/WZrAIvMpt2cgFqducj511acG/C7PADiHROhv4VBKFUb1C77R4eBsjfR9ZcS8qI=,iv:yMRHd/zr+AoHlr7WC/w+AdTSLr7g9JU9eddzHB5UwsU=,tag:9BM1BDW66drIswH4rUgBJw==,type:str]
+    lastmodified: "2025-02-24T03:04:42Z"
+    mac: ENC[AES256_GCM,data:XpU2Sf2REpJiMOl0fblR5pYgWTZLXuoLGPLLsoT8u9T11GGBb0StFyXxO7P0ciiyHKbr4DYYLLXPulB9Wj01nInYwhEkYaD8zlszTQtBetLCu8uFiMmTygUsgDDAi7/7i9kg+xO3mUNfu+5LHWJVSMaw20mRZLNYG9oessuypiM=,iv:rsf7lx3/WZjCI909U/WJTyeuSRIt3ivk8U5hoNbViDM=,tag:a9pXgqkEqQLl7/o7L0LljQ==,type:str]
     pgp:
         - created_at: "2023-04-16T21:15:30Z"
           enc: |-
@@ -170,4 +171,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: 1FD6667A0808D4D48BDB8757A61B48D8288FCF8A
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.1
+    version: 3.7.3

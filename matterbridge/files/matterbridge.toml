@@ -21,6 +21,15 @@ RemoteNickFormat = "<{NICK}[{LABEL}]> "
 NickServNick = "HashBot"
 UseSASL = true
 
+[irc.oftc]
+Server = "irc.oftc.net:6697"
+Nick = "HashBot"
+UseTLS = true
+Label = "o"
+RemoteNickFormat = "<{NICK}[{LABEL}]> "
+NickServNick = "HashBot"
+UseSASL = true
+
 [matrix.main]
 Server = "https://matrix.org"
 Login = "HashBot"
@@ -59,3 +68,15 @@ channel = "#!social"
 [[gateway.inout]]
 account = "matrix.main"
 channel = "#!social:matrix.org"
+
+[[gateway]]
+name = "stagex"
+enable = true
+
+[[gateway.inout]]
+account = "irc.oftc"
+channel = "#stagex"
+
+[[gateway.inout]]
+account = "matrix.main"
+channel = "#stagex:matrix.org"
