@@ -16,6 +16,9 @@ configMapGenerator:
       # included if used on other cloud providers.
       # See: resources.yaml Service{name="ingress-nginx-controller"}
       - use-proxy-protocol=true
+images:
+  - name: registry.k8s.io/ingress-nginx/controller
+    newTag: v1.12.1@sha256:d2fbc4ec70d8aa2050dd91a91506e998765e86c96f32cffb56c503c9c34eed5b
 replacements:
   - source:
       kind: Certificate
