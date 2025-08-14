@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 resources:
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=6c7d6940cd19a4543e749d18ac282c7020c7c92e # tag=v2.14.15
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=03c4ad854c1e6d922a121cd40f505d9bc6e402da # tag=v3.1.0
   - ingress.yaml
   - argo-cd-service-monitor.yaml
   - deploy-key.yaml
@@ -51,7 +51,7 @@ images:
   - name: quay.io/argoproj/argocd
     newTag: v2.14.15@sha256:3be6babe6a3248cf35f2c7816c0fcbbbdba592320d93494016ef7123031339cb
   - name: ghcr.io/dexidp/dex
-    newTag: v2.41.1@sha256:bc7cfce7c17f52864e2bb2a4dc1d2f86a41e3019f6d42e81d92a301fad0c8a1d
+    newTag: v2.43.1@sha256:0881d3c9359b436d585b2061736ce271c100331e073be9178ef405ce5bf09557
   - name: redis
     newTag: 7.2.0-alpine@sha256:fd5de2340bc46cbc2241975ab027797c350dec6fd86349e3ac384e3a41be6fee
   - name: viaductoss/ksops
