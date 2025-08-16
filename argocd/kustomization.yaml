@@ -49,7 +49,7 @@ configMapGenerator:
       - gpg-keys/E6A270B1A4DA649A
 images:
   - name: quay.io/argoproj/argocd
-    newTag: v2.14.15@sha256:3be6babe6a3248cf35f2c7816c0fcbbbdba592320d93494016ef7123031339cb
+    newTag: v3.1.0@sha256:51abf85651c33cfd0645d72e0877eeeae187bb404d4641ec47caa1921c9750be
   - name: ghcr.io/dexidp/dex
     newTag: v2.43.1@sha256:0881d3c9359b436d585b2061736ce271c100331e073be9178ef405ce5bf09557
   - name: public.ecr.aws/docker/library/redis
