@@ -40,13 +40,13 @@ configMapGenerator:
     options:
       disableNameSuffixHash: true
     files:
-      - gpg-keys/C91A9911192C187A
-      - gpg-keys/6785F7AF28DE7081
-      - gpg-keys/E90A401336C8AAA9
-      - gpg-keys/68907D8BCCD85A5A
-      - gpg-keys/B10116B8193F2DBD
-      - gpg-keys/26CDD32189AA2885
-      - gpg-keys/E6A270B1A4DA649A
+      - gpg-keys/C91A9911192C187A  # daurnimator
+      - gpg-keys/6785F7AF28DE7081  # Ryan Heywood
+      - gpg-keys/E90A401336C8AAA9  # Lance R. Vick
+      - gpg-keys/68907D8BCCD85A5A  # Ben Harris
+      - gpg-keys/B10116B8193F2DBD  # Daniel Grove
+      - gpg-keys/26CDD32189AA2885  # David Pflug
+      - gpg-keys/E6A270B1A4DA649A  # kellerfuchs
 images:
   - name: quay.io/argoproj/argocd
     newTag: v3.1.0@sha256:51abf85651c33cfd0645d72e0877eeeae187bb404d4641ec47caa1921c9750be
