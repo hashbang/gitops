@@ -21,6 +21,13 @@ rules:
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["watch", "list"]
+# Rules for DNS Endpoints CRD
+- apiGroups: ["externaldns.k8s.io"]
+  resources: ["dnsendpoints"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["externaldns.k8s.io"]
+  resources: ["dnsendpoints/status"]
+  verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -55,6 +62,11 @@ spec:
         - --provider=aws
         - --txt-owner-id=digitalocean-hashbang
         - --txt-prefix=_owner.
+        - --source=crd
+        - --domain-filter=hashbang.sh
+        - --managed-record-types=A
+        - --managed-record-types=CNAME
+        - --managed-record-types=TXT
         ports:
         - containerPort: 7979
           name: metrics

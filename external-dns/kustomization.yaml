@@ -4,9 +4,12 @@ namespace: external-dns
 commonLabels:
   app.kubernetes.io/name: external-dns
 resources:
+- crd.yaml
 - resources.yaml
 - networkpolicy.yaml
 - service-monitor.yaml
+# Enable when AWS TXT records supported
+# - atproto-txt.yaml
 patches:
 - path: aws_credentials.yaml
 generators:
