@@ -9,4 +9,4 @@ replicas:
     count: 2
 images:
   - name: hashbang/hashbang.sh
-    newTag: latest@sha256:2d4e1d56586732715a2dd07cc5c4349fec6de13148ded0535e6d8ffeb884a14d
+    newTag: latest@sha256:50dfef86d5dd8f82df51e0576a7f2c83cf68fd7428fef57e1f6b4ddaf6cbbbea
