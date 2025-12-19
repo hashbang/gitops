@@ -32,6 +32,15 @@ data:
           if eq .app.status.operationState.phase \"Error\"    }}has \x0304errored\x03: {{.app.status.operationState.message}}{{end}}{{
           if eq .app.status.operationState.phase \"Failed\"   }}has \x0304failed\x03: {{.app.status.operationState.message}}{{end
         }} {{ if ne .app.status.operationState.phase \"Succeeded\" }}(blame \x0315{{.app.status.operationState.operation.initiatedBy.username}}\x03){{end}}"
+
+    github:
+      repoURLPath: "{{.app.spec.source.repoURL}}"
+      revisionPath: "{{.app.status.operationState.syncResult.revision}}"
+      status:
+        state: success
+        label: "continuous-delivery/{{.app.metadata.name}}"
+        targetURL: "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true"
+
   template.app-unhealthy: |
     webhook:
       bitbot:
@@ -47,6 +56,11 @@ data:
       bitbot:
         method: POST
         body: "Unable to build {{.app.metadata.name}} (Commit: \x0313{{printf \"%.7s\" .app.status.sync.revision}}\x03)"
+
+  service.github: |
+    appID: 67056
+    installationID: 9726893
+    privateKey: $github-privateKey
 
   service.webhook.bitbot: |
     url: $bitbot-url
