@@ -14,11 +14,6 @@ configMapGenerator:
     literals:
       - KC_HOSTNAME=https://keycloak.hashbang.sh
       - KC_DB=postgres
-      - KC_DB_URL_HOST=userdb-attempt-too-do-user-989073-0.db.ondigitalocean.com
-      - KC_DB_URL_PORT=25060
-      - KC_DB_URL_DATABASE=keycloak
-      - KC_DB_URL_PROPERTIES=?sslmode=require
-      - KC_DB_USERNAME=keycloak
       - KEYCLOAK_ADMIN=admin
 generators:
   - secret-generator.yaml

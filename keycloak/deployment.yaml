@@ -28,6 +28,11 @@ spec:
           value: "true"
         - name: KC_PROXY_HEADERS
           value: xforwarded
+        - name: KC_DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-db-app
+              key: jdbc-uri
         envFrom:
           - configMapRef:
               name: keycloak-config

@@ -5,16 +5,10 @@ metadata:
         kustomize.config.k8s.io/needs-hash: true
     name: keycloak-config
 stringData:
-    KC_DB_PASSWORD: ENC[AES256_GCM,data:eah6b75vrundYN0mfR7HYRK57ddVXdUY,iv:CsUvzzavx9ppz+Yx0PfUCQtzW0DWi6CZxL7KQFpgd/U=,tag:CRj/DTOP7O94+CAiFxTM5Q==,type:str]
     KEYCLOAK_ADMIN_PASSWORD: ENC[AES256_GCM,data:AZNMRRFdmYJHK7bXh3R7AKvxxz6gf6VVHHehyfJYqkIWhBX416mRp4yAOKSo9LLHRY47NP4aaka3XM6VOh4XlQ==,iv:FkPLR0MLdsP3FeF2mBfteEyoveaNTEFJSclHUCYj+ZY=,tag:Sa16kIVkQA/FK/8EVQVYaQ==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2023-12-18T01:22:11Z"
-    mac: ENC[AES256_GCM,data:xwWBU6oWAFE8hfHFBsL2hekW2DYADSua7lGUFne5q+W8vIJs+u1eiOTJUZaM7qVQX70Yj6K9WGW0vZuYfL8wt1L9I/vH70c8v3htlyoNmLJu9NrnC8Ra5eucrdJFU/BJbR2nb72YSk78Q0kq5kV4RNGKONnfZ6j+/xkGnBZ7tnM=,iv:gFJgfu6ki0PWA9VU2kTBrpeF045KIlcLtzfqK56+dZw=,tag:RremHsn93fuUNMFSpJWlXA==,type:str]
+    lastmodified: "2026-02-17T03:39:20Z"
+    mac: ENC[AES256_GCM,data:xOrLghkO98sIkjVvFZMkbeB+xqRu4U4RlNbYhUJ2uYsjYdvZdTLhvGGqMt7fl29iBrN4eCjrd9T+n/mZ3saQSMDpd41H4lAMc+dZxfXfU3LYbbORo0N8KlzNhw6yHIzxLX61jBd70YsM7Rwe4ry+g/vPU/1ZkB2h2LWlKerWaoA=,iv:zIpFdbwu2dhTLQsmf3CEkKBmVYF2usTBP4QKhuL4C1A=,tag:ncsdB2Rn0QtRGSggOQQUow==,type:str]
     pgp:
         - created_at: "2023-04-16T21:15:30Z"
           enc: |-
@@ -168,4 +162,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: 1FD6667A0808D4D48BDB8757A61B48D8288FCF8A
     encrypted_regex: ^(data|stringData)$
-    version: 3.8.1
+    version: 3.11.0

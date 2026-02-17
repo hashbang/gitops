@@ -4,25 +4,6 @@ metadata:
   name: keycloak-db
 spec:
   instances: 2
-  externalClusters:
-    - name: userdb-attempt-too-do
-      connectionParameters:
-        host: userdb-attempt-too-do-user-989073-0.db.ondigitalocean.com
-        port: "25060"
-        dbname: keycloak
-        sslmode: require
-        user: keycloak
-      password:
-        name: keycloak-config
-        key: KC_DB_PASSWORD
-  bootstrap:
-    initdb:
-      import:
-        type: microservice
-        databases:
-          - keycloak
-        source:
-          externalCluster: userdb-attempt-too-do
   smartShutdownTimeout: 3
   storage:
     size: 5Gi
