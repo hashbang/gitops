@@ -1,0 +1,11 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: atproto-txt
+spec:
+  endpoints:
+  - dnsName: _atproto.hashbang.sh
+    recordTTL: 60
+    recordType: TXT 
+    targets:
+    - 'did=did:plc:d5vnrky4rxilzxou6get5tlt'
