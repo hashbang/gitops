@@ -1,0 +1,20 @@
+# permissions for end users to view scheduledbackups.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: scheduledbackup-viewer-role
+rules:
+- apiGroups:
+  - postgresql.cnpg.io
+  resources:
+  - scheduledbackups
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - postgresql.cnpg.io
+  resources:
+  - scheduledbackups/status
+  verbs:
+  - get
