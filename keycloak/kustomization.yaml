@@ -19,4 +19,4 @@ generators:
   - secret-generator.yaml
 images:
   - name: quay.io/keycloak/keycloak
-    newTag: 26.5.6@sha256:8d44614c74798322c4e07fbe0ecb15cfbb5879d69b484628555f58ade06f0d8c
+    newTag: 26.5.7@sha256:45ae20191531eb608ddb0b775d012b40d3e4f942697f3214694887dd7c108d13
