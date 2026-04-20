@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: openpgp-ca
+  labels:
+    app.kubernetes.io/name: openpgp-ca
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "mtls/mtls-certs"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "false"
+spec:
+  tls:
+    - hosts:
+      - openpgp-ca.hashbang.sh
+      secretName: opepgp-ca-tls
+  rules:
+    - host: openpgp-ca.hashbang.sh
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              serviceName: openpgp-ca
+              servicePort: http
