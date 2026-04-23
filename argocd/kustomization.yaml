@@ -55,7 +55,7 @@ images:
   - name: public.ecr.aws/docker/library/redis
     newTag: 7.2.7-alpine@sha256:ddd16a9b1575a774c7e62956be8daa1de5b32cfb5c25b7a216aefed8e0919f9b
   - name: viaductoss/ksops
-    newTag: v4.3.3@sha256:6b5ec4b6144307f78bcddffd8f09020482836eee34cf77bf4ce8614b0452a73c
+    newTag: v4.5.1@sha256:4def9fdd4e2f850265740ebe9592c5455d19b76891e88e602df8b52d74b95334
 generators:
   - secret-generator.yaml
 replicas:
