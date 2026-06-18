@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: cloudnative-pg
 resources:
-  - github.com/james-callahan/cloudnative-pg-kustomize?ref=96a350bfc3329bc5bd9b7139527384f965727038 # branch=main
+  - github.com/james-callahan/cloudnative-pg-kustomize?ref=4f7c906c1baa22ff23afc66a013a5422b9e73e9b # branch=main
