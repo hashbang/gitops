@@ -53,7 +53,7 @@ images:
   - name: ghcr.io/dexidp/dex
     newTag: v2.45.1@sha256:8499afd690c437f52301efd2b05b2455da5bd2dfc20332cd697dc9937f808462
   - name: public.ecr.aws/docker/library/redis
-    newTag: 7.2.7-alpine@sha256:ddd16a9b1575a774c7e62956be8daa1de5b32cfb5c25b7a216aefed8e0919f9b
+    newTag: 7.4.11-alpine@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf
   - name: viaductoss/ksops
     newTag: v4.3.3@sha256:6b5ec4b6144307f78bcddffd8f09020482836eee34cf77bf4ce8614b0452a73c
 generators:
