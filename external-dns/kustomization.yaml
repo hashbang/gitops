@@ -13,4 +13,4 @@ generators:
 - secret-generator.yaml
 images:
 - name: registry.k8s.io/external-dns/external-dns
-  newTag: v0.20.0@sha256:ddc7f4212ed09a21024deb1f470a05240837712e74e4b9f6d1f2632ff10672e7
+  newTag: v0.22.0@sha256:5fdcaf7deb5c158f93a1fc6fe169cdff4cfb9ae0172bee1a90ab0ef74fb9c9cf
