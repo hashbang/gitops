@@ -9,47 +9,39 @@ metadata:
   name: external-dns
 rules:
   - apiGroups: [""]
-    resources: ["nodes"]
-    verbs: ["list","watch"]
-  - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["get","watch","list"]
-  - apiGroups: [""]
-    resources: ["services"]
+    resources:
+      - services
+      - pods
+      - namespaces
+      - nodes
     verbs: ["get","watch","list"]
   - apiGroups: ["discovery.k8s.io"]
-    resources: ["endpointslices"]
+    resources:
+      - endpointslices
     verbs: ["get","watch","list"]
-  - apiGroups: ["extensions","networking.k8s.io"]
-    resources: ["ingresses"]
+  - apiGroups: ["gateway.networking.k8s.io"]
+    resources:
+      - gateways
+      - httproutes
+      - grpcroutes
+      - tlsroutes
+      - tcproutes
+      - udproutes
+    verbs: ["get","watch","list"]
+  - apiGroups: ["networking.k8s.io"]
+    resources:
+      - ingresses
     verbs: ["get","watch","list"]
   - apiGroups: ["externaldns.k8s.io"]
-    resources: ["dnsendpoints"]
+    resources:
+      - dnsendpoints
+      - dnsrecords
     verbs: ["get","watch","list"]
   - apiGroups: ["externaldns.k8s.io"]
-    resources: ["dnsendpoints/status"]
-    verbs: ["*"]
-  - apiGroups: ["gateway.networking.k8s.io"]
-    resources: ["gateways"]
-    verbs: ["get","watch","list"]
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["get","watch","list"]
-  - apiGroups: ["gateway.networking.k8s.io"]
-    resources: ["httproutes"]
-    verbs: ["get","watch","list"]
-  - apiGroups: ["gateway.networking.k8s.io"]
-    resources: ["grpcroutes"]
-    verbs: ["get","watch","list"]
-  - apiGroups: ["gateway.networking.k8s.io"]
-    resources: ["tlsroutes"]
-    verbs: ["get","watch","list"]
-  - apiGroups: ["gateway.networking.k8s.io"]
-    resources: ["tcproutes"]
-    verbs: ["get","watch","list"]
-  - apiGroups: ["gateway.networking.k8s.io"]
-    resources: ["udproutes"]
-    verbs: ["get","watch","list"]
+    resources:
+      - dnsendpoints/status
+      - dnsrecords/status
+    verbs: ["update"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
