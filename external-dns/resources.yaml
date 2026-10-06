@@ -78,6 +78,7 @@ spec:
       - name: external-dns
         image: registry.k8s.io/external-dns/external-dns
         args:
+        - --policy=sync
         - --source=service
         - --source=ingress
         - --registry=txt
