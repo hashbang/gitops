@@ -56,7 +56,7 @@ metadata:
   name: webirc-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: webirc.hashbang.sh
+    external-dns.kubernetes.io/hostname: webirc.hashbang.sh
 spec:
   ingressClassName: nginx
   rules:

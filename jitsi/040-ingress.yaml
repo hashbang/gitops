@@ -4,7 +4,7 @@ metadata:
   name: jitsi-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: meet.hashbang.sh
+    external-dns.kubernetes.io/hostname: meet.hashbang.sh
 spec:
   ingressClassName: nginx
   tls:

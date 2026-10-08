@@ -50,7 +50,7 @@ metadata:
   name: userdb-api-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: userdb.hashbang.sh
+    external-dns.kubernetes.io/hostname: userdb.hashbang.sh
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx

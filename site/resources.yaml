@@ -60,7 +60,7 @@ metadata:
   name: site-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: hashbang.sh
+    external-dns.kubernetes.io/hostname: hashbang.sh
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx

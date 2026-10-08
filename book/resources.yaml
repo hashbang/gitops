@@ -49,7 +49,7 @@ metadata:
   name: book-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: book.hashbang.sh
+    external-dns.kubernetes.io/hostname: book.hashbang.sh
 spec:
   ingressClassName: nginx
   tls:
