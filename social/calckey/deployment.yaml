@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calckey
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: migrate
+          image: thatonecalculator/calckey
+          command: [npm, run, migrate]
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: calckey-db
+                  key: PGPASSWORD
+            - name: PGSSLMODE
+              value: no-verify
+          volumeMounts:
+            - name: configuration
+              mountPath: /calckey/.config
+              readOnly: true
+      containers:
+        - name: calckey
+          image: thatonecalculator/calckey
+          command: [npm, run, start]
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: calckey-db
+                  key: PGPASSWORD
+            - name: PGSSLMODE
+              value: no-verify
+          resources:
+            requests:
+              memory: 350M
+          volumeMounts:
+            - name: configuration
+              mountPath: /calckey/.config
+              readOnly: true
+          ports:
+            - name: http
+              containerPort: 3000
+      volumes:
+        - name: configuration
+          configMap:
+            name: calckey-configuration
