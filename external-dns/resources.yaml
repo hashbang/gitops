@@ -93,11 +93,12 @@ spec:
             capabilities:
               drop:
                 - ALL
-            fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes and AWS token files
             readOnlyRootFilesystem: true
             runAsGroup: 65532
             runAsNonRoot: true
             runAsUser: 65532
+      securityContext:
+        fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes and AWS token files
 ---
 apiVersion: v1
 kind: Service
