@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonLabels:
+  app.kubernetes.io/component: calckey
+resources:
+  - deployment.yaml
+  - service.yaml
+configMapGenerator:
+  - name: calckey-configuration
+    files:
+      - files/default.yml
+generators:
+  - secret-generator.yaml
+images:
+  - name: thatonecalculator/calckey
+    newTag: v13.1.4.1@sha256:f8a9dd03f8e639f81c6ee3c35985301f4ce49d11ff5ba0d75a6146de5139fe18
