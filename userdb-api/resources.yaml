@@ -63,7 +63,7 @@ spec:
     http:
       paths:
       - path: /v1(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: userdb-api
